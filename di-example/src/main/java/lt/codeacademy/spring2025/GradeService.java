@@ -3,8 +3,14 @@ package lt.codeacademy.spring2025;
 import java.util.List;
 
 public class GradeService {
+
+	private final MarksDao marksDao;
+
+	public GradeService(final MarksDao marksDao) {
+		this.marksDao = marksDao;
+	}
+
 	public Double avarageGrade() {
-		MarksDao marksDao = new InternalMarksDao();
 		List<Integer> marks = marksDao.getMarks();
 
 		double sum = 0;

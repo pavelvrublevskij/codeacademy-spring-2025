@@ -5,6 +5,7 @@ package lt.codeacademy.spring2025;
  */
 public class App {
 	public static void main(String[] args) {
-		System.out.println("Pazymiu vidurkis: " + new GradeService().avarageGrade());
+		final MarksDao marksDao = new InternalMarksDao();
+		System.out.println("Pazymiu vidurkis: " + new GradeService(marksDao).avarageGrade());
 	}
 }
