@@ -1,5 +1,6 @@
 package lt.codeacademy.spring2025.eshop.product.controller;
 
+import java.util.Collections;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,15 +18,20 @@ public class ProductController {
 	private final ProductDtoMapper productDtoMapper;
 
 	@GetMapping("/products")
-	public String openProducts(Model model) {
+	public String getProducts(Model model) {
+		model.addAttribute("productList", productService.getAllProducts().stream().map(productDtoMapper::toProductDto).toList());
+		return "product/products";
+	}
+
+	@GetMapping("/products/create")
+	public String openProductForCreate(Model model) {
 		model.addAttribute("product", ProductDto.builder().build());
-		return "product";
+		return "product/product";
 	}
 
 	@PostMapping("/products/create")
 	public String createProduct(ProductDto product) {
 		productService.save(productDtoMapper.toProduct(product));
-		productService.getAllProducts().forEach(System.out::println);
 		return "home";
 	}
 }
