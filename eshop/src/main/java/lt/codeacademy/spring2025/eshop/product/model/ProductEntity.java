@@ -1,16 +1,15 @@
-package lt.codeacademy.spring2025.eshop.product.dto;
+package lt.codeacademy.spring2025.eshop.product.model;
 
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
 @Getter
 @Setter
-@ToString
 @Builder
-public class ProductDto {
+public class ProductEntity {
+
 	private String name;
 	private double price;
-	private int amount;
+	private int amountInStock;
 }

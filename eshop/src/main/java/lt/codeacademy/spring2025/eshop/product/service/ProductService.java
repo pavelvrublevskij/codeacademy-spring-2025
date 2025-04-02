@@ -4,6 +4,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import lombok.RequiredArgsConstructor;
 import lt.codeacademy.spring2025.eshop.product.dto.ProductDto;
+import lt.codeacademy.spring2025.eshop.product.mapper.ProductMapper;
 import lt.codeacademy.spring2025.eshop.product.repository.ProductRepository;
 
 @Service
@@ -11,12 +12,15 @@ import lt.codeacademy.spring2025.eshop.product.repository.ProductRepository;
 public class ProductService {
 
 	private final ProductRepository productRepository;
+	private final ProductMapper productMapper;
 
 	public void save(final ProductDto productDto) {
-		productRepository.save(productDto);
+		productRepository.save(productMapper.toProductEntity(productDto));
 	}
 
 	public List<ProductDto> getAllProducts() {
-		return productRepository.findAll();
+		return productRepository.findAll().stream()
+				.map(productMapper::toProductDto)
+				.toList();
 	}
 }

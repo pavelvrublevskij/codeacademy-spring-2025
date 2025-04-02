@@ -3,18 +3,18 @@ package lt.codeacademy.spring2025.eshop.product.repository;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Repository;
-import lt.codeacademy.spring2025.eshop.product.dto.ProductDto;
+import lt.codeacademy.spring2025.eshop.product.model.ProductEntity;
 
 @Repository
 public class ProductRepository {
 
-	private final List<ProductDto> products = new ArrayList<>();
+	private final List<ProductEntity> products = new ArrayList<>();
 
-	public void save(final ProductDto productDto) {
+	public void save(final ProductEntity productDto) {
 		products.add(productDto);
 	}
 
-	public List<ProductDto> findAll() {
+	public List<ProductEntity> findAll() {
 		return products;
 	}
 }

@@ -16,7 +16,7 @@ public class ProductController {
 
 	@GetMapping("/products")
 	public String openProducts(Model model) {
-		model.addAttribute("product", new ProductDto());
+		model.addAttribute("product", ProductDto.builder().build());
 		return "product";
 	}
 
