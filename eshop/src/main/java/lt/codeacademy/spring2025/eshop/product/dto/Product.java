@@ -1,4 +1,4 @@
-package lt.codeacademy.spring2025.eshop.dto;
+package lt.codeacademy.spring2025.eshop.product.dto;
 
 import lombok.Getter;
 import lombok.Setter;
