@@ -12,6 +12,7 @@ public class ProductEntityMapper {
 				.name(productEntity.getName())
 				.price(productEntity.getPrice())
 				.amount(productEntity.getAmountInStock())
+        .description(productEntity.getDescription())
 				.build();
 	}
 
@@ -20,6 +21,7 @@ public class ProductEntityMapper {
 				.name(product.getName())
 				.price(product.getPrice())
 				.amountInStock(product.getAmount())
+        .description(product.getDescription())
 				.build();
 	}
 }

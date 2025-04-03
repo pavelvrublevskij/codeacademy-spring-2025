@@ -12,14 +12,16 @@ public final class ProductDtoMapper {
 				.name(productDto.getName())
 				.price(productDto.getPrice())
 				.amount(productDto.getAmount())
+        .description(productDto.getDescription())
 				.build();
 	}
 
-	public ProductDto toProductDto(final Product Product) {
+	public ProductDto toProductDto(final Product product) {
 		return ProductDto.builder()
-				.name(Product.getName())
-				.price(Product.getPrice())
-				.amount(Product.getAmount())
+				.name(product.getName())
+				.price(product.getPrice())
+				.amount(product.getAmount())
+        .description(product.getDescription())
 				.build();
 	}
 }
