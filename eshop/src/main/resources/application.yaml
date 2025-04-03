@@ -3,3 +3,11 @@ spring:
     name: eshop
   main:
     banner-mode: console
+logging:
+  level:
+    lt:
+      codeacademy:
+        spring2025:
+          eshop:
+            product:
+              config: debug
