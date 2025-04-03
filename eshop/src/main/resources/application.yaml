@@ -2,4 +2,4 @@ spring:
   application:
     name: eshop
   main:
-    banner-mode: off
+    banner-mode: console
