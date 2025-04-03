@@ -2,6 +2,7 @@ package lt.codeacademy.spring2025.eshop.product.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import com.github.javafaker.Faker;
 import lombok.RequiredArgsConstructor;
 import lt.codeacademy.spring2025.eshop.core.domain.Product;
 import lt.codeacademy.spring2025.eshop.product.service.ProductService;
@@ -17,11 +18,12 @@ public class ProductMockDataConfig {
   @Bean
   public Void intiProducts() {
     var count = 0;
+    final Faker faker = new Faker();
     while (MAX_COUNT >= count) {
       productService.save(Product.builder()
-          .name("Nokia" + count)
-          .amount(100+count)
-          .price(20*(count+1))
+          .name(faker.food().fruit())
+          .amount(faker.number().numberBetween(50, 1000))
+          .price(faker.number().numberBetween(2, 99))
         .build());
       count++;
     }
