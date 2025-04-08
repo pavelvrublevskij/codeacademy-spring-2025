@@ -9,6 +9,7 @@ public final class ProductDtoMapper {
 
 	public Product toProduct(final ProductDto productDto) {
 		return Product.builder()
+        .id(productDto.getId())
 				.name(productDto.getName())
 				.price(productDto.getPrice())
 				.amount(productDto.getAmount())
@@ -18,6 +19,7 @@ public final class ProductDtoMapper {
 
 	public ProductDto toProductDto(final Product product) {
 		return ProductDto.builder()
+        .id(product.getId())
 				.name(product.getName())
 				.price(product.getPrice())
 				.amount(product.getAmount())

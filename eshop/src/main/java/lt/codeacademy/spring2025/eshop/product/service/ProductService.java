@@ -19,7 +19,15 @@ public class ProductService {
 		productRepository.save(product);
 	}
 
+  public void update(final Product product) {
+    productRepository.update(product);
+  }
+
 	public List<Product> getAllProducts() {
 		return productRepository.findAll();
 	}
+
+  public Product getProductById(final long productId) {
+    return productRepository.findById(productId).orElseThrow(() -> new RuntimeException("Product not found"));
+  }
 }

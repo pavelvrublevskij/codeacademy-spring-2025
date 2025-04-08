@@ -9,6 +9,7 @@ public class ProductEntityMapper {
 
 	public Product toProduct(final ProductEntity productEntity) {
 		return Product.builder()
+        .id(productEntity.getId())
 				.name(productEntity.getName())
 				.price(productEntity.getPrice())
 				.amount(productEntity.getAmountInStock())
@@ -18,6 +19,7 @@ public class ProductEntityMapper {
 
 	public ProductEntity toProductEntity(final Product product) {
 		return ProductEntity.builder()
+        .id(product.getId())
 				.name(product.getName())
 				.price(product.getPrice())
 				.amountInStock(product.getAmount())

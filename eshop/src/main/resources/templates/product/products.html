@@ -19,7 +19,7 @@
         </thead>
         <tbody>
         <tr th:each="product: ${productList}">
-            <td th:text="${product.name}"></td>
+            <td><a th:href="@{/products/{productId}/update(productId=${product.id})}" th:text="${product.name}"/></td>
             <td th:text="${product.amount}"></td>
             <td th:text="${product.price}"></td>
             <td th:text="${product.description}"></td>

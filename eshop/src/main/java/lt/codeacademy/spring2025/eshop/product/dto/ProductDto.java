@@ -10,6 +10,7 @@ import lombok.ToString;
 @ToString
 @Builder
 public class ProductDto {
+  private long id;
 	private String name;
 	private double price;
 	private int amount;

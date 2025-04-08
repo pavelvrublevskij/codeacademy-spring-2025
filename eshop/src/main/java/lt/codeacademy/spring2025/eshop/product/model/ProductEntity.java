@@ -8,7 +8,7 @@ import lombok.Setter;
 @Setter
 @Builder
 public class ProductEntity {
-
+  private long id;
 	private String name;
 	private double price;
 	private int amountInStock;
