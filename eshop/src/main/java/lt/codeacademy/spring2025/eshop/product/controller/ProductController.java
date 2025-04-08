@@ -17,7 +17,8 @@ import lt.codeacademy.spring2025.eshop.product.service.ProductService;
 @RequiredArgsConstructor
 public class ProductController {
 
-  public static final String PRODUCT_CREATE_VIEW = "product/product";
+  public static final String PRODUCT_CREATE_VIEW = "product/productCreate";
+  public static final String PRODUCT_UPDATE_VIEW = "product/productUpdate";
   public static final String PRODUCT_PRODUCTS = "product/products";
   private final ProductService productService;
 	private final ProductDtoMapper productDtoMapper;
@@ -44,13 +45,14 @@ public class ProductController {
   public String updateProduct(Model model,
                               @PathVariable UUID productId) {
     model.addAttribute("product", productService.getProductById(productId));
-    return PRODUCT_CREATE_VIEW;
+    return PRODUCT_UPDATE_VIEW;
   }
 
   @PostMapping(HttpEndpoint.PRODUCT_UPDATE)
   public String updateProduct(Model model,
                               ProductDto product,
                               @PathVariable UUID productId) {
+    product.setId(productId);
     productService.update(productDtoMapper.toProduct(product));
 
     return getProducts(model);

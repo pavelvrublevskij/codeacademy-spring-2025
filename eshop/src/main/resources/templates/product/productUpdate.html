@@ -2,11 +2,11 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="lt">
 <head>
     <meta charset="UTF-8">
-    <title>Products</title>
+    <title>Modify product</title>
 </head>
 <body>
-<h3>Let's create a product:</h3>
-<form th:action="@{/products/create}" method="post" th:object="${product}">
+<h3>Let's update the product:</h3>
+<form th:action="@{/products/{productId}/update(productId=${product.id})}" method="post" th:object="${product}">
     <label>Name:</label>
     <input type="text" placeholder="product name" th:field="*{name}"><br/>
 
@@ -19,7 +19,7 @@
     <label>Description:</label>
     <input type="text" placeholder="product description" th:field="*{description}"><br/>
 
-    <button type="submit">LETS DO THIS</button>
+    <button type="submit">Update existing</button>
 </form>
 </body>
 </html>
