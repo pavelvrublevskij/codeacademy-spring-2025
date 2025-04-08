@@ -1,5 +1,7 @@
 package lt.codeacademy.spring2025.eshop.product.config;
 
+import java.util.UUID;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import com.github.javafaker.Faker;
@@ -24,7 +26,7 @@ public class ProductMockDataConfig {
     final Faker faker = new Faker();
     while (MAX_COUNT >= count) {
       productService.save(Product.builder()
-          .id(count)
+          .id(UUID.randomUUID())
           .name(faker.food().fruit())
           .amount(faker.number().numberBetween(50, 1000))
           .price(faker.number().numberBetween(2, 99))

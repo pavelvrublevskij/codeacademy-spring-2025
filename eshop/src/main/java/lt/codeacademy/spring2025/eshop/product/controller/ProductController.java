@@ -1,5 +1,7 @@
 package lt.codeacademy.spring2025.eshop.product.controller;
 
+import java.util.UUID;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -40,7 +42,7 @@ public class ProductController {
 
   @GetMapping(HttpEndpoint.PRODUCT_UPDATE)
   public String updateProduct(Model model,
-                              @PathVariable long productId) {
+                              @PathVariable UUID productId) {
     model.addAttribute("product", productService.getProductById(productId));
     return PRODUCT_CREATE_VIEW;
   }
@@ -48,7 +50,7 @@ public class ProductController {
   @PostMapping(HttpEndpoint.PRODUCT_UPDATE)
   public String updateProduct(Model model,
                               ProductDto product,
-                              @PathVariable long productId) {
+                              @PathVariable UUID productId) {
     productService.update(productDtoMapper.toProduct(product));
 
     return getProducts(model);

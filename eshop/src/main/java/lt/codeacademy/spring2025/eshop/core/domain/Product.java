@@ -1,12 +1,16 @@
 package lt.codeacademy.spring2025.eshop.core.domain;
 
+import java.util.UUID;
+
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 
 @Builder
 @Getter
 public class Product {
-  private long id;
+  @Setter
+  private UUID id;
 	private String name;
 	private double price;
 	private int amount;
