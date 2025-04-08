@@ -14,22 +14,26 @@ import lt.codeacademy.spring2025.eshop.product.repository.ProductRepository;
 @Log4j2
 public class ProductService {
 
-	private final ProductRepository productRepository;
+  private final ProductRepository productRepository;
 
-	public void save(final Product product) {
+  public void save(final Product product) {
 //    log.atInfo().log("=== Saving product ===");  // not recommended to use mostly in project because of performance issue
-		productRepository.save(product);
-	}
+    productRepository.save(product);
+  }
 
   public void update(final Product product) {
     productRepository.update(product);
   }
 
-	public List<Product> getAllProducts() {
-		return productRepository.findAll();
-	}
+  public List<Product> getAllProducts() {
+    return productRepository.findAll();
+  }
 
   public Product getProductById(final UUID productId) {
     return productRepository.findById(productId).orElseThrow(() -> new RuntimeException("Product not found"));
+  }
+
+  public void deleteProductByUUID(final UUID productId) {
+    productRepository.deleteProductByUUID(productId);
   }
 }

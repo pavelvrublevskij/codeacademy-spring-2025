@@ -34,4 +34,8 @@ public class ProductRepository {
     return Optional.ofNullable(productEntities.get(productId))
       .map(productEntityMapper::toProduct);
   }
+
+  public void deleteProductByUUID(final UUID productId) {
+    productEntities.remove(productId);
+  }
 }
