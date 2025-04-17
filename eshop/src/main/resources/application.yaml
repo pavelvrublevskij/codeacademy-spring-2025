@@ -8,6 +8,9 @@ spring:
     driver-class-name: org.h2.Driver
     username: sa
     password: password
+  sql:
+    init:
+      schema-locations: classpath:db/ddl/db-schema.sql
 logging:
   level:
     lt:
