@@ -1,41 +1,20 @@
 package lt.codeacademy.spring2025.eshop.product.repository;
 
-import java.util.*;
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
-import org.springframework.stereotype.Repository;
-import lombok.RequiredArgsConstructor;
 import lt.codeacademy.spring2025.eshop.core.domain.Product;
-import lt.codeacademy.spring2025.eshop.product.mapper.ProductEntityMapper;
-import lt.codeacademy.spring2025.eshop.product.model.ProductEntity;
 
-@Repository
-@RequiredArgsConstructor
-public class ProductRepository {
+public interface ProductRepository {
 
-	private final ProductEntityMapper productEntityMapper;
+    void save(final Product product);
 
-	private final Map<UUID, ProductEntity> productEntities = new HashMap<>();
+    List<Product> findAll();
 
-	public void save(final Product product) {
-    final UUID productUUID = UUID.randomUUID();
-    product.setId(productUUID);
-    productEntities.put(productUUID, productEntityMapper.toProductEntity(product));
-	}
+    void update(final Product product);
 
-	public List<Product> findAll() {
-    return productEntities.values().stream().map(productEntityMapper::toProduct).toList();
-	}
+    Optional<Product> findById(final UUID productId);
 
-  public void update(final Product product) {
-    productEntities.put(product.getId(), productEntityMapper.toProductEntity(product));
-  }
-
-  public Optional<Product> findById(final UUID productId) {
-    return Optional.ofNullable(productEntities.get(productId))
-      .map(productEntityMapper::toProduct);
-  }
-
-  public void deleteProductByUUID(final UUID productId) {
-    productEntities.remove(productId);
-  }
+    void deleteProductByUUID(final UUID productId);
 }
