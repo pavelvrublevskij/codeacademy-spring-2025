@@ -23,6 +23,6 @@
     <button type="submit">Create new</button>
 </form>
 
-<div th:text="${message}">Product added successfully!</div>
+<div th:if="${message ne null}" class="alert alert-success" role="alert"  th:text="${message}">Product added successfully!</div>
 </body>
 </html>

@@ -22,6 +22,6 @@
 
     <button type="submit">Update existing</button>
 </form>
-<div th:text="${message}">Product updated successfully!</div>
+<div th:if="${message ne null}" class="alert alert-success" role="alert" th:text="${message}">Product updated successfully!</div>
 </body>
 </html>
