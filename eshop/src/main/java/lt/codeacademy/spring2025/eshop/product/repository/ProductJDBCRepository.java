@@ -4,11 +4,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 import lt.codeacademy.spring2025.eshop.core.domain.Product;
 
-@Primary
 @Repository
 public class ProductJDBCRepository implements ProductRepository {
   @Override
