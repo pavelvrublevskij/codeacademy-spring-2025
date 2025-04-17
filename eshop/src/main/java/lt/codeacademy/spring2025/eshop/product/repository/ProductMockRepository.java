@@ -17,25 +17,25 @@ public class ProductMockRepository implements ProductRepository {
 	private final Map<UUID, ProductEntity> productEntities = new HashMap<>();
 
 	public void save(final Product product) {
-    final UUID productUUID = UUID.randomUUID();
-    product.setId(productUUID);
-    productEntities.put(productUUID, productEntityMapper.toProductEntity(product));
+		final UUID productUUID = UUID.randomUUID();
+		product.setId(productUUID);
+		productEntities.put(productUUID, productEntityMapper.toProductEntity(product));
 	}
 
 	public List<Product> findAll() {
-    return productEntities.values().stream().map(productEntityMapper::toProduct).toList();
+		return productEntities.values().stream().map(productEntityMapper::toProduct).toList();
 	}
 
-  public void update(final Product product) {
-    productEntities.put(product.getId(), productEntityMapper.toProductEntity(product));
-  }
+	public void update(final Product product) {
+		productEntities.put(product.getId(), productEntityMapper.toProductEntity(product));
+	}
 
-  public Optional<Product> findById(final UUID productId) {
-    return Optional.ofNullable(productEntities.get(productId))
-      .map(productEntityMapper::toProduct);
-  }
+	public Optional<Product> findById(final UUID productId) {
+		return Optional.ofNullable(productEntities.get(productId))
+				.map(productEntityMapper::toProduct);
+	}
 
-  public void deleteProductByUUID(final UUID productId) {
-    productEntities.remove(productId);
-  }
+	public void deleteProductByUUID(final UUID productId) {
+		productEntities.remove(productId);
+	}
 }
