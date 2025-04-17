@@ -19,14 +19,14 @@ public class ProductController {
 
   public static final String PRODUCT_CREATE_VIEW = "product/productCreate";
   public static final String PRODUCT_UPDATE_VIEW = "product/productUpdate";
-  public static final String PRODUCT_PRODUCTS = "product/products";
+  public static final String PRODUCT_PRODUCTS_VIEW = "product/products";
   private final ProductService productService;
 	private final ProductDtoMapper productDtoMapper;
 
 	@GetMapping(HttpEndpoint.PRODUCTS)
 	public String getProducts(Model model) {
 		model.addAttribute("productList", productService.getAllProducts().stream().map(productDtoMapper::toProductDto).toList());
-		return PRODUCT_PRODUCTS;
+		return PRODUCT_PRODUCTS_VIEW;
 	}
 
 	@GetMapping(HttpEndpoint.PRODUCTS_CREATE)
@@ -38,9 +38,8 @@ public class ProductController {
 	@PostMapping(HttpEndpoint.PRODUCTS_CREATE)
 	public String createProduct(Model model, ProductDto product) {
 		productService.save(productDtoMapper.toProduct(product));
-    model.addAttribute("product", ProductDto.builder().build());
     model.addAttribute("message", "Product added successfully!");
-		return PRODUCT_CREATE_VIEW;
+		return openProductForCreate(model);
 	}
 
   @GetMapping(HttpEndpoint.PRODUCT_UPDATE)
@@ -56,8 +55,8 @@ public class ProductController {
                               @PathVariable UUID productId) {
     product.setId(productId);
     productService.update(productDtoMapper.toProduct(product));
-
-    return getProducts(model);
+    model.addAttribute("message", "Product updated successfully!");
+    return updateProduct(model, productId);
   }
 
   @GetMapping(HttpEndpoint.PRODUCTS_DELETE)
