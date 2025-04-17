@@ -36,9 +36,11 @@ public class ProductController {
 	}
 
 	@PostMapping(HttpEndpoint.PRODUCTS_CREATE)
-	public String createProduct(ProductDto product) {
+	public String createProduct(Model model, ProductDto product) {
 		productService.save(productDtoMapper.toProduct(product));
-		return "home";
+    model.addAttribute("product", ProductDto.builder().build());
+    model.addAttribute("message", "Product added successfully!");
+		return PRODUCT_CREATE_VIEW;
 	}
 
   @GetMapping(HttpEndpoint.PRODUCT_UPDATE)
