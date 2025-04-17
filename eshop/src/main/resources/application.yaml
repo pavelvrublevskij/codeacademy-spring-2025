@@ -3,6 +3,11 @@ spring:
     name: eshop
   main:
     banner-mode: console
+  datasource:
+    url: jdbc:h2:mem:eshop_db
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: password
 logging:
   level:
     lt:
