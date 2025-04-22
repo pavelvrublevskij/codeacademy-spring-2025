@@ -13,37 +13,39 @@ import lt.codeacademy.spring2025.eshop.core.domain.Product;
 @RequiredArgsConstructor
 public class ProductJDBCRepository implements ProductRepository {
 
-	private final JdbcTemplate jdbcTemplate;
+  private final JdbcTemplate jdbcTemplate;
 
-	@Override
-	public void save(Product product) {
+  @Override
+  public void save(Product product) {
+    jdbcTemplate.update(
+      "INSERT INTO product (product_id, name, quantity_in_stock, price, description) VALUES (?, ?, ?, ?, ?)",
+      product.getId(), product.getName(), product.getAmount(), product.getPrice(), product.getDescription());
+  }
 
-	}
+  @Override
+  public List<Product> findAll() {
+    return jdbcTemplate.query("SELECT * FROM PRODUCT",
+      (resultSet, rowNum) -> Product.builder()
+        .id(UUID.fromString(resultSet.getString("PRODUCT_ID")))
+        .name(resultSet.getString("NAME"))
+        .price(resultSet.getDouble("PRICE"))
+        .amount(resultSet.getInt("QUANTITY_IN_STOCK"))
+        .description(resultSet.getString("DESCRIPTION"))
+        .build());
+  }
 
-	@Override
-	public List<Product> findAll() {
-		return jdbcTemplate.query("SELECT * FROM PRODUCT",
-				(resultSet, rowNum) -> Product.builder()
-						.id(UUID.fromString(resultSet.getString("PRODUCT_ID")))
-						.name(resultSet.getString("NAME"))
-						.price(resultSet.getDouble("PRICE"))
-						.amount(resultSet.getInt("QUANTITY_IN_STOCK"))
-						.description(resultSet.getString("DESCRIPTION"))
-						.build());
-	}
+  @Override
+  public void update(Product product) {
 
-	@Override
-	public void update(Product product) {
+  }
 
-	}
+  @Override
+  public Optional<Product> findById(UUID productId) {
+    return Optional.empty();
+  }
 
-	@Override
-	public Optional<Product> findById(UUID productId) {
-		return Optional.empty();
-	}
-
-	@Override
-	public void deleteProductByUUID(UUID productId) {
-		jdbcTemplate.execute(String.format("DELETE FROM PRODUCT WHERE PRODUCT_ID = '%s'", productId.toString()));
-	}
+  @Override
+  public void deleteProductByUUID(UUID productId) {
+    jdbcTemplate.execute(String.format("DELETE FROM PRODUCT WHERE PRODUCT_ID = '%s'", productId.toString()));
+  }
 }
