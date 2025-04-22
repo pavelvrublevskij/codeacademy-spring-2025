@@ -27,7 +27,7 @@ public class ProductMockDataConfig {
     while (MAX_COUNT >= count) {
       productService.save(Product.builder()
           .id(UUID.randomUUID())
-          .name(faker.food().fruit())
+          .name("(faker)" + faker.food().fruit())
           .amount(faker.number().numberBetween(50, 1000))
           .price(faker.number().numberBetween(2, 99))
           .description(faker.chuckNorris().fact())
