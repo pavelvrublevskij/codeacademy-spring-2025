@@ -36,12 +36,21 @@ public class ProductJDBCRepository implements ProductRepository {
 
   @Override
   public void update(Product product) {
-
+    jdbcTemplate.update("UPDATE product SET name = ?, price = ?, quantity_in_stock = ?, description = ? WHERE PRODUCT_ID = ?",
+      product.getName(), product.getPrice(), product.getAmount(), product.getDescription(), product.getId());
   }
 
   @Override
   public Optional<Product> findById(UUID productId) {
-    return Optional.empty();
+    return jdbcTemplate.query(String.format("SELECT * FROM product WHERE product_id = '%s'", productId.toString()),
+      (resultSet, rowNum) -> Product.builder()
+        .id(UUID.fromString(resultSet.getString("PRODUCT_ID")))
+        .name(resultSet.getString("NAME"))
+        .price(resultSet.getDouble("PRICE"))
+        .amount(resultSet.getInt("QUANTITY_IN_STOCK"))
+        .description(resultSet.getString("DESCRIPTION"))
+        .build()).stream()
+      .findFirst();
   }
 
   @Override

@@ -15,4 +15,8 @@ public class Product {
 	private double price;
 	private int amount;
   private String description;
+
+  public UUID getId() {
+    return id != null ? id : UUID.randomUUID();
+  }
 }
