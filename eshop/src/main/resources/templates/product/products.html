@@ -7,8 +7,8 @@
 </head>
 <body>
 <h2>Products</h2>
-<div th:if="${productList.isEmpty()}">Product list is empty</div>
-<div th:unless="${productList.isEmpty()}">
+<div th:if="${productPage.isEmpty()}">Product list is empty</div>
+<div th:unless="${productPage.isEmpty()}">
     <table class="table table-dark table-hover">
         <thead>
         <tr>
@@ -20,7 +20,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="product: ${productList}">
+        <tr th:each="product: ${productPage}">
             <td><a th:href="@{/products/{productId}/update(productId=${product.id})}" th:text="${product.name}"/></td>
             <td th:text="${product.amount}"></td>
             <td th:text="${product.price}"></td>
