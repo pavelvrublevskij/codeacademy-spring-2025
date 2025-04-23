@@ -3,40 +3,50 @@ package lt.codeacademy.spring2025.eshop.product.service;
 import java.util.List;
 import java.util.UUID;
 
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import lt.codeacademy.spring2025.eshop.core.domain.Product;
+import lt.codeacademy.spring2025.eshop.product.mapper.ProductEntityMapper;
 import lt.codeacademy.spring2025.eshop.product.repository.ProductRepository;
 
 @Service
 @Log4j2
+@RequiredArgsConstructor
 public class ProductService {
 
   private final ProductRepository productRepository;
-
-  public ProductService(@Qualifier("productJDBCRepository") ProductRepository productRepository) {
-    this.productRepository = productRepository;
-  }
+  private final ProductEntityMapper productEntityMapper;
 
   public void save(final Product product) {
-//    log.atInfo().log("=== Saving product ===");  // not recommended to use mostly in project because of performance issue
-    productRepository.save(product);
+    productRepository.save(productEntityMapper.toProductEntity(product));
   }
 
+  @Transactional
   public void update(final Product product) {
-    productRepository.update(product);
+    productRepository.findByProductId(product.getId())
+      .ifPresent(entity -> {
+        entity.setAmountInStock(product.getAmount());
+        entity.setPrice(product.getPrice());
+        entity.setDescription(product.getDescription());
+        entity.setName(product.getName());
+        productRepository.save(entity);
+      });
   }
 
   public List<Product> getAllProducts() {
-    return productRepository.findAll();
+    return productRepository.findAll().stream().map(productEntityMapper::toProduct).toList();
   }
 
   public Product getProductById(final UUID productId) {
-    return productRepository.findById(productId).orElseThrow(() -> new RuntimeException("Product not found"));
+    return productRepository.findByProductId(productId)
+      .map(productEntityMapper::toProduct)
+      .orElseThrow(() -> new RuntimeException("Product not found"));
   }
 
+  @Transactional
   public void deleteProductByUUID(final UUID productId) {
-    productRepository.deleteProductByUUID(productId);
+    productRepository.deleteByProductId(productId);
   }
 }
