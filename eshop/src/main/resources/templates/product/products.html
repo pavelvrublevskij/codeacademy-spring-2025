@@ -34,14 +34,20 @@
 
     <nav class="d-flex justify-content-center">
         <ul class="pagination">
-            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+            <li class="page-item">
+                <a class="page-link" th:href="@{/products(page=${productPage.number - 1})}"
+                   th:classappend="${!productPage.hasPrevious} ? 'disabled': ''">Previous</a>
+            </li>
             <li th:each="pageNumber: ${#numbers.sequence(0, productPage.totalPages - 1)}"
                 class="page-item"
                 th:classappend="${pageNumber == productPage.number ? 'active': ''}"
             >
                 <a class="page-link" th:href="@{/products(page=${pageNumber})}" th:text="${pageNumber + 1}">1</a>
             </li>
-            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+            <li class="page-item">
+                <a class="page-link" th:href="@{/products(page=${productPage.number + 1})}"
+                   th:classappend="${!productPage.hasNext()} ? 'disabled': ''">Next</a>
+            </li>
         </ul>
     </nav>
 </div>
