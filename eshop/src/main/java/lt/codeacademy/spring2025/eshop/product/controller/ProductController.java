@@ -2,6 +2,7 @@ package lt.codeacademy.spring2025.eshop.product.controller;
 
 import java.util.UUID;
 
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
@@ -27,7 +28,8 @@ public class ProductController {
 
 	@GetMapping(HttpEndpoint.PRODUCTS)
 	public String getProducts(Model model, @PageableDefault(size = 2) Pageable pageable) {
-		model.addAttribute("productPage", productService.getAllProductsPaginated(pageable).stream().map(productDtoMapper::toProductDto).toList());
+    final Page<ProductDto> pageableProductDto = productService.getAllProductsPaginated(pageable).map(productDtoMapper::toProductDto);
+    model.addAttribute("productPage", pageableProductDto);
 		return PRODUCT_PRODUCTS_VIEW;
 	}
 

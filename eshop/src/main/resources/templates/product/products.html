@@ -9,6 +9,8 @@
 <h2>Products</h2>
 <div th:if="${productPage.isEmpty()}">Product list is empty</div>
 <div th:unless="${productPage.isEmpty()}">
+    <span th:text="'Total records: ' + ${productPage.totalElements}"></span>
+    <span th:text="'Total pages: ' + ${productPage.totalPages}"></span>
     <table class="table table-dark table-hover">
         <thead>
         <tr>
