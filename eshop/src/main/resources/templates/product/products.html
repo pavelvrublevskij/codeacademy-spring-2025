@@ -16,23 +16,29 @@
         <thead>
         <tr>
             <th>
-                <a th:href="@{/products(sort=${'name,asc'})}">
-                    <i class="fa-solid fa-sort-up"
-                      th:if="${productPage.sort.getOrderFor('name') ne null}"
+                <a th:with="direction=${productPage.sort.getOrderFor('name')?.direction}"
+                   th:href="@{/products(sort='name,' + ${direction?.name() eq 'ASC' ? 'DESC' : 'ASC'})}">
+                    <i class="fa-solid"
+                       th:classappend="${productPage.sort.getOrderFor('name').direction.name() eq 'DESC' ? 'fa-sort-up' : 'fa-sort-down'}"
+                       th:if="${productPage.sort.getOrderFor('name') ne null}"
                     ></i>
                     Name
                 </a>
             </th>
             <th>
-                <a th:href="@{/products(sort=${'amountInStock,asc'})}">
-                    <i class="fa-solid fa-sort-up"
+                <a th:with="direction=${productPage.sort.getOrderFor('amountInStock')?.direction}"
+                   th:href="@{/products(sort='amountInStock,' + ${direction?.name() eq 'ASC' ? 'DESC' : 'ASC'})}">
+                    <i class="fa-solid"
+                       th:classappend="${productPage.sort.getOrderFor('amountInStock').direction.name() eq 'DESC' ? 'fa-sort-up' : 'fa-sort-down'}"
                        th:if="${productPage.sort.getOrderFor('amountInStock') ne null}"></i>
                     Quantity
                 </a>
             </th>
             <th>
-                <a th:href="@{/products(sort=${'price,asc'})}">
-                    <i class="fa-solid fa-sort-up"
+                <a th:with="direction=${productPage.sort.getOrderFor('price')?.direction}"
+                   th:href="@{/products(sort='price,' + ${direction?.name() eq 'ASC' ? 'DESC' : 'ASC'})}">
+                    <i class="fa-solid"
+                       th:classappend="${productPage.sort.getOrderFor('price').direction.name() eq 'DESC' ? 'fa-sort-up' : 'fa-sort-down'}"
                        th:if="${productPage.sort.getOrderFor('price') ne null}"></i>
                     Price
                 </a>
