@@ -17,7 +17,7 @@
         <tr>
             <th>
                 <a th:with="direction=${productPage.sort.getOrderFor('name')?.direction}"
-                   th:href="@{/products(sort='name,' + ${direction?.name() eq 'ASC' ? 'DESC' : 'ASC'})}">
+                   th:href="@{/products(sort='name,' + ${direction?.name() eq 'ASC' ? 'DESC' : 'ASC'} + ',ignorecase')}">
                     <i class="fa-solid"
                        th:classappend="${productPage.sort.getOrderFor('name').direction.name() eq 'DESC' ? 'fa-sort-up' : 'fa-sort-down'}"
                        th:if="${productPage.sort.getOrderFor('name') ne null}"
@@ -59,19 +59,24 @@
     </table>
 
     <nav class="d-flex justify-content-center">
-        <ul class="pagination">
+        <ul class="pagination"
+            th:with="
+                orderVariable=${productPage.sort.iterator().hasNext() ? productPage.sort.iterator().next() : null},
+                sortVariable=${orderVariable?.property + ',' +  orderVariable?.direction + ',ignorecase'}
+            "
+        >
             <li class="page-item">
-                <a class="page-link" th:href="@{/products(page=${productPage.number - 1})}"
+                <a class="page-link" th:href="@{/products(page=${productPage.number - 1},sort=${sortVariable})}"
                    th:classappend="${!productPage.hasPrevious} ? 'disabled': ''">Previous</a>
             </li>
             <li th:each="pageNumber: ${#numbers.sequence(0, productPage.totalPages - 1)}"
                 class="page-item"
                 th:classappend="${pageNumber == productPage.number ? 'active': ''}"
             >
-                <a class="page-link" th:href="@{/products(page=${pageNumber})}" th:text="${pageNumber + 1}">1</a>
+                <a class="page-link" th:href="@{/products(page=${pageNumber},sort=${sortVariable})}" th:text="${pageNumber + 1}">1</a>
             </li>
             <li class="page-item">
-                <a class="page-link" th:href="@{/products(page=${productPage.number + 1})}"
+                <a class="page-link" th:href="@{/products(page=${productPage.number + 1},sort=${sortVariable})}"
                    th:classappend="${!productPage.hasNext()} ? 'disabled': ''">Next</a>
             </li>
         </ul>

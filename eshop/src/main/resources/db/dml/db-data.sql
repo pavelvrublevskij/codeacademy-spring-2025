@@ -7,6 +7,10 @@ VALUES
 ('e2bcb15d-3ac0-43e2-9c66-0086de54e00e', 'Xiaomi 13 Pro', 20, 749.50, 'Xiaomi 13 Pro with Leica camera, Ceramic Black'),
 ('5b71f9e7-14a2-4d5a-bb2d-7c5ad4dfb693', 'Sony Xperia 1 V', 15, 949.99, 'Sony Xperia 1 V with 4K OLED display, 512GB'),
 ('a9d179fa-e8e2-4b19-b74c-21e3881d14f0', 'Motorola Edge 40', 35, 599.00, 'Motorola Edge 40 with 144Hz OLED display'),
+('c1524d18-e26e-4b9a-8a75-4c104b2f8871', 'onePlus 11', 25, 699.99, 'OnePlus 11 5G with 16GB RAM and 256GB storage'),
+('e2bcb15d-3ac0-43e2-9c66-0086de54e002', 'xiaomi 13 Pro', 20, 749.50, 'Xiaomi 13 Pro with Leica camera, Ceramic Black'),
+('5b71f9e7-14a2-4d5a-bb2d-7c5ad4dfb694', 'sony Xperia 1 V', 15, 949.99, 'Sony Xperia 1 V with 4K OLED display, 512GB'),
+('a9d179fa-e8e2-4b19-b74c-21e3881d14f5', 'motorola Edge 40', 35, 599.00, 'Motorola Edge 40 with 144Hz OLED display'),
 ('4f34830f-dfa5-4566-9f40-279f94cf66f4', 'Nokia XR21', 10, 499.99, 'Rugged Nokia XR21, 128GB, 5G ready'),
 ('d7f81f80-d11b-4e4e-b5cc-19164031c055', 'Asus ROG Phone 7', 8, 1099.00, 'Gaming phone with 165Hz AMOLED and 6000mAh battery'),
 ( 'ab65a876-8723-4a5c-865d-6f172ec0ea3c', 'Realme GT Neo 5', 12, 449.49, 'Realme GT Neo 5 with 240W charging, 1TB storage');
