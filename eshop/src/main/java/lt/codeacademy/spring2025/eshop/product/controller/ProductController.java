@@ -44,7 +44,7 @@ public class ProductController {
 	public String createProduct(Model model, ProductDto product) {
 		productService.save(productDtoMapper.toProduct(product));
     model.addAttribute("message", "Product added successfully!");
-		return openProductForCreate(model);
+		return "redirect:" + HttpEndpoint.PRODUCTS_CREATE + "?message=Product added successfully!";
 	}
 
   @GetMapping(HttpEndpoint.PRODUCT_UPDATE)
