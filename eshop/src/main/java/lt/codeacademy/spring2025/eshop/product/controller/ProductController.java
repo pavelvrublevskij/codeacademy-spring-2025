@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import lombok.RequiredArgsConstructor;
 import lt.codeacademy.spring2025.eshop.HttpEndpoint;
 import lt.codeacademy.spring2025.eshop.product.dto.ProductDto;
@@ -35,15 +36,15 @@ public class ProductController {
 	}
 
 	@GetMapping(HttpEndpoint.PRODUCTS_CREATE)
-	public String openProductForCreate(Model model) {
+	public String openProductForCreate(Model model, String message) {
 		model.addAttribute("product", ProductDto.builder().build());
+    model.addAttribute("message", message);
 		return PRODUCT_CREATE_VIEW;
 	}
 
 	@PostMapping(HttpEndpoint.PRODUCTS_CREATE)
-	public String createProduct(Model model, ProductDto product) {
+	public String createProduct(ProductDto product) {
 		productService.save(productDtoMapper.toProduct(product));
-    model.addAttribute("message", "Product added successfully!");
 		return "redirect:" + HttpEndpoint.PRODUCTS_CREATE + "?message=Product added successfully!";
 	}
 
