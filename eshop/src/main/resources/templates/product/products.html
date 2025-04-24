@@ -15,7 +15,7 @@
     <table class="table table-dark table-hover">
         <thead>
         <tr>
-            <th>
+            <th class="col-md-3">
                 <a th:with="direction=${productPage.sort.getOrderFor('name')?.direction}"
                    th:href="@{/products(sort='name,' + ${direction?.name() eq 'ASC' ? 'DESC' : 'ASC'} + ',ignorecase')}">
                     <i class="fa-solid"
@@ -25,7 +25,7 @@
                     <span th:text="#{products.field.name}">Name</span>
                 </a>
             </th>
-            <th>
+            <th class="col-md-2">
                 <a th:with="direction=${productPage.sort.getOrderFor('amountInStock')?.direction}"
                    th:href="@{/products(sort='amountInStock,' + ${direction?.name() eq 'ASC' ? 'DESC' : 'ASC'})}">
                     <i class="fa-solid"
@@ -34,7 +34,7 @@
                     <span th:text="#{products.field.quantity}">Quantity</span>
                 </a>
             </th>
-            <th>
+            <th class="col-md-2">
                 <a th:with="direction=${productPage.sort.getOrderFor('price')?.direction}"
                    th:href="@{/products(sort='price,' + ${direction?.name() eq 'ASC' ? 'DESC' : 'ASC'})}">
                     <i class="fa-solid"
@@ -55,7 +55,8 @@
             <td th:text="${product.amount}"></td>
             <td th:text="${product.price}"></td>
             <td th:text="${product.description}"></td>
-            <td><a th:href="@{/products/{productId}/delete(productId=${product.id})}">
+            <td><a th:href="@{/products/{productId}/delete(productId=${product.id})}"
+                   class="btn btn-danger">
                 <span th:text="#{products.button.delete}">Delete</span>
             </a></td>
         </tr>
