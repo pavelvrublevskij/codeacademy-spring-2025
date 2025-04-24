@@ -57,13 +57,14 @@ public class ProductController {
   }
 
   @PostMapping(HttpEndpoint.PRODUCT_UPDATE)
-  public String updateProduct(Model model,
-                              ProductDto product,
-                              @PathVariable UUID productId) {
+  public String updateProduct(ProductDto product,
+                              @PathVariable UUID productId,
+                              RedirectAttributes redirectAttributes) {
     product.setId(productId);
     productService.update(productDtoMapper.toProduct(product));
-    model.addAttribute("message", "Product updated successfully!");
-    return updateProduct(model, productId);
+    redirectAttributes.addFlashAttribute("message", "Product updated successfully!");
+    redirectAttributes.addFlashAttribute("productId", productId);
+    return "redirect:" + HttpEndpoint.PRODUCT_UPDATE;
   }
 
   @GetMapping(HttpEndpoint.PRODUCTS_DELETE)
