@@ -34,3 +34,10 @@ WEB for Spring MVC learning
 
 ## Access the application
 http://localhost:8080
+
+# HOW TO run application from scratch step by step:
+1. ```cd <your maven project main location>```, where pom.xml available
+2. check if pom.xml available using command ```ls -la```
+3. run maven wrapper```./mvnw clean install``` for build and install required dependency from maven repository
+4. run docker on postgres ```docker compose up -d postgresqldb``` as example
+5. if point 3. and point 4. success then run spring boot application using ```./mvnw spring-boot:run -Dspring-boot.run.profiles=pg```
