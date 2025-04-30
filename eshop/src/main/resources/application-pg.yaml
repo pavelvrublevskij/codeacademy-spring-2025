@@ -1,0 +1,16 @@
+spring:
+  h2:
+    console:
+      path: /eshop_h2
+      enabled: false
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password: postgres
+  sql:
+    init:
+      schema-locations: classpath:db/postgres/ddl/db-schema.sql
+      data-locations: classpath:db/dml/db-data.sql
+      platform: postgresql
+      mode: always
