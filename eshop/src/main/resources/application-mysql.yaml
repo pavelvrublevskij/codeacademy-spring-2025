@@ -1,0 +1,16 @@
+spring:
+  h2:
+    console:
+      path: /eshop_h2
+      enabled: false
+  datasource:
+    url: jdbc:mysql://localhost:3306/eshop
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: user
+    password: password
+  sql:
+    init:
+      schema-locations: classpath:db/mysql/ddl/db-schema.sql
+      data-locations: classpath:db/dml/db-data.sql
+      platform: mysql
+      mode: always
