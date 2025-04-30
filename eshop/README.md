@@ -24,5 +24,13 @@ WEB for Spring MVC learning
 ### on H2 DB
 > ./mvnw spring-boot:run
 
+## Run application using spring-boot
+### on MYSQL DB
+> ./mvnw spring-boot:run -Dspring-boot.run.profiles=mysql
+
+## Run application using spring-boot
+### on PostgreSQL DB
+> ./mvnw spring-boot:run -Dspring-boot.run.profiles=pg
+
 ## Access the application
 http://localhost:8080
