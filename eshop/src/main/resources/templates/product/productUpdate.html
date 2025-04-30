@@ -7,7 +7,7 @@
 </head>
 <body>
 <h3 th:text="#{product.edit.header}">Let's update the product:</h3>
-<form th:action="@{/products/create}" method="post" th:object="${product}">
+<form method="post" th:object="${product}">
     <label th:text="#{product.edit.name}">Name:</label>
     <input type="text" placeholder="product name" th:field="*{name}"><br/>
 
