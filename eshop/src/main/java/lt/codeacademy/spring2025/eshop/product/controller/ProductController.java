@@ -74,8 +74,4 @@ public class ProductController {
     return getProducts(model, pageable);
   }
 
-  @ExceptionHandler
-  public String handleException(ProductNotFoundException ex, Model model) {
-    return "product/error/productNotFound";
-  }
 }
