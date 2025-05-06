@@ -49,7 +49,7 @@ public class ProductService {
   public Product getProductById(final UUID productId) {
     return productRepository.findByProductId(productId)
       .map(productEntityMapper::toProduct)
-      .orElseThrow(ProductNotFoundException::new);
+      .orElseThrow(() -> new ProductNotFoundException(productId));
   }
 
   @Transactional
