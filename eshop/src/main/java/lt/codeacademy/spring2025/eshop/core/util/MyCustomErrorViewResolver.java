@@ -1,5 +1,6 @@
 package lt.codeacademy.spring2025.eshop.core.util;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.boot.autoconfigure.web.servlet.error.ErrorViewResolver;
@@ -17,6 +18,9 @@ public class MyCustomErrorViewResolver implements ErrorViewResolver {
       return new ModelAndView("error/404", model);
     }
 
-    return new ModelAndView("myCustomError", model);
+    final Map<String, Object> myModelMap = new HashMap<>();
+    myModelMap.putAll(model);
+    myModelMap.put("myCustomAttribute", "Any text for attribute");
+    return new ModelAndView("myCustomError", myModelMap);
   }
 }
