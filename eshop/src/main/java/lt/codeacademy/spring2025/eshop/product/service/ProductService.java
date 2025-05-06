@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import lt.codeacademy.spring2025.eshop.core.domain.Product;
+import lt.codeacademy.spring2025.eshop.product.exception.ProductNotFoundException;
 import lt.codeacademy.spring2025.eshop.product.mapper.ProductEntityMapper;
 import lt.codeacademy.spring2025.eshop.product.repository.ProductRepository;
 
@@ -48,7 +49,7 @@ public class ProductService {
   public Product getProductById(final UUID productId) {
     return productRepository.findByProductId(productId)
       .map(productEntityMapper::toProduct)
-      .orElseThrow(() -> new RuntimeException("Product not found"));
+      .orElseThrow(ProductNotFoundException::new);
   }
 
   @Transactional
