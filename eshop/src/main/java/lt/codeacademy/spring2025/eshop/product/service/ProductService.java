@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import lt.codeacademy.spring2025.eshop.core.domain.Product;
+import lt.codeacademy.spring2025.eshop.helper.MessageService;
 import lt.codeacademy.spring2025.eshop.product.exception.ProductNotFoundException;
 import lt.codeacademy.spring2025.eshop.product.mapper.ProductEntityMapper;
 import lt.codeacademy.spring2025.eshop.product.repository.ProductRepository;
@@ -19,8 +20,11 @@ import lt.codeacademy.spring2025.eshop.product.repository.ProductRepository;
 @RequiredArgsConstructor
 public class ProductService {
 
+  public static final String PRODUCT_NOT_FOUND_TRANSL_KEY = "product.exception.not.found";
+
   private final ProductRepository productRepository;
   private final ProductEntityMapper productEntityMapper;
+  private final MessageService messageService;
 
   public void save(final Product product) {
     productRepository.save(productEntityMapper.toProductEntity(product));
@@ -49,7 +53,7 @@ public class ProductService {
   public Product getProductById(final UUID productId) {
     return productRepository.findByProductId(productId)
       .map(productEntityMapper::toProduct)
-      .orElseThrow(() -> new ProductNotFoundException(productId));
+      .orElseThrow(() -> new ProductNotFoundException(messageService.getTranslatedMessage(PRODUCT_NOT_FOUND_TRANSL_KEY,  productId)));
   }
 
   @Transactional
