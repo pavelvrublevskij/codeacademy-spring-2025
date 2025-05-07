@@ -17,7 +17,7 @@ public class ProductDto {
   private UUID id;
 	private String name;
 	private double price;
-  @Positive
+  @Positive(message = "{amount.positive}")
   @NotNull
 	private int amount;
   private String description;
