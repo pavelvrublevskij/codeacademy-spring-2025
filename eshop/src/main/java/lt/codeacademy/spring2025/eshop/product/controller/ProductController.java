@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lt.codeacademy.spring2025.eshop.HttpEndpoint;
 import lt.codeacademy.spring2025.eshop.helper.MessageService;
@@ -43,7 +44,7 @@ public class ProductController {
 	}
 
 	@PostMapping(HttpEndpoint.PRODUCTS_CREATE)
-	public String createProduct(ProductDto product, RedirectAttributes redirectAttributes) {
+	public String createProduct(@Valid ProductDto product, RedirectAttributes redirectAttributes) {
 		productService.save(productDtoMapper.toProduct(product));
     redirectAttributes.addFlashAttribute("message", messageService.getTranslatedMessage("product.create.message.success"));
 		return "redirect:" + HttpEndpoint.PRODUCTS_CREATE;

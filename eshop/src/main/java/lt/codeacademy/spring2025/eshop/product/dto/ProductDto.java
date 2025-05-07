@@ -2,6 +2,8 @@ package lt.codeacademy.spring2025.eshop.product.dto;
 
 import java.util.UUID;
 
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,6 +17,8 @@ public class ProductDto {
   private UUID id;
 	private String name;
 	private double price;
+  @Positive
+  @NotNull
 	private int amount;
   private String description;
 }
