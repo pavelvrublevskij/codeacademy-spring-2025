@@ -1,5 +1,6 @@
 package lt.codeacademy.spring2025.eshop.product.config;
 
+import java.math.BigDecimal;
 import java.util.UUID;
 
 import org.springframework.context.annotation.Bean;
@@ -29,7 +30,7 @@ public class ProductMockDataConfig {
           .id(UUID.randomUUID())
           .name("(faker)" + faker.food().fruit())
           .amount(faker.number().numberBetween(50, 1000))
-          .price(faker.number().numberBetween(2, 99))
+          .price(BigDecimal.valueOf(faker.number().numberBetween(2, 99)))
           .description(faker.chuckNorris().fact())
         .build());
       count++;

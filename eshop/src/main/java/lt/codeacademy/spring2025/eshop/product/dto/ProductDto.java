@@ -1,5 +1,6 @@
 package lt.codeacademy.spring2025.eshop.product.dto;
 
+import java.math.BigDecimal;
 import java.util.UUID;
 
 import jakarta.validation.constraints.Max;
@@ -21,7 +22,7 @@ public class ProductDto {
   @NotBlank(message = "{productdto.name.notblank}")
 	private String name;
   @Positive(message = "{productdto.price.positive}")
-	private double price;
+	private BigDecimal price;
   @Positive(message = "{productdto.amount.positive}")
   @NotNull
   @Max(value = 10000)

@@ -13,4 +13,4 @@ spring:
       schema-locations: classpath:db/postgres/ddl/db-schema.sql
       data-locations: classpath:db/dml/db-data.sql
       platform: postgresql
-      mode: always
+      mode: never

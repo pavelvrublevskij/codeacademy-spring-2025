@@ -1,13 +1,10 @@
 package lt.codeacademy.spring2025.eshop.product.model;
 
+import java.math.BigDecimal;
+import java.util.Set;
 import java.util.UUID;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -19,19 +16,27 @@ import lombok.Setter;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
+@Entity(name = "product")
 @Table(name = "product")
 public class ProductEntity {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private long id;
+  private int id;
 
   private UUID productId;
 	private String name;
-	private double price;
+	private BigDecimal price;
 
   @Column(name = "quantity_in_stock")
 	private int amountInStock;
 
   private String description;
+
+  @ManyToMany
+  @JoinTable(
+    name = "product_product_categories",
+    joinColumns = { @JoinColumn(name = "product_id") },
+    inverseJoinColumns = { @JoinColumn(name = "product_category_id") }
+  )
+  private Set<ProductCategoryEntity> productCategories;
 }

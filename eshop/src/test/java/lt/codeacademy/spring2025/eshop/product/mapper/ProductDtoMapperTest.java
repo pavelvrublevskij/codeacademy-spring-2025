@@ -1,5 +1,7 @@
 package lt.codeacademy.spring2025.eshop.product.mapper;
 
+import java.math.BigDecimal;
+
 import org.junit.jupiter.api.Test;
 
 import lt.codeacademy.spring2025.eshop.core.domain.Product;
@@ -15,7 +17,7 @@ class ProductDtoMapperTest {
     ProductDtoMapper mapper = new ProductDtoMapper();
     Product product = Product.builder()
       .name("productName")
-      .price(1.0)
+      .price(BigDecimal.ONE)
       .description("productDescription")
       .amount(100)
       .build();
@@ -25,7 +27,7 @@ class ProductDtoMapperTest {
 
     // THEN
     assertEquals("productName", productDto.getName());
-    assertEquals(1.0, productDto.getPrice(), 0);
+    assertEquals(BigDecimal.ONE, productDto.getPrice());
     assertEquals("productDescription", productDto.getDescription());
     assertEquals(100, productDto.getAmount(), 0);
   }
@@ -41,7 +43,7 @@ class ProductDtoMapperTest {
 
     // THEN
     assertNull( productDto.getName());
-    assertEquals(0, productDto.getPrice(), 0);
+    assertEquals(BigDecimal.ZERO, productDto.getPrice());
     assertNull(productDto.getDescription());
     assertEquals(0, productDto.getAmount(), 0);
   }

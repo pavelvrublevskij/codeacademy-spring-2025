@@ -1,5 +1,6 @@
 package lt.codeacademy.spring2025.eshop.core.domain;
 
+import java.math.BigDecimal;
 import java.util.UUID;
 
 import lombok.Builder;
@@ -12,7 +13,7 @@ public class Product {
   @Setter
   private UUID id;
 	private String name;
-	private double price;
+	private BigDecimal price;
 	private int amount;
   private String description;
 

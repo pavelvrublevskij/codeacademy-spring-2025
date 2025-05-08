@@ -14,3 +14,23 @@ VALUES
 ('4f34830f-dfa5-4566-9f40-279f94cf66f4', 'Nokia XR21', 10, 499.99, 'Rugged Nokia XR21, 128GB, 5G ready'),
 ('d7f81f80-d11b-4e4e-b5cc-19164031c055', 'Asus ROG Phone 7', 8, 1099.00, 'Gaming phone with 165Hz AMOLED and 6000mAh battery'),
 ( 'ab65a876-8723-4a5c-865d-6f172ec0ea3c', 'Realme GT Neo 5', 12, 449.49, 'Realme GT Neo 5 with 240W charging, 1TB storage');
+
+insert into product_category (name)
+values ('Phone'),
+    ('Other');
+
+insert into product_product_categories (product_id, product_category_id)
+values (1, 1),
+    (2, 1),
+    (3, 1),
+    (4, 1),
+    (5, 1),
+    (6, 1),
+    (7, 1),
+    (8, 1),
+    (9, 1),
+    (10, 1),
+    (11, 1),
+    (12, 1),
+    (13, 1),
+    (14, 1);
