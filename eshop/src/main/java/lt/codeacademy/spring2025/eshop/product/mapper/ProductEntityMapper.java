@@ -1,5 +1,7 @@
 package lt.codeacademy.spring2025.eshop.product.mapper;
 
+import java.util.HashSet;
+
 import org.springframework.stereotype.Component;
 import lt.codeacademy.spring2025.eshop.core.domain.Product;
 import lt.codeacademy.spring2025.eshop.product.model.ProductEntity;
@@ -24,6 +26,7 @@ public class ProductEntityMapper {
 				.price(product.getPrice())
 				.amountInStock(product.getAmount())
         .description(product.getDescription())
+        .productCategories(new HashSet<>())
 				.build();
 	}
 }

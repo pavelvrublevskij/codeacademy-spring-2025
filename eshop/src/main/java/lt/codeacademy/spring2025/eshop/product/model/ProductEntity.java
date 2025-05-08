@@ -1,6 +1,7 @@
 package lt.codeacademy.spring2025.eshop.product.model;
 
 import java.math.BigDecimal;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
@@ -38,5 +39,5 @@ public class ProductEntity {
     joinColumns = { @JoinColumn(name = "product_id") },
     inverseJoinColumns = { @JoinColumn(name = "product_category_id") }
   )
-  private Set<ProductCategoryEntity> productCategories;
+  private Set<ProductCategoryEntity> productCategories = new HashSet<>();
 }

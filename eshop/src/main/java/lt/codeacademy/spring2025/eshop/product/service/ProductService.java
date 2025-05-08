@@ -13,6 +13,9 @@ import lt.codeacademy.spring2025.eshop.core.domain.Product;
 import lt.codeacademy.spring2025.eshop.helper.MessageService;
 import lt.codeacademy.spring2025.eshop.product.exception.ProductNotFoundException;
 import lt.codeacademy.spring2025.eshop.product.mapper.ProductEntityMapper;
+import lt.codeacademy.spring2025.eshop.product.model.ProductCategoryEntity;
+import lt.codeacademy.spring2025.eshop.product.model.ProductEntity;
+import lt.codeacademy.spring2025.eshop.product.repository.ProductCategoryRepository;
 import lt.codeacademy.spring2025.eshop.product.repository.ProductRepository;
 
 @Service
@@ -23,11 +26,22 @@ public class ProductService {
   public static final String PRODUCT_NOT_FOUND_TRANSL_KEY = "product.exception.not.found";
 
   private final ProductRepository productRepository;
+  private final ProductCategoryRepository productCategoryRepository;
   private final ProductEntityMapper productEntityMapper;
   private final MessageService messageService;
 
+  @Transactional
   public void save(final Product product) {
-    productRepository.save(productEntityMapper.toProductEntity(product));
+    final ProductCategoryEntity category = productCategoryRepository.findByName("NaN")
+      .orElse(ProductCategoryEntity.builder()
+        .name("NaN")
+        .build());
+
+    final ProductCategoryEntity savedCategory = productCategoryRepository.save(category);
+    final ProductEntity productEntity = productEntityMapper.toProductEntity(product);
+    productEntity.getProductCategories().add(savedCategory);
+
+    productRepository.save(productEntity);
   }
 
   @Transactional
@@ -53,7 +67,7 @@ public class ProductService {
   public Product getProductById(final UUID productId) {
     return productRepository.findByProductId(productId)
       .map(productEntityMapper::toProduct)
-      .orElseThrow(() -> new ProductNotFoundException(messageService.getTranslatedMessage(PRODUCT_NOT_FOUND_TRANSL_KEY,  productId)));
+      .orElseThrow(() -> new ProductNotFoundException(messageService.getTranslatedMessage(PRODUCT_NOT_FOUND_TRANSL_KEY, productId)));
   }
 
   @Transactional
