@@ -1,8 +1,11 @@
 package lt.codeacademy.spring2025.eshop.common;
 
+import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.InitBinder;
 import lt.codeacademy.spring2025.eshop.common.exception.EshopNotFoundException;
 
 @ControllerAdvice
@@ -12,5 +15,10 @@ public class ApplicationControllerAdvice {
   public String notFound(EshopNotFoundException e, Model model) {
     model.addAttribute("errorMessage", e.getMessage());
     return "common/error/notFound";
+  }
+
+  @InitBinder
+  public void initBinder(WebDataBinder webDataBinder) {
+    webDataBinder.registerCustomEditor(String.class, new StringTrimmerEditor(true));
   }
 }
