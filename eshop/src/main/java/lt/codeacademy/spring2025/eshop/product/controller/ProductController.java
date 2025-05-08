@@ -8,6 +8,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import jakarta.validation.Valid;
@@ -39,13 +40,16 @@ public class ProductController {
 
 	@GetMapping(HttpEndpoint.PRODUCTS_CREATE)
 	public String openProductForCreate(Model model) {
-		model.addAttribute("product", ProductDto.builder().build());
+		model.addAttribute("productDto", ProductDto.builder().build());
 		return PRODUCT_CREATE_VIEW;
 	}
 
 	@PostMapping(HttpEndpoint.PRODUCTS_CREATE)
-	public String createProduct(@Valid ProductDto product, RedirectAttributes redirectAttributes) {
-		productService.save(productDtoMapper.toProduct(product));
+	public String createProduct(@Valid ProductDto productDto, BindingResult error, Model model, RedirectAttributes redirectAttributes) {
+		if (error.hasErrors()) {
+     return PRODUCT_CREATE_VIEW;
+   }
+    productService.save(productDtoMapper.toProduct(productDto));
     redirectAttributes.addFlashAttribute("message", messageService.getTranslatedMessage("product.create.message.success"));
 		return "redirect:" + HttpEndpoint.PRODUCTS_CREATE;
 	}
