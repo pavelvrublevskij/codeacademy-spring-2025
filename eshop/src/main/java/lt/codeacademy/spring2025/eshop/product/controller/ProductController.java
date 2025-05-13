@@ -19,8 +19,10 @@ import lt.codeacademy.spring2025.eshop.HttpEndpoint;
 import lt.codeacademy.spring2025.eshop.helper.MessageService;
 import lt.codeacademy.spring2025.eshop.product.dto.ProductCategoryDto;
 import lt.codeacademy.spring2025.eshop.product.dto.ProductDto;
+import lt.codeacademy.spring2025.eshop.product.dto.ProductListDto;
 import lt.codeacademy.spring2025.eshop.product.mapper.ProductCategoryDtoMapper;
 import lt.codeacademy.spring2025.eshop.product.mapper.ProductDtoMapper;
+import lt.codeacademy.spring2025.eshop.product.mapper.ProductListDtoMapper;
 import lt.codeacademy.spring2025.eshop.product.service.ProductCategoryService;
 import lt.codeacademy.spring2025.eshop.product.service.ProductService;
 
@@ -33,14 +35,17 @@ public class ProductController {
   public static final String PRODUCT_PRODUCTS_VIEW = "product/products";
   private final ProductService productService;
 	private final ProductDtoMapper productDtoMapper;
+  private final ProductListDtoMapper productListDtoMapper;
   private final ProductCategoryService productCategoryService;
   private final ProductCategoryDtoMapper productCategoryDtoMapper;
   private final MessageService messageService;
 
 	@GetMapping(HttpEndpoint.PRODUCTS)
 	public String getProducts(Model model, @PageableDefault(size = 5, sort={"name"}, direction = Sort.Direction.ASC) Pageable pageable) {
-    final Page<ProductDto> pageableProductDto = productService.getAllProductsPaginated(pageable).map(productDtoMapper::toProductDto);
-    model.addAttribute("productPage", pageableProductDto);
+    final Page<ProductListDto> pageableProductListDto =
+      productService.getAllProductsPaginated(pageable)
+        .map(productListDtoMapper::toProductListDto);
+    model.addAttribute("productPage", pageableProductListDto);
 		return PRODUCT_PRODUCTS_VIEW;
 	}
 

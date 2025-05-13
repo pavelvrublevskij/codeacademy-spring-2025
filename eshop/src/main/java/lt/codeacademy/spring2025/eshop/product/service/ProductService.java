@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import lt.codeacademy.spring2025.eshop.core.domain.Product;
+import lt.codeacademy.spring2025.eshop.core.domain.ProductCategory;
 import lt.codeacademy.spring2025.eshop.helper.MessageService;
 import lt.codeacademy.spring2025.eshop.product.exception.ProductNotFoundException;
 import lt.codeacademy.spring2025.eshop.product.mapper.ProductEntityMapper;
@@ -24,6 +25,7 @@ import lt.codeacademy.spring2025.eshop.product.repository.ProductRepository;
 public class ProductService {
 
   public static final String PRODUCT_NOT_FOUND_TRANSL_KEY = "product.exception.not.found";
+  public static final String PRODUCT_CATEGORY_NOT_FOUND_TRANSL_KEY = "product.category.exception.not.found";
 
   private final ProductRepository productRepository;
   private final ProductCategoryRepository productCategoryRepository;
@@ -32,11 +34,19 @@ public class ProductService {
 
   @Transactional
   public void save(final Product product) {
-    final ProductCategoryEntity category = productCategoryRepository.getReferenceById(product.getCategoryId());
+    final ProductCategoryEntity category = getFirstCategory(product);
     final ProductEntity productEntity = productEntityMapper.toProductEntity(product);
     productEntity.getProductCategories().add(category);
 
     productRepository.save(productEntity);
+  }
+
+  private ProductCategoryEntity getFirstCategory(final Product product) {
+    final ProductCategory productCategory = product.getCategories().stream().findFirst()
+      .orElseThrow(() -> new ProductNotFoundException(
+        messageService.getTranslatedMessage(PRODUCT_CATEGORY_NOT_FOUND_TRANSL_KEY, product.getCategories().stream().findFirst())));
+
+    return productCategoryRepository.getReferenceById(productCategory.getId());
   }
 
   @Transactional

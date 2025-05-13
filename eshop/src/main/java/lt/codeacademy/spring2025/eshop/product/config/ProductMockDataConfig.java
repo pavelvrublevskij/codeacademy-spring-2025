@@ -1,6 +1,7 @@
 package lt.codeacademy.spring2025.eshop.product.config;
 
 import java.math.BigDecimal;
+import java.util.Set;
 import java.util.UUID;
 
 import org.springframework.context.annotation.Bean;
@@ -9,6 +10,7 @@ import com.github.javafaker.Faker;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import lt.codeacademy.spring2025.eshop.core.domain.Product;
+import lt.codeacademy.spring2025.eshop.core.domain.ProductCategory;
 import lt.codeacademy.spring2025.eshop.product.service.ProductService;
 
 @Configuration
@@ -32,7 +34,10 @@ public class ProductMockDataConfig {
           .amount(faker.number().numberBetween(50, 1000))
           .price(BigDecimal.valueOf(faker.number().numberBetween(2, 99)))
           .description(faker.chuckNorris().fact())
-          .categoryId(8)
+          .categories(Set.of(ProductCategory.builder()
+              .id(8)
+              .name("NaN")
+              .build()))
         .build());
       count++;
     }

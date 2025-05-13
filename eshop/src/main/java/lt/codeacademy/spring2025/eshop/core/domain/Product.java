@@ -1,6 +1,8 @@
 package lt.codeacademy.spring2025.eshop.core.domain;
 
 import java.math.BigDecimal;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 import lombok.Builder;
@@ -16,7 +18,8 @@ public class Product {
 	private BigDecimal price;
 	private int amount;
   private String description;
-  private int categoryId;
+  @Builder.Default
+  private Set<ProductCategory> categories = new HashSet<>();
 
   public UUID getId() {
     return id != null ? id : UUID.randomUUID();

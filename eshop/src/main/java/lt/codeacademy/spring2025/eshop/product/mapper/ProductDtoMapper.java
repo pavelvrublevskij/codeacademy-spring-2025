@@ -1,7 +1,10 @@
 package lt.codeacademy.spring2025.eshop.product.mapper;
 
+import java.util.Set;
+
 import org.springframework.stereotype.Component;
 import lt.codeacademy.spring2025.eshop.core.domain.Product;
+import lt.codeacademy.spring2025.eshop.core.domain.ProductCategory;
 import lt.codeacademy.spring2025.eshop.product.dto.ProductDto;
 
 @Component
@@ -14,7 +17,9 @@ public final class ProductDtoMapper {
 				.price(productDto.getPrice())
 				.amount(productDto.getAmount())
         .description(productDto.getDescription())
-        .categoryId(productDto.getCategoryId())
+        .categories(Set.of(ProductCategory.builder()
+          .id(productDto.getCategoryId())
+          .build()))
 				.build();
 	}
 
