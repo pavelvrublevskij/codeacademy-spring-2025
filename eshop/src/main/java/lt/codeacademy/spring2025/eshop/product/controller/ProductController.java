@@ -11,7 +11,9 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -44,7 +46,7 @@ public class ProductController {
 	public String getProducts(Model model, @PageableDefault(size = 5, sort={"name"}, direction = Sort.Direction.ASC) Pageable pageable) {
     final Page<ProductListDto> pageableProductListDto =
       productService.getAllProductsPaginated(pageable)
-        .map(productListDtoMapper::toProductListDto);
+        .map(productListDtoMapper::toDto);
     model.addAttribute("productPage", pageableProductListDto);
 		return PRODUCT_PRODUCTS_VIEW;
 	}
@@ -52,7 +54,7 @@ public class ProductController {
 	@GetMapping(HttpEndpoint.PRODUCTS_CREATE)
 	public String openProductForCreate(Model model) {
     final Set<ProductCategoryDto> productCategories = productCategoryService.getCategories().stream()
-      .map(productCategoryDtoMapper::toProductCategoryDto)
+      .map(productCategoryDtoMapper::toDto)
       .collect(Collectors.toSet());
 
     model.addAttribute("productCategoryDtos", productCategories);
@@ -65,7 +67,7 @@ public class ProductController {
 		if (error.hasErrors()) {
      return PRODUCT_CREATE_VIEW;
    }
-    productService.save(productDtoMapper.toProduct(productDto));
+    productService.save(productDtoMapper.toDomain(productDto));
     redirectAttributes.addFlashAttribute("message", messageService.getTranslatedMessage("product.create.message.success"));
 		return "redirect:" + HttpEndpoint.PRODUCTS_CREATE;
 	}
@@ -82,7 +84,7 @@ public class ProductController {
                               @PathVariable UUID productId,
                               RedirectAttributes redirectAttributes) {
     product.setId(productId);
-    productService.update(productDtoMapper.toProduct(product));
+    productService.update(productDtoMapper.toDomain(product));
     redirectAttributes.addFlashAttribute("message", messageService.getTranslatedMessage("product.edit.message.success"));
     redirectAttributes.addFlashAttribute("productId", productId);
     return "redirect:" + HttpEndpoint.PRODUCT_UPDATE;

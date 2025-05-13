@@ -20,7 +20,7 @@ public class ProductCategoryService {
     return productCategoryRepository.findAll()
       .stream()
       .filter(productCategoryEntity -> !productCategoryEntity.getName().equals("NaN"))
-      .map(productCategoryEntityMapper::toProductCategory)
+      .map(productCategoryEntityMapper::toDomain)
       .collect(Collectors.toSet());
   }
 }

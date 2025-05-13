@@ -35,7 +35,7 @@ public class ProductService {
   @Transactional
   public void save(final Product product) {
     final ProductCategoryEntity category = getFirstCategory(product);
-    final ProductEntity productEntity = productEntityMapper.toProductEntity(product);
+    final ProductEntity productEntity = productEntityMapper.toEntity(product);
     productEntity.getProductCategories().add(category);
 
     productRepository.save(productEntity);
@@ -62,16 +62,16 @@ public class ProductService {
   }
 
   public Page<Product> getAllProductsPaginated(Pageable pageable) {
-    return productRepository.findAll(pageable).map(productEntityMapper::toProduct);
+    return productRepository.findAll(pageable).map(productEntityMapper::toDomain);
   }
 
   public List<Product> getAllProducts() {
-    return productRepository.findAll().stream().map(productEntityMapper::toProduct).toList();
+    return productRepository.findAll().stream().map(productEntityMapper::toDomain).toList();
   }
 
   public Product getProductById(final UUID productId) {
     return productRepository.findByProductId(productId)
-      .map(productEntityMapper::toProduct)
+      .map(productEntityMapper::toDomain)
       .orElseThrow(() -> new ProductNotFoundException(messageService.getTranslatedMessage(PRODUCT_NOT_FOUND_TRANSL_KEY, productId)));
   }
 

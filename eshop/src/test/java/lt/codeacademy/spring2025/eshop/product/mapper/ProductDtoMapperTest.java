@@ -14,7 +14,7 @@ class ProductDtoMapperTest {
   @Test
   void toProductDtoAllFieldsShouldBeMappedAsExpected() {
     // GIVEN
-    ProductDtoMapper mapper = new ProductDtoMapper();
+    ProductDtoMapper productDtoMapper = new ProductDtoMapper();
     Product product = Product.builder()
       .name("productName")
       .price(BigDecimal.ONE)
@@ -23,7 +23,7 @@ class ProductDtoMapperTest {
       .build();
 
     // WHEN
-    ProductDto productDto = mapper.toProductDto(product);
+    ProductDto productDto = productDtoMapper.toDto(product);
 
     // THEN
     assertEquals("productName", productDto.getName());
@@ -35,11 +35,11 @@ class ProductDtoMapperTest {
   @Test
   void toProductDtoAllFieldsAreNullShouldReturnAllFieldsNullAsExpected() {
     // GIVEN
-    ProductDtoMapper mapper = new ProductDtoMapper();
+    ProductDtoMapper productDtoMapper = new ProductDtoMapper();
     Product product = Product.builder().build();
 
     // WHEN
-    ProductDto productDto = mapper.toProductDto(product);
+    ProductDto productDto = productDtoMapper.toDto(product);
 
     // THEN
     assertNull( productDto.getName());
