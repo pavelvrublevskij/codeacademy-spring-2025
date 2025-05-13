@@ -34,6 +34,18 @@
             <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="text-danger"></span>
         </div>
 
+        <div class="form-group">
+            <label th:text="#{product.create.category}">Category:</label>
+            <select th:field="*{categoryId}"
+                    class="form-select"
+                    aria-label="Default select example">
+                <option th:each="category: ${productCategoryDtos}"
+                        th:value="${category.id}"
+                        th:text="${category.name}">Category Name
+                </option>
+            </select>
+        </div>
+
         <button class="btn btn-primary" type="submit" th:text="#{product.create.action}">Create new</button>
     </form>
 

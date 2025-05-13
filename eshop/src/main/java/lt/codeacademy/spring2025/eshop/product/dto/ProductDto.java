@@ -30,4 +30,6 @@ public class ProductDto {
   @NotBlank(message = "{productdto.description.notblank}")
   @Size(min = 10, message = "{productdto.description.min}")
   private String description;
+  @NotNull
+  private int categoryId;
 }

@@ -14,6 +14,7 @@ public final class ProductDtoMapper {
 				.price(productDto.getPrice())
 				.amount(productDto.getAmount())
         .description(productDto.getDescription())
+        .categoryId(productDto.getCategoryId())
 				.build();
 	}
 

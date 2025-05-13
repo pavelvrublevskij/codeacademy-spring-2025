@@ -16,6 +16,7 @@ public class Product {
 	private BigDecimal price;
 	private int amount;
   private String description;
+  private int categoryId;
 
   public UUID getId() {
     return id != null ? id : UUID.randomUUID();

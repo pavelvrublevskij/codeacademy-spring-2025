@@ -32,11 +32,7 @@ public class ProductService {
 
   @Transactional
   public void save(final Product product) {
-    final ProductCategoryEntity category = productCategoryRepository.findByName("NaN")
-      .orElse(ProductCategoryEntity.builder()
-        .name("NaN")
-        .build());
-
+    final ProductCategoryEntity category = productCategoryRepository.getReferenceById(product.getCategoryId());
     final ProductEntity productEntity = productEntityMapper.toProductEntity(product);
     productEntity.getProductCategories().add(category);
 

@@ -32,6 +32,7 @@ public class ProductMockDataConfig {
           .amount(faker.number().numberBetween(50, 1000))
           .price(BigDecimal.valueOf(faker.number().numberBetween(2, 99)))
           .description(faker.chuckNorris().fact())
+          .categoryId(8)
         .build());
       count++;
     }
