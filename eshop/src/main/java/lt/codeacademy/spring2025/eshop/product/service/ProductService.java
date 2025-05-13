@@ -37,9 +37,8 @@ public class ProductService {
         .name("NaN")
         .build());
 
-    final ProductCategoryEntity savedCategory = productCategoryRepository.save(category);
     final ProductEntity productEntity = productEntityMapper.toProductEntity(product);
-    productEntity.getProductCategories().add(savedCategory);
+    productEntity.getProductCategories().add(category);
 
     productRepository.save(productEntity);
   }

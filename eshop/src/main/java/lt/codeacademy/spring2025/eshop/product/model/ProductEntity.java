@@ -33,7 +33,7 @@ public class ProductEntity {
 
   private String description;
 
-  @ManyToMany
+  @ManyToMany(cascade = CascadeType.PERSIST)
   @JoinTable(
     name = "product_product_categories",
     joinColumns = { @JoinColumn(name = "product_id") },
