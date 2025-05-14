@@ -20,22 +20,7 @@
                 <li><a th:href="@{/}" class="nav-link px-2 text-secondary" th:text="#{page.home}">Home</a></li>
                 <li><a th:href="@{/products}" class="nav-link px-2 text-white" th:text="#{page.products}">Products</a></li>
                 <li><a th:href="@{/products/create}" class="nav-link px-2 text-white" th:text="#{page.products.create}">Create a Product</a></li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle"
-                       id="navbarDarkDropdownMenuLink"
-                       href="#"
-                       role="button"
-                       data-bs-toggle="dropdown"
-                       aria-expanded="false"
-                       th:text="#{language.choose}">
-                        Dropdown
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                        <li><a class="dropdown-item" th:href="@{'/' + *{rootPath} + '?lang=LT'}" th:text="'Lietuvių'">Lietuvių</a></li>
-                        <li><a class="dropdown-item" th:href="@{'/' + *{rootPath} + '?lang=DE'}" th:text="'Deutsch'">Deutsch</a></li>
-                        <li><a class="dropdown-item" th:href="@{'/' + *{rootPath} + '?lang=EN'}" th:text="'English'">English</a></li>
-                    </ul>
-                </li>
+                <li th:replace="this :: languageSelector(${rootPath})"></li>
             </ul>
 
             <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
@@ -49,6 +34,23 @@
         </div>
     </div>
 </header>
+
+<li th:fragment="languageSelector(rootPath)" class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle"
+       id="navbarDarkDropdownMenuLink"
+       href="#"
+       role="button"
+       data-bs-toggle="dropdown"
+       aria-expanded="false"
+       th:text="#{language.choose}">
+        Dropdown
+    </a>
+    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+        <li><a class="dropdown-item" th:href="@{'/' + *{rootPath} + '?lang=LT'}" th:text="'Lietuvių'">Lietuvių</a></li>
+        <li><a class="dropdown-item" th:href="@{'/' + *{rootPath} + '?lang=DE'}" th:text="'Deutsch'">Deutsch</a></li>
+        <li><a class="dropdown-item" th:href="@{'/' + *{rootPath} + '?lang=EN'}" th:text="'English'">English</a></li>
+    </ul>
+</li>
 
 <footer th:fragment="footer" class="mt-auto text-bg-dark border-bottom border-body" data-bs-theme="dark">
     <ul class="nav justify-content-center">
