@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="lt">
+<html xmlns:th="http://www.thymeleaf.org" lang="lt" class="h-100">
 <head th:replace="fragments/layout :: head">
 <!--    <title th:text="#{product.create.title}">New product</title>-->
 </head>
-<body>
+<body class="d-flex flex-column h-100">
 <main class="container">
     <h3 th:text="#{product.create.header}">Let's create a product:</h3>
     <form th:action="@{/products/create}" method="post" th:object="${productDto}">
@@ -50,5 +50,6 @@
         successfully!
     </div>
 </main>
+<footer th:replace="fragments/layout :: footer"></footer>
 </body>
 </html>

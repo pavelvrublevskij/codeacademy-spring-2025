@@ -1,9 +1,12 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="lt">
+<html xmlns:th="http://www.thymeleaf.org" lang="lt" class="h-100">
 <head th:replace="fragments/layout :: head">
 <!--    <title th:text="#{welcome.title}">Default Error</title>-->
 </head>
-<body>
-<h1>Error! E-Shop raised unexpected error! error.html</h1>
+<body class="d-flex flex-column h-100">
+<main class="container">
+    <h1>Error! E-Shop raised unexpected error! error.html</h1>
+</main>
+<footer th:replace="fragments/layout :: footer"></footer>
 </body>
 </html>

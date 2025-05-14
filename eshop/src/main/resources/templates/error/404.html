@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="lt">
+<html xmlns:th="http://www.thymeleaf.org" lang="lt" class="h-100">
 <head th:replace="fragments/layout :: head">
 <!--    <title>404 Not found error page</title>-->
 </head>
-<body>
-<div class="container">
+<body class="d-flex flex-column h-100">
+<main class="container">
     <h1 th:text="'Page not found: ' + ${path} + ', my custom attribute: ' + ${myCustomAttribute}"></h1>
     <h2 th:text="${timestamp}"></h2>
     <img style="width: 100%" th:src="@{/images/error/404.jpg}">
-</div>
+</main>
+<footer th:replace="fragments/layout :: footer"></footer>
 </body>
 </html>

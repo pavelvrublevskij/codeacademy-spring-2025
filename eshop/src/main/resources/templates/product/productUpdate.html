@@ -1,26 +1,29 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="lt">
+<html xmlns:th="http://www.thymeleaf.org" lang="lt" class="h-100">
 <head th:replace="fragments/layout :: head">
 <!--    <title th:text="#{product.edit.title}">Modify product</title>-->
 </head>
-<body>
-<h3 th:text="#{product.edit.header}">Let's update the product:</h3>
-<form method="post" th:object="${product}">
-    <label th:text="#{product.edit.name}">Name:</label>
-    <input type="text" placeholder="product name" th:field="*{name}"><br/>
+<body class="d-flex flex-column h-100">
+<main class="container">
+    <h3 th:text="#{product.edit.header}">Let's update the product:</h3>
+    <form method="post" th:object="${product}">
+        <label th:text="#{product.edit.name}">Name:</label>
+        <input type="text" placeholder="product name" th:field="*{name}"><br/>
 
-    <label th:text="#{product.edit.price}">Price:</label>
-    <input type="text" placeholder="product price" th:field="*{price}"><br/>
+        <label th:text="#{product.edit.price}">Price:</label>
+        <input type="text" placeholder="product price" th:field="*{price}"><br/>
 
-    <label th:text="#{product.edit.amount}">Amount:</label>
-    <input type="text" placeholder="product amount" th:field="*{amount}"><br/>
+        <label th:text="#{product.edit.amount}">Amount:</label>
+        <input type="text" placeholder="product amount" th:field="*{amount}"><br/>
 
-    <label th:text="#{product.edit.description}">Description:</label>
-    <input type="text" placeholder="product description" th:field="*{description}"><br/>
+        <label th:text="#{product.edit.description}">Description:</label>
+        <input type="text" placeholder="product description" th:field="*{description}"><br/>
 
-    <button type="submit" th:text="#{product.edit.action}">Update existing</button>
-</form>
+        <button type="submit" th:text="#{product.edit.action}">Update existing</button>
+    </form>
 
-<div th:if="${message ne null}" class="alert alert-success" role="alert"  th:text="${message}">Product added successfully!</div>
+    <div th:if="${message ne null}" class="alert alert-success" role="alert"  th:text="${message}">Product added successfully!</div>
+</main>
+<footer th:replace="fragments/layout :: footer"></footer>
 </body>
 </html>
