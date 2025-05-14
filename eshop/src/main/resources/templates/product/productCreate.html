@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="lt" class="h-100">
-<head th:replace="fragments/layout :: head">
-<!--    <title th:text="#{product.create.title}">New product</title>-->
+<head th:replace="fragments/layout :: head(#{product.create.title})">
 </head>
 <body class="d-flex flex-column h-100">
 <header th:replace="fragments/layout :: header"></header>
