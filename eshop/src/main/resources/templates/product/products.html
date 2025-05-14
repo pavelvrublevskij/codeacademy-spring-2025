@@ -4,14 +4,8 @@
 <!--    <title th:text="#{products.title}">Product list</title>-->
 </head>
 <body class="d-flex flex-column h-100">
+<header th:replace="fragments/layout :: header"></header>
 <main class="container">
-    <label for="languageSelector"></label>
-    <select name="languageSelector" id="languageSelector">
-        <option th:text="#{language.choose}">Choose language</option>
-        <option value="LT" th:text="'Lietuvių'">Lietuvių</option>
-        <option value="DE" th:text="'Deutsch'">Deutsch</option>
-        <option value="EN" th:text="'English'">English</option>
-    </select>
     <h2 th:text="#{products.header}">Products</h2>
     <div th:if="${productPage.isEmpty()}" th:text="#{products.message.isEmpty}">Product list is empty</div>
     <div th:unless="${productPage.isEmpty()}">

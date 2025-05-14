@@ -4,6 +4,7 @@
 <!--    <title th:text="#{product.edit.title}">Modify product</title>-->
 </head>
 <body class="d-flex flex-column h-100">
+<header th:replace="fragments/layout :: header"></header>
 <main class="container">
     <h3 th:text="#{product.edit.header}">Let's update the product:</h3>
     <form method="post" th:object="${product}">

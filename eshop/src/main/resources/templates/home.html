@@ -4,6 +4,7 @@
 <!--    <title th:text="#{welcome.title}">Welcome to eShop</title>-->
 </head>
 <body class="d-flex flex-column h-100">
+<header th:replace="fragments/layout :: header"></header>
 <main class="container">
     <h1 th:text="#{welcome} + ' ' + ${modelDateAttr}">Welcome to my eShop! current date & time is:</h1>
 </main>

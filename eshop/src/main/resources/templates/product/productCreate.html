@@ -4,6 +4,7 @@
 <!--    <title th:text="#{product.create.title}">New product</title>-->
 </head>
 <body class="d-flex flex-column h-100">
+<header th:replace="fragments/layout :: header"></header>
 <main class="container">
     <h3 th:text="#{product.create.header}">Let's create a product:</h3>
     <form th:action="@{/products/create}" method="post" th:object="${productDto}">

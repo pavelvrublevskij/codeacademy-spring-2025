@@ -4,6 +4,7 @@
 <!--    <title>404 Not found error page</title>-->
 </head>
 <body class="d-flex flex-column h-100">
+<header th:replace="fragments/layout :: header"></header>
 <main class="container">
     <h1 th:text="'Page not found: ' + ${path} + ', my custom attribute: ' + ${myCustomAttribute}"></h1>
     <h2 th:text="${timestamp}"></h2>
