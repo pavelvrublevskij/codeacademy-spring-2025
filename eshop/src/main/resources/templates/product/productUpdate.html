@@ -3,7 +3,7 @@
 <head th:replace="fragments/layout :: head(#{product.edit.title})">
 </head>
 <body class="d-flex flex-column h-100">
-<header th:replace="fragments/layout :: header"></header>
+<header th:replace="fragments/layout :: header(rootPath='products/' + ${product.id} + '/update')"></header>
 <main class="container">
     <h3 th:text="#{product.edit.header}">Let's update the product:</h3>
     <form method="post" th:object="${product}">
@@ -25,5 +25,6 @@
     <div th:if="${message ne null}" class="alert alert-success" role="alert"  th:text="${message}">Product added successfully!</div>
 </main>
 <footer th:replace="fragments/layout :: footer"></footer>
+<div th:replace="fragments/layout :: bodyBottomScripts"></div>
 </body>
 </html>
