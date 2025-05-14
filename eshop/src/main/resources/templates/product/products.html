@@ -14,32 +14,13 @@
             <thead>
             <tr>
                 <th class="col-md-3">
-                    <a th:with="direction=${productPage.sort.getOrderFor('name')?.direction}"
-                       th:href="@{/products(sort='name,' + ${direction?.name() eq 'ASC' ? 'DESC' : 'ASC'} + ',ignorecase')}">
-                        <i class="fa-solid"
-                           th:classappend="${productPage.sort.getOrderFor('name').direction.name() eq 'DESC' ? 'fa-sort-up' : 'fa-sort-down'}"
-                           th:if="${productPage.sort.getOrderFor('name') ne null}"
-                        ></i>
-                        <span th:text="#{products.field.name}">Name</span>
-                    </a>
+                    <a th:replace="fragments/layout :: tableColumnSort(columnName='name', translationKey=#{products.field.name})"></a>
                 </th>
                 <th class="col-md-2">
-                    <a th:with="direction=${productPage.sort.getOrderFor('amountInStock')?.direction}"
-                       th:href="@{/products(sort='amountInStock,' + ${direction?.name() eq 'ASC' ? 'DESC' : 'ASC'})}">
-                        <i class="fa-solid"
-                           th:classappend="${productPage.sort.getOrderFor('amountInStock').direction.name() eq 'DESC' ? 'fa-sort-up' : 'fa-sort-down'}"
-                           th:if="${productPage.sort.getOrderFor('amountInStock') ne null}"></i>
-                        <span th:text="#{products.field.quantity}">Quantity</span>
-                    </a>
+                    <a th:replace="fragments/layout :: tableColumnSort(columnName='amountInStock', translationKey=#{products.field.quantity})"></a>
                 </th>
                 <th class="col-md-2">
-                    <a th:with="direction=${productPage.sort.getOrderFor('price')?.direction}"
-                       th:href="@{/products(sort='price,' + ${direction?.name() eq 'ASC' ? 'DESC' : 'ASC'})}">
-                        <i class="fa-solid"
-                           th:classappend="${productPage.sort.getOrderFor('price').direction.name() eq 'DESC' ? 'fa-sort-up' : 'fa-sort-down'}"
-                           th:if="${productPage.sort.getOrderFor('price') ne null}"></i>
-                        <span th:text="#{products.field.price}">Price</span>
-                    </a>
+                    <a th:replace="fragments/layout :: tableColumnSort(columnName='price', translationKey=#{products.field.price})"></a>
                 </th>
                 <th>
                     <span th:text="#{products.field.categoryName}">Category Name, Category Name</span>
