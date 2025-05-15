@@ -23,8 +23,13 @@
                 <li th:replace="this :: languageSelector(${rootPath})"></li>
             </ul>
 
-            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-                <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search..." aria-label="Search">
+            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search" th:method="get" th:action="@{/products/find}">
+                <input type="search"
+                       class="form-control form-control-dark text-bg-dark"
+                       placeholder="Search by product name..."
+                       aria-label="Search"
+                       name="productName"
+                >
             </form>
 
             <div class="text-end">
