@@ -6,7 +6,7 @@
 <header th:replace="fragments/layout :: header(rootPath='products/create')"></header>
 <main class="container">
     <h3 th:text="#{product.create.header}">Let's create a product:</h3>
-    <form th:action="@{/products/create}" method="post" th:object="${productDto}">
+    <form th:action="@{/products/create}" method="post" th:object="${productDto}" class="row g-3">
         <div class="form-group">
             <label th:text="#{product.create.name}">Name:</label>
             <input type="text" placeholder="product name" th:field="*{name}" class="form-control">
