@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="lt" class="h-100">
-<head th:replace="fragments/layout :: head(#{error.title})">
+<head th:replace="~{fragments/layout :: head(#{error.title})}">
 </head>
 <body class="d-flex flex-column h-100">
-<header th:replace="fragments/layout :: header(rootPath='')"></header>
+<header th:replace="~{fragments/layout :: header(rootPath='')}"></header>
 <main class="container">
     <h1 th:text="${errorMessage}">Not found!</h1>
 </main>
-<footer th:replace="fragments/layout :: footer"></footer>
-<div th:replace="fragments/layout :: bodyBottomScripts"></div>
+<footer th:replace="~{fragments/layout :: footer}"></footer>
+<div th:replace="~{fragments/layout :: bodyBottomScripts}"></div>
 </body>
 </html>

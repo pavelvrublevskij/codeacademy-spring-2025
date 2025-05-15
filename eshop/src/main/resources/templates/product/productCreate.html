@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="lt" class="h-100">
-<head th:replace="fragments/layout :: head(#{product.create.title})">
+<head th:replace="~{fragments/layout :: head(#{product.create.title})}">
 </head>
 <body class="d-flex flex-column h-100">
-<header th:replace="fragments/layout :: header(rootPath='products/create')"></header>
+<header th:replace="~{fragments/layout :: header(rootPath='products/create')}"></header>
 <main class="container">
     <h3 th:text="#{product.create.header}">Let's create a product:</h3>
     <form th:action="@{/products/create}" method="post" th:object="${productDto}" class="row g-3">
@@ -50,7 +50,7 @@
         successfully!
     </div>
 </main>
-<footer th:replace="fragments/layout :: footer"></footer>
-<div th:replace="fragments/layout :: bodyBottomScripts"></div>
+<footer th:replace="~{fragments/layout :: footer}"></footer>
+<div th:replace="~{fragments/layout :: bodyBottomScripts}"></div>
 </body>
 </html>
