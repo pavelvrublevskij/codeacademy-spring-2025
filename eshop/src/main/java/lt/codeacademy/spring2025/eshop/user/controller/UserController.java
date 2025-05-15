@@ -13,10 +13,10 @@ import lombok.RequiredArgsConstructor;
 import lt.codeacademy.spring2025.eshop.helper.MessageService;
 import lt.codeacademy.spring2025.eshop.user.dto.UserSignUpDto;
 
-import static lt.codeacademy.spring2025.eshop.HttpEndpoint.USER_SIGN_UP;
+import static lt.codeacademy.spring2025.eshop.HttpEndpoint.USERS_SIGN_UP;
 
 @Controller
-@RequestMapping(USER_SIGN_UP)
+@RequestMapping(USERS_SIGN_UP)
 @RequiredArgsConstructor
 public class UserController {
 
@@ -31,12 +31,12 @@ public class UserController {
   }
 
   @PostMapping
-  public String createUser(@Valid UserSignUpDto productDto, BindingResult error, Model model, RedirectAttributes redirectAttributes) {
+  public String createUser(@Valid UserSignUpDto userSignUpDto, BindingResult error, Model model, RedirectAttributes redirectAttributes) {
     if (error.hasErrors()) {
       return USER_SIGN_UP_VIEW;
     }
 
     redirectAttributes.addFlashAttribute("message", messageService.getTranslatedMessage("user.signup.message.success"));
-    return "redirect:" + USER_SIGN_UP;
+    return "redirect:" + USERS_SIGN_UP;
   }
 }
