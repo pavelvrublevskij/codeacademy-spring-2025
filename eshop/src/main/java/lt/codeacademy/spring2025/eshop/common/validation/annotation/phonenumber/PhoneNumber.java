@@ -1,11 +1,11 @@
-package lt.codeacademy.spring2025.eshop.common.validation;
+package lt.codeacademy.spring2025.eshop.common.validation.annotation.phonenumber;
 
 import java.lang.annotation.*;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 import jakarta.validation.constraints.NotBlank;
-import lt.codeacademy.spring2025.eshop.common.validation.impl.PhoneNumberValidator;
+import lt.codeacademy.spring2025.eshop.common.validation.annotation.phonenumber.impl.PhoneNumberValidator;
 
 import static java.lang.annotation.ElementType.*;
 import static java.lang.annotation.ElementType.TYPE_USE;
@@ -21,6 +21,8 @@ public @interface PhoneNumber {
   Class<?>[] groups() default { };
 
   Class<? extends Payload>[] payload() default { };
+
+  PhoneNumberPrefixType prefixType() default PhoneNumberPrefixType.GLOBAL;
 
   @Target({ METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER, TYPE_USE })
   @Retention(RUNTIME)
