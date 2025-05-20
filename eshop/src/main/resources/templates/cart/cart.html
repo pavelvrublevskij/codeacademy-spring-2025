@@ -6,6 +6,7 @@
 <header th:replace="~{fragments/layout :: header(rootPath='')}"></header>
 <main class="container">
     <h2 th:text="#{cart.header}">Products</h2>
+    <h3 th:text="${cartSessionValue}"></h3>
     <!--  TODO: cia bus tolimesne implementacija  -->
 </main>
 <footer th:replace="~{fragments/layout :: footer}"></footer>
