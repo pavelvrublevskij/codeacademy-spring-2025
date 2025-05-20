@@ -1,5 +1,7 @@
 package lt.codeacademy.spring2025.eshop.common.validation.annotation.repeatpassword.impl;
 
+import java.util.Objects;
+
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 import lt.codeacademy.spring2025.eshop.common.validation.annotation.repeatpassword.RepeatPassword;
@@ -9,6 +11,7 @@ public class RepeatPasswordValidator implements ConstraintValidator<RepeatPasswo
 
   @Override
   public boolean isValid(UserSignUpDto userSignUpDto, ConstraintValidatorContext context) {
-    return userSignUpDto.password().equals(userSignUpDto.passwordRepeat());
+    return Objects.nonNull(userSignUpDto.password()) && Objects.nonNull(userSignUpDto.passwordRepeat())
+      && userSignUpDto.password().equals(userSignUpDto.passwordRepeat());
   }
 }
