@@ -52,7 +52,7 @@
         <div class="form-group">
             <label th:text="#{user.signup.password.confirm}">Password Repeated:</label>
             <input type="password" th:field="*{passwordRepeat}" class="form-control">
-            <span th:if="${#fields.hasErrors('passwordRepeat')}" th:errors="*{passwordRepeat}" class="text-danger"></span>
+            <span th:if="${#fields.hasErrors('global')}" th:errors="*{global}" class="text-danger"></span>
         </div>
 
         <div class="col-12">

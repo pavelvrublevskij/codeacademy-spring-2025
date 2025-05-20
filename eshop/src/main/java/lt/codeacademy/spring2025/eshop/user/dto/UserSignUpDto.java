@@ -4,8 +4,10 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.Builder;
 import lt.codeacademy.spring2025.eshop.common.validation.annotation.phonenumber.PhoneNumber;
 import lt.codeacademy.spring2025.eshop.common.validation.annotation.phonenumber.PhoneNumberPrefixType;
+import lt.codeacademy.spring2025.eshop.common.validation.annotation.repeatpassword.RepeatPassword;
 
 @Builder
+@RepeatPassword
 public record UserSignUpDto(@NotBlank String name,
                             @NotBlank String surname,
                             @NotBlank String email,
