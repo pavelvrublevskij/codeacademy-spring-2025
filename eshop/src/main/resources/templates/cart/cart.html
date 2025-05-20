@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="lt" class="h-100">
+<head th:replace="~{fragments/layout :: head(#{cart.title})}">
+</head>
+<body class="d-flex flex-column h-100">
+<header th:replace="~{fragments/layout :: header(rootPath='')}"></header>
+<main class="container">
+    <h2 th:text="#{cart.header}">Products</h2>
+    <!--  TODO: cia bus tolimesne implementacija  -->
+</main>
+<footer th:replace="~{fragments/layout :: footer}"></footer>
+<div th:replace="~{fragments/layout :: bodyBottomScripts}"></div>
+</body>
+</html>
