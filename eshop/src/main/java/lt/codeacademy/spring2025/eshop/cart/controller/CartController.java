@@ -18,8 +18,7 @@ public class CartController {
   protected static final String CART_SESSION = "cartSession";
 
   @GetMapping
-  public String openCart(Model model, HttpServletRequest request) {
-    model.addAttribute("cartSessionValue", request.getSession().getAttribute(CART_SESSION));
+  public String openCart() {
     return "cart/cart";
   }
 
