@@ -6,8 +6,29 @@
 <header th:replace="~{fragments/layout :: header(rootPath='')}"></header>
 <main class="container">
     <h2 th:text="#{cart.header}">Products</h2>
-    <h3 th:text="${cartSession}"></h3>
-    <!--  TODO: cia bus tolimesne implementacija  -->
+
+    <table class="table table-dark table-hover">
+        <thead>
+        <tr>
+            <th class="col-md-3" th:text="#{cart.field.name}"></th>
+            <th class="col-md-2" th:text="#{cart.field.quantity}"></th>
+            <th class="col-md-2" th:text="#{cart.field.price}"></th>
+            <th class="col-md-2" th:text="#{cart.field.total}"></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="cartItem: ${cartSession}">
+            <td th:text="${cartItem.name}"></td>
+            <td th:text="${cartItem.amount}"></td>
+            <td th:text="${cartItem.unitPrice}"></td>
+            <td th:text="333"></td>
+            <td></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <button class="btn btn-primary" type="submit" th:text="#{cart.order}"></button>
 </main>
 <footer th:replace="~{fragments/layout :: footer}"></footer>
 <div th:replace="~{fragments/layout :: bodyBottomScripts}"></div>
