@@ -41,7 +41,7 @@ public class CartController {
                           @ModelAttribute(CART_SESSION) CartDto cartSession,
                           Model model) {
     final Cart sessionData = cartMapper.toDomain(cartSession);
-    final Cart cart = cartService.addProductToCart(productId, sessionData);
+    final Cart cart = cartService.addProductToCartByProductUUID(productId, sessionData);
     final CartDto cartDto = cartMapper.toDto(cart);
     model.addAttribute(CART_SESSION, cartDto);
 

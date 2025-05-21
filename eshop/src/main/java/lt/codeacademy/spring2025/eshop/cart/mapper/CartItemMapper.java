@@ -27,7 +27,7 @@ public class CartItemMapper implements DomainDtoMapper<CartItem, CartProductDto>
         .name(cartProductDto.name())
         .price(cartProductDto.unitPrice())
         .build())
-      .quantity(1)
+      .quantity(cartProductDto.quantity())
       .build();
   }
 }

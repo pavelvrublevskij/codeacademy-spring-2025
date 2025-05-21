@@ -9,6 +9,11 @@ import lt.codeacademy.spring2025.eshop.core.domain.Product;
 public class CartItem {
 
   private final Product product;
-  private int quantity;
+  @Builder.Default
+  private int quantity = 1;
+
+  public void increaseQuantity() {
+    quantity++;
+  }
 
 }

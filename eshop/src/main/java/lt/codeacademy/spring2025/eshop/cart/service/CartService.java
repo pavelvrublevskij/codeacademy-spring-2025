@@ -15,14 +15,31 @@ public class CartService {
 
   private final ProductService productService;
 
-  public Cart addProductToCart(final UUID productId, final Cart cart) {
+  public Cart addProductToCartByProductUUID(final UUID productId, final Cart cart) {
+    /**
+     * This code checks if a product is already in the cart:
+     * If it is, it increases its quantity.
+     * If it isn't, it adds the product to the cart.
+     *
+     * It uses Java Streams and Optional.ifPresentOrElse for concise logic.
+     */
+    cart.getItems().stream()
+      .filter(cartItem -> cartItem.getProduct().getId().equals(productId))
+      .findFirst()
+      .ifPresentOrElse(
+        CartItem::increaseQuantity,
+        () -> addProductToCart(productId, cart)
+      );
+
+    return cart;
+  }
+
+  private void addProductToCart(final UUID productId, final Cart cart) {
     final Product productById = productService.getProductById(productId);
     final CartItem cartItem = CartItem.builder()
       .product(productById)
-      .quantity(1)
+
       .build();
     cart.addItem(cartItem);
-
-    return cart;
   }
 }
