@@ -16,13 +16,13 @@
                 <th class="col-md-3">
                     <a th:replace="~{fragments/layout :: tableColumnSort(columnName='name', translationKey=#{products.field.name})}"></a>
                 </th>
-                <th class="col-md-2">
+                <th class="col-md-1">
                     <a th:replace="~{fragments/layout :: tableColumnSort(columnName='amountInStock', translationKey=#{products.field.quantity})}"></a>
                 </th>
-                <th class="col-md-2">
+                <th class="col-md-1">
                     <a th:replace="~{fragments/layout :: tableColumnSort(columnName='price', translationKey=#{products.field.price})}"></a>
                 </th>
-                <th>
+                <th class="col-md-1">
                     <span th:text="#{products.field.categoryName}">Category Name, Category Name</span>
                 </th>
                 <th>
@@ -38,10 +38,16 @@
                 <td th:text="${product.price}"></td>
                 <td th:text="${product.categoryName}"></td>
                 <td th:text="${product.description}"></td>
-                <td><a th:href="@{/products/{productId}/delete(productId=${product.uuid})}"
-                       class="btn btn-danger">
-                    <span th:text="#{products.button.delete}">Delete</span>
-                </a></td>
+                <td class="d-flex gap-2">
+                    <form th:method="POST" th:action="@{/cart/{productId}(productId=${product.uuid})}">
+                        <button class="btn btn-primary" type="submit">
+                            <i class="fa-solid fa-cart-plus"></i>
+                        </button>
+                    </form>
+                    <a th:href="@{/products/{productId}/delete(productId=${product.uuid})}" class="btn btn-danger">
+                        <span th:text="#{products.button.delete}">Delete</span>
+                    </a>
+                </td>
             </tr>
             </tbody>
         </table>
