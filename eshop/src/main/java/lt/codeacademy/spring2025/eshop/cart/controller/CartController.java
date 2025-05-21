@@ -1,19 +1,18 @@
 package lt.codeacademy.spring2025.eshop.cart.controller;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
-import lombok.Builder;
 import lombok.RequiredArgsConstructor;
+import lt.codeacademy.spring2025.eshop.cart.dto.CartDto;
 import lt.codeacademy.spring2025.eshop.cart.dto.CartProductDto;
 import lt.codeacademy.spring2025.eshop.cart.mapper.CartProductDtoMapper;
-import lt.codeacademy.spring2025.eshop.product.dto.ProductDto;
-import lt.codeacademy.spring2025.eshop.product.mapper.ProductDtoMapper;
 import lt.codeacademy.spring2025.eshop.product.service.ProductService;
 
 import static lt.codeacademy.spring2025.eshop.HttpEndpoint.CART;
@@ -31,8 +30,8 @@ public class CartController {
   private final CartProductDtoMapper cartProductDtoMapper;
 
   @ModelAttribute(CART_SESSION)
-  public List<CartProductDto> createDefaultCartSession() {
-    return new ArrayList<>();
+  public CartDto createDefaultCartSession() {
+    return CartDto.builder().build();
   }
 
   @GetMapping(CART)
@@ -42,9 +41,9 @@ public class CartController {
 
   @PostMapping(CART_ADD)
   public String addToCart(@PathVariable UUID productId,
-                          @ModelAttribute(CART_SESSION) List<CartProductDto> cartSession) {
+                          @ModelAttribute(CART_SESSION) CartDto cartSession) {
     final CartProductDto cartProductDto = cartProductDtoMapper.toDto(productService.getProductById(productId));
-    cartSession.add(cartProductDto);
+    cartSession.addItem(cartProductDto);
     return "redirect:/products";
   }
 }
