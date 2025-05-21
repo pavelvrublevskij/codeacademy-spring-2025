@@ -35,7 +35,7 @@
             <tr th:each="product: ${productPage}">
                 <td><a th:href="@{/products/{productId}/update(productId=${product.uuid})}" th:text="${product.name}"/></td>
                 <td th:text="${product.amount}"></td>
-                <td th:text="${product.price}"></td>
+                <td th:text="${product.price + ' ' + euroCurrency}"></td>
                 <td th:text="${product.categoryName}"></td>
                 <td th:text="${product.description}"></td>
                 <td class="d-flex gap-2">

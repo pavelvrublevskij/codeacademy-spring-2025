@@ -21,8 +21,8 @@
         <tr th:each="cartItem: ${cartSession.cartItems}">
             <td th:text="${cartItem.name}"></td>
             <td th:text="${cartItem.quantity}"></td>
-            <td th:text="${cartItem.unitPrice}"></td>
-            <td th:text="${cartItem.totalPrice}"></td>
+            <td th:text="${cartItem.unitPrice + ' ' + euroCurrency}"></td>
+            <td th:text="${cartItem.totalPrice + ' ' + euroCurrency}"></td>
             <td></td>
         </tr>
         </tbody>
@@ -31,7 +31,7 @@
             <td></td>
             <td th:text="${cartSession.cartTotalQuantity}">1111</td>
             <td></td>
-            <td colspan="2" th:text="${cartSession.cartTotalPrice}">22222</td>
+            <td colspan="2" th:text="${cartSession.cartTotalPrice + ' ' + euroCurrency}">22222</td>
         </tfoot>
     </table>
 
