@@ -10,5 +10,6 @@ public record CartProductDto(
   UUID uuid,
   String name,
   BigDecimal unitPrice,
-  int quantity) {
+  int quantity,
+  BigDecimal totalPrice) {
 }
