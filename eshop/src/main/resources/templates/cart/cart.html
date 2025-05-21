@@ -26,6 +26,13 @@
             <td></td>
         </tr>
         </tbody>
+        <tfoot>
+        <tr>
+            <td></td>
+            <td th:text="${cartSession.cartTotalQuantity}">1111</td>
+            <td></td>
+            <td colspan="2" th:text="${cartSession.cartTotalPrice}">22222</td>
+        </tfoot>
     </table>
 
     <button class="btn btn-primary" type="submit" th:text="#{cart.order}"></button>
