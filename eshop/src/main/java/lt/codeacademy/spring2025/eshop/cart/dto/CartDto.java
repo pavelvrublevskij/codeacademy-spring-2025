@@ -10,6 +10,7 @@ import lombok.Getter;
 @Getter
 public class CartDto {
 
+  @Builder.Default
   private final List<CartProductDto> cartItems = new ArrayList<>();
 
   public void addItem(final CartProductDto cartProductDto) {

@@ -20,9 +20,9 @@
         <tbody>
         <tr th:each="cartItem: ${cartSession.cartItems}">
             <td th:text="${cartItem.name}"></td>
-            <td th:text="${cartItem.amount}"></td>
+            <td th:text="${cartItem.quantity}"></td>
             <td th:text="${cartItem.unitPrice}"></td>
-            <td th:text="${cartItem.amount} * ${cartItem.unitPrice}"></td>
+            <td th:text="${cartItem.quantity} * ${cartItem.unitPrice}"></td>
             <td></td>
         </tr>
         </tbody>

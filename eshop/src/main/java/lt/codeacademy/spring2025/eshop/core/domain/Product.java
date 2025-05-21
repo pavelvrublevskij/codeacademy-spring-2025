@@ -16,7 +16,7 @@ public class Product {
   private UUID id;
 	private String name;
 	private BigDecimal price;
-	private int amount;
+	private int amount; // quantity/amount in stock
   private String description;
   @Builder.Default
   private Set<ProductCategory> categories = new HashSet<>();
