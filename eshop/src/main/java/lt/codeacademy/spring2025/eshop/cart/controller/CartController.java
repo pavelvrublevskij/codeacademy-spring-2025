@@ -12,6 +12,7 @@ import lt.codeacademy.spring2025.eshop.cart.dto.CartDto;
 import lt.codeacademy.spring2025.eshop.cart.mapper.CartMapper;
 import lt.codeacademy.spring2025.eshop.cart.service.CartService;
 import lt.codeacademy.spring2025.eshop.core.domain.cart.Cart;
+import lt.codeacademy.spring2025.eshop.helper.MessageService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -28,6 +29,7 @@ public class CartController {
 
   private final CartService cartService;
   private final CartMapper cartMapper;
+  private final MessageService messageService;
 
   @ModelAttribute(CART_SESSION)
   public CartDto createDefaultCartSession() {
@@ -53,10 +55,18 @@ public class CartController {
 
   @PostMapping(CART)
   public RedirectView order(RedirectAttributes redirectAttributes, SessionStatus sessionStatus) {
-    // TODO: implement order, save to DB, send email etc.
+    try {
+      // TODO: implement order, save to DB, send email etc.
 
-    // close and clear session
-    sessionStatus.setComplete();
+      // close and clear session
+      sessionStatus.setComplete();
+
+      redirectAttributes.addFlashAttribute("messageSuccess",
+        messageService.getTranslatedMessage("order.message.success"));
+    } catch (Exception e) {
+      redirectAttributes.addFlashAttribute("messageError",
+        messageService.getTranslatedMessage("order.message.error"));
+    }
 
     return new RedirectView(CART);
   }
