@@ -9,6 +9,7 @@ import static lt.codeacademy.spring2025.eshop.cart.controller.CartController.CAR
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lt.codeacademy.spring2025.eshop.cart.dto.CartDto;
+import lt.codeacademy.spring2025.eshop.cart.dto.OrderDto;
 import lt.codeacademy.spring2025.eshop.cart.mapper.CartMapper;
 import lt.codeacademy.spring2025.eshop.cart.service.CartService;
 import lt.codeacademy.spring2025.eshop.core.domain.cart.Cart;
@@ -54,10 +55,13 @@ public class CartController {
   }
 
   @PostMapping(CART)
-  public RedirectView order(RedirectAttributes redirectAttributes, SessionStatus sessionStatus) {
+  public RedirectView order(@ModelAttribute(CART_SESSION) CartDto cartSession,
+                           RedirectAttributes redirectAttributes,
+                           SessionStatus sessionStatus) {
     try {
-      // TODO: implement order, save to DB, send email etc.
-
+      final Cart cart = cartMapper.toDomain(cartSession);
+      OrderDto orderDto = cartService.processOrder(cart);
+      
       // close and clear session
       sessionStatus.setComplete();
 
