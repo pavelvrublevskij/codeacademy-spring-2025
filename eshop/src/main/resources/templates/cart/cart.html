@@ -35,7 +35,9 @@
         </tfoot>
     </table>
 
-    <button class="btn btn-primary" type="submit" th:text="#{cart.order}"></button>
+    <form th:method="post">
+        <button class="btn btn-primary" type="submit" th:text="#{cart.order}"></button>
+    </form>
 </main>
 <footer th:replace="~{fragments/layout :: footer}"></footer>
 <div th:replace="~{fragments/layout :: bodyBottomScripts}"></div>

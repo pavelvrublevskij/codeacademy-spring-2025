@@ -15,6 +15,9 @@ import lt.codeacademy.spring2025.eshop.core.domain.cart.Cart;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 @Controller
 @SessionAttributes(CART_SESSION)
@@ -46,5 +49,15 @@ public class CartController {
     model.addAttribute(CART_SESSION, cartDto);
 
     return "redirect:/products";
+  }
+
+  @PostMapping(CART)
+  public RedirectView order(RedirectAttributes redirectAttributes, SessionStatus sessionStatus) {
+    // TODO: implement order, save to DB, send email etc.
+
+    // close and clear session
+    sessionStatus.setComplete();
+
+    return new RedirectView(CART);
   }
 }
