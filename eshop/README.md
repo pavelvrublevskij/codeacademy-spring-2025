@@ -1,6 +1,14 @@
 # E-Shop
 WEB for Spring MVC learning
 
+# Prerequisites
+This project uses Spring Boot, Spring MVC, Spring Data JPA, and Thymeleaf.
+It is recommended to have a basic understanding of these technologies before diving into the code.
+Uses technologies:
+* Bootstrap 5.2.3
+* Font Awesome 6.7.2
+* Spring Security 6.4.4
+
 ## Requirements
 * JDK 17+
 * Check if JAVA_HOME used JDK 17
