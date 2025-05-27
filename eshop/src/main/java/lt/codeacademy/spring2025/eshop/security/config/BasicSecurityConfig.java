@@ -3,6 +3,7 @@ package lt.codeacademy.spring2025.eshop.security.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configurers.HeadersConfigurer;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
@@ -12,7 +13,10 @@ public class BasicSecurityConfig {
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
     return http
       .authorizeHttpRequests(authorizeRequests ->
-        authorizeRequests.requestMatchers("/login/**").permitAll()
+        authorizeRequests.requestMatchers(
+          "/login/**",
+          "/eshop_h2/**"
+          ).permitAll()
           .anyRequest()
           .authenticated())
       .formLogin(loginConfigurer ->
@@ -22,6 +26,14 @@ public class BasicSecurityConfig {
           .defaultSuccessUrl("/products", true)
           .usernameParameter("loginEmail")
           .passwordParameter("loginPassword")
+      )
+      .csrf(csrfConfigurer ->
+        csrfConfigurer.ignoringRequestMatchers(
+          "/eshop_h2/**"
+        )
+      )
+      .headers(headersConfigurer ->
+        headersConfigurer.frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin)
       )
       .build();
   }
