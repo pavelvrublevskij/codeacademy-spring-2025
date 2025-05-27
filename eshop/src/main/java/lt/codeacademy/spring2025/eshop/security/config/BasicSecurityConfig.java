@@ -15,8 +15,14 @@ public class BasicSecurityConfig {
         authorizeRequests.requestMatchers("/login/**").permitAll()
           .anyRequest()
           .authenticated())
-      .formLogin(formLogin ->
-        formLogin.permitAll())
+      .formLogin(loginConfigurer ->
+        loginConfigurer.permitAll()
+          .loginPage("/login")
+          .loginProcessingUrl("/login")
+          .defaultSuccessUrl("/products", true)
+          .usernameParameter("loginEmail")
+          .passwordParameter("loginPassword")
+      )
       .build();
   }
 }
