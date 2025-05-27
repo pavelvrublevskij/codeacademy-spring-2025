@@ -46,3 +46,5 @@ logging:
           eshop:
             product:
               config: debug
+            security:
+              filter: trace
