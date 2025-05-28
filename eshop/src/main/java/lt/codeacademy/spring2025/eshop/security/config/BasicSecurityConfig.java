@@ -15,8 +15,13 @@ public class BasicSecurityConfig {
     return http
       .authorizeHttpRequests(authorizeRequests ->
         authorizeRequests.requestMatchers(
+          "/",
           "/login/**",
-          "/eshop_h2/**"
+          "/eshop_h2/**",
+          "/products",
+          "/products/find/**",
+          "/cart/**",
+          "/users/sign-up/**"
           ).permitAll()
           .anyRequest()
           .authenticated())
