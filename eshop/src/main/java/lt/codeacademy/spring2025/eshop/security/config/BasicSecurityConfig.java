@@ -53,7 +53,13 @@ public class BasicSecurityConfig {
   public UserDetailsService inMemoryUserDetailsService() {
     final UserDetails adminUser = User.builder()
       .username("admin@eshop.lt")
-      .password("{noop}admin") // {noop} indicates no password encoder is used
+      // Steps how to encode password:
+      // 1. Open PasswordEncoderFactories and look for bcrypt, we will see that bcypt use BCryptPasswordEncoder class
+      // 2. Go to BCryptPasswordEncoder implementation and add break point on 129 line
+      // 3. Run application in debug mode and when stopped press Alt + F8 (Evaluation window should appear)
+      // 4. Write there this.encode("your password") and press EVALUATE button
+      // or skip all steps and use https://bcrypt-generator.com/ :)))
+      .password("{bcrypt}$2a$12$599FRBXq/Oxq1SgxuThflOT.kIyO2.XFhGMee6bud2gIYyGE6WRoG") // {noop} indicates no password encoder is used
       .roles("ADMIN", "USER")
       .build();
     final UserDetails regularUser = User.builder()
