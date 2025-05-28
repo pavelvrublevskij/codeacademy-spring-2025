@@ -34,10 +34,6 @@ spring:
     web:
       pageable:
         default-page-size: 3
-  security:
-    user:
-      name: admin@eshop.lt
-      password: admin
 logging:
   level:
     lt:
