@@ -1,6 +1,11 @@
-spring:
-  security:
-    user:
-      name: admin@eshop.lt
+global:
+  users:
+    - username: admin@eshop.lt
       password: '{noop}admin'
-      roles: ADMIN, USER
+      roles:
+        - ADMIN
+        - USER
+    - username: user@eshop.lt
+      password: '{noop}user'
+      roles:
+        - USER
