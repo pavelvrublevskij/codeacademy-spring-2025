@@ -1,5 +1,7 @@
 package lt.codeacademy.spring2025.eshop.security.config;
 
+import javax.sql.DataSource;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
@@ -10,7 +12,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Log4j2
@@ -20,6 +22,7 @@ import org.springframework.security.web.SecurityFilterChain;
 public class BasicSecurityConfig {
 
   private final ApplicationUsersPropertyConfig applicationUsersPropertyConfig;
+  private final DataSource datasource;
 
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -57,16 +60,20 @@ public class BasicSecurityConfig {
   }
 
   @Bean
-  public UserDetailsService inMemoryUserDetailsService() {
-    return new InMemoryUserDetailsManager(applicationUsersPropertyConfig.getUsers().stream()
-      .map(user -> {
+  public UserDetailsService jdbcUserDetailsService() {
+    var jdbcUserDetailsManager = new JdbcUserDetailsManager(datasource);
+
+    applicationUsersPropertyConfig.getUsers()
+      .forEach(user -> {
         log.info("Creating global user: {}", user);
 
-        return User.withUsername(user.username())
-          .password(user.password())
-          .roles(user.roles())
-          .build();
-      })
-      .toList());
+        jdbcUserDetailsManager.createUser(
+          User.withUsername(user.username())
+            .password(user.password())
+            .roles(user.roles())
+            .build());
+      });
+
+    return jdbcUserDetailsManager;
   }
 }
