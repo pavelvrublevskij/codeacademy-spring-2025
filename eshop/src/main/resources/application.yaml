@@ -6,6 +6,9 @@ server:
     session:
       tracking-modes: cookie
 spring:
+  profiles:
+    include:
+      - global-users
   application:
     name: eshop
   main:

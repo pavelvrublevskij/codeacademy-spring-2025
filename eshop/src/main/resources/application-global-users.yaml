@@ -1,0 +1,6 @@
+spring:
+  security:
+    user:
+      name: admin@eshop.lt
+      password: '{noop}admin'
+      roles: ADMIN, USER
