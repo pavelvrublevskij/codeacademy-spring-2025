@@ -6,7 +6,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lt.codeacademy.spring2025.eshop.helper.MessageService;
 import lt.codeacademy.spring2025.eshop.user.dto.UserSignUpDto;
-import lt.codeacademy.spring2025.eshop.user.service.UserService;
+import lt.codeacademy.spring2025.eshop.user.service.UserRegistrationService;
 import lt.codeacademy.spring2025.eshop.user.validator.UserSignupValidator;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,7 +25,7 @@ public class UserController {
 
   private final MessageService messageService;
   private final UserSignupValidator userSignupValidator;
-  private final UserService userService;
+  private final UserRegistrationService userRegistrationService;
 
   @GetMapping
   public String getSignUpForm(Model model) {
@@ -40,7 +40,7 @@ public class UserController {
       return USER_SIGN_UP_VIEW;
     }
 
-    userService.createUser(userSignUpDto);
+    userRegistrationService.createUser(userSignUpDto);
 
     redirectAttributes.addFlashAttribute("message", messageService.getTranslatedMessage("user.signup.message.success"));
     return "redirect:" + USERS_SIGN_UP;
