@@ -45,4 +45,7 @@ insert into users (first_name,
                   zip_code)
 VALUES ('Admin', 'Admin', 'admin@eshop.lt',
         '{bcrypt}$2a$12$scveGQWH2wL6VWjzspc9a.6YK/kZx15X1FwpgPbQTloQlOPd1Jq3W',
-        'N/A', 'N/A', 'N/A', 'N/A');
+        'N/A', 'N/A', 'N/A', 'N/A'),
+('User', 'User', 'user@eshop.lt',
+    '{bcrypt}$2a$12$8hk6Og4DREwZOKyx/XhuMu0GMJ2DOheDf/Z/IaJYoQ7PAU.dwaToW',
+    'N/A', 'N/A', 'N/A', 'N/A');

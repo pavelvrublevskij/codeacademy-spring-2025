@@ -4,13 +4,14 @@ import javax.sql.DataSource;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import lt.codeacademy.spring2025.eshop.user.service.UserService;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Log4j2
@@ -19,6 +20,7 @@ import org.springframework.security.web.SecurityFilterChain;
 public class BasicSecurityConfig {
 
   private final DataSource datasource;
+  private final UserService userService;
 
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -56,11 +58,11 @@ public class BasicSecurityConfig {
   }
 
   @Bean
-  public UserDetailsService jdbcUserDetailsService() {
-    var users = new JdbcUserDetailsManager(datasource);
-    users.setUsersByUsernameQuery("SELECT email AS username, password, TRUE AS enabled FROM users WHERE email = ?");
-    users.setAuthoritiesByUsernameQuery("SELECT email AS username, 'ROLE_ADMIN' AS authority FROM users WHERE email = ?");
+  public AuthenticationProvider authenticationProvider() {
+    var daoAuthenticationProvider = new DaoAuthenticationProvider();
+    daoAuthenticationProvider.setUserDetailsService(userService);
 
-    return users;
+    return daoAuthenticationProvider;
   }
+
 }
