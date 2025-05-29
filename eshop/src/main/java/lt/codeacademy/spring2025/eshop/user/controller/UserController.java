@@ -39,6 +39,8 @@ public class UserController {
       return USER_SIGN_UP_VIEW;
     }
 
+    // Here you would typically save the userSignUpDto to the database
+
     redirectAttributes.addFlashAttribute("message", messageService.getTranslatedMessage("user.signup.message.success"));
     return "redirect:" + USERS_SIGN_UP;
   }
