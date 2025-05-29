@@ -49,3 +49,12 @@ VALUES ('Admin', 'Admin', 'admin@eshop.lt',
 ('User', 'User', 'user@eshop.lt',
     '$2a$12$8hk6Og4DREwZOKyx/XhuMu0GMJ2DOheDf/Z/IaJYoQ7PAU.dwaToW',
     'N/A', 'N/A', 'N/A', 'N/A');
+
+insert into authority (name, description)
+VALUES ('ADMIN', 'Administrator role with full access'),
+       ('USER', 'User role with limited access');
+
+insert into users_authorities (user_id, authority_id)
+VALUES (1, 1), -- Admin user with ADMIN authority
+        (1, 2), -- Admin user with USER authority
+       (2, 2); -- Regular user with USER authority
