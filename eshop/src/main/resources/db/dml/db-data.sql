@@ -34,3 +34,15 @@ values (1, 1),
     (12, 1),
     (13, 1),
     (14, 1);
+
+insert into users (first_name,
+                  last_name,
+                  email,
+                  password,
+                  phone_number,
+                  address,
+                  city,
+                  zip_code)
+VALUES ('Admin', 'Admin', 'admin@eshop.lt',
+        '{bcrypt}$2a$12$scveGQWH2wL6VWjzspc9a.6YK/kZx15X1FwpgPbQTloQlOPd1Jq3W',
+        'N/A', 'N/A', 'N/A', 'N/A');

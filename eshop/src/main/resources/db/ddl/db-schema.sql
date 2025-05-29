@@ -29,16 +29,38 @@ ALTER TABLE product_product_categories
         FOREIGN KEY (product_id) REFERENCES product (id);
 
 
-CREATE TABLE users (
-                       username VARCHAR(50) NOT NULL PRIMARY KEY,
-                       password VARCHAR(100) NOT NULL,
-                       enabled BOOLEAN NOT NULL
+CREATE TABLE users
+(
+    id           BIGINT AUTO_INCREMENT PRIMARY KEY,
+    first_name   VARCHAR(20)  NOT NULL,
+    last_name    VARCHAR(50)  NOT NULL,
+    email        VARCHAR(100) NOT NULL UNIQUE,
+    password     VARCHAR(100) NOT NULL,
+    phone_number VARCHAR(12)  DEFAULT NULL,
+    address      VARCHAR(200) DEFAULT NULL,
+    city         VARCHAR(50)  DEFAULT NULL,
+    zip_code     VARCHAR(20)  DEFAULT NULL
 );
 
-CREATE TABLE authorities (
-                             username VARCHAR(50) NOT NULL,
-                             authority VARCHAR(50) NOT NULL,
-                             CONSTRAINT fk_authorities_users FOREIGN KEY(username) REFERENCES users(username)
+CREATE TABLE authority
+(
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    name  VARCHAR(100) NOT NULL,
+    description VARCHAR(2000)
 );
 
-CREATE UNIQUE INDEX ix_auth_username ON authorities (username, authority);
+CREATE TABLE users_authorities
+(
+    user_id      BIGINT NOT NULL,
+    authority_id BIGINT NOT NULL
+);
+
+ALTER TABLE users_authorities
+    ADD CONSTRAINT users_authorities_user_id
+        FOREIGN KEY (user_id) REFERENCES users (id);
+
+ALTER TABLE users_authorities
+    ADD CONSTRAINT users_authorities_authority_id
+        FOREIGN KEY (authority_id) REFERENCES authority (id);
+
+CREATE UNIQUE INDEX users_authorities_unique ON users_authorities (user_id, authority_id);

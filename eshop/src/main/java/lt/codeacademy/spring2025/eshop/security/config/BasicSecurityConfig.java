@@ -10,7 +10,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
@@ -61,19 +60,10 @@ public class BasicSecurityConfig {
 
   @Bean
   public UserDetailsService jdbcUserDetailsService() {
-    var jdbcUserDetailsManager = new JdbcUserDetailsManager(datasource);
+    var users = new JdbcUserDetailsManager(datasource);
+    users.setUsersByUsernameQuery("SELECT email AS username, password, TRUE AS enabled FROM users WHERE email = ?");
+    users.setAuthoritiesByUsernameQuery("SELECT email AS username, 'ROLE_ADMIN' AS authority FROM users WHERE email = ?");
 
-    applicationUsersPropertyConfig.getUsers()
-      .forEach(user -> {
-        log.info("Creating global user: {}", user);
-
-        jdbcUserDetailsManager.createUser(
-          User.withUsername(user.username())
-            .password(user.password())
-            .roles(user.roles())
-            .build());
-      });
-
-    return jdbcUserDetailsManager;
+    return users;
   }
 }
