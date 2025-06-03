@@ -13,4 +13,4 @@ spring:
       schema-locations: classpath:db/mysql/ddl/db-schema.sql
       data-locations: classpath:db/dml/db-data.sql
       platform: mysql
-      mode: always
+      mode: never

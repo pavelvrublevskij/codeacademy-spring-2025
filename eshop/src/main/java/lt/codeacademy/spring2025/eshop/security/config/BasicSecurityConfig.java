@@ -62,7 +62,7 @@ public class BasicSecurityConfig {
   public WebSecurityCustomizer webSecurityCustomizer() {
     return web -> web.ignoring()
       .requestMatchers(
-        PathRequest.toH2Console(),
+//        PathRequest.toH2Console(),
         PathRequest.toStaticResources().atCommonLocations()  // add this line if static files prevented by security
       );
   }

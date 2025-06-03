@@ -2,12 +2,12 @@ package lt.codeacademy.spring2025.eshop.product.mapper;
 
 import java.math.BigDecimal;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import lt.codeacademy.spring2025.eshop.core.domain.Product;
 import lt.codeacademy.spring2025.eshop.product.dto.ProductDto;
-
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 class ProductDtoMapperTest {
 
@@ -43,7 +43,7 @@ class ProductDtoMapperTest {
 
     // THEN
     assertNull( productDto.getName());
-    assertEquals(BigDecimal.ZERO, productDto.getPrice());
+    assertNull(productDto.getPrice());
     assertNull(productDto.getDescription());
     assertEquals(0, productDto.getAmount(), 0);
   }
