@@ -6,6 +6,8 @@ server:
     session:
       tracking-modes: cookie
 spring:
+  profiles:
+    active: no-security
   application:
     name: eshop
   main:
