@@ -15,6 +15,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Log4j2
 @Configuration
@@ -47,6 +48,12 @@ public class BasicSecurityConfig {
           .defaultSuccessUrl("/products", true)
           .usernameParameter("loginEmail")
           .passwordParameter("loginPassword")
+      )
+      .logout(logoutConfigurer -> logoutConfigurer
+        .logoutUrl("/logout")
+        .logoutSuccessUrl("/")
+        .logoutRequestMatcher(new AntPathRequestMatcher("/logout", "GET"))
+        .permitAll()
       )
       .build();
   }

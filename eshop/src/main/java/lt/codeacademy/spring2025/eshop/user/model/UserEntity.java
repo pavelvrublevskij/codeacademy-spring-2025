@@ -68,4 +68,8 @@ public class UserEntity implements UserDetails {
   public boolean isEnabled() {
     return UserDetails.super.isEnabled();
   }
+
+  public String getFullName() {
+    return firstName + " " + lastName;
+  }
 }
