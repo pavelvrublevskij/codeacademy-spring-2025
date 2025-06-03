@@ -15,7 +15,7 @@ public class HomeController {
   private String companyName;
   @Value("${company.address}")
   private String companyAddress;
-  @Value("${company.color}")
+  @Value("${company.color:#000000}")
   private String companyColor;
   @Value("${developer.name}")
   private String developerName;
