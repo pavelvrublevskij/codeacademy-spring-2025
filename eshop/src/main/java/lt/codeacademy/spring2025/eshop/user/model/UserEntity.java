@@ -14,7 +14,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "users")
+@Entity
 @Table(name = "users")
 public class UserEntity implements UserDetails {
 
@@ -31,7 +31,7 @@ public class UserEntity implements UserDetails {
   private String city;
   private String zipCode;
 
-  @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+  @ManyToMany(cascade = CascadeType.PERSIST)
   @JoinTable(
     name = "users_authorities",
     joinColumns = { @JoinColumn(name = "user_id") },
