@@ -19,7 +19,9 @@
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                 <li><a th:href="@{/}" class="nav-link px-2 text-secondary" th:text="#{page.home}">Home</a></li>
                 <li><a th:href="@{/products}" class="nav-link px-2 text-white" th:text="#{page.products}">Products</a></li>
-                <li><a th:href="@{/products/create}" class="nav-link px-2 text-white" th:text="#{page.products.create}">Create a Product</a></li>
+                <div sec:authorize="hasRole('ADMIN')">
+                    <li><a th:href="@{/products/create}" class="nav-link px-2 text-white" th:text="#{page.products.create}">Create a Product</a></li>
+                </div>
                 <li th:replace="~{this :: languageSelector(${rootPath})}"></li>
             </ul>
 
@@ -33,7 +35,7 @@
             </form>
 
             <div class="text-end">
-                <a type="button" class="btn btn-outline-light me-2" th:text="#{login}" href="#">Login</a>
+                <a type="button" class="btn btn-outline-light me-2" th:text="#{login}" th:href="@{/login}">Login</a>
                 <a type="button" class="btn btn-warning" th:text="#{signup}" th:href="@{/users/sign-up}">Sign-up</a>
             </div>
         </div>

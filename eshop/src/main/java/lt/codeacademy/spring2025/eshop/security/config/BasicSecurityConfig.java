@@ -31,7 +31,7 @@ public class BasicSecurityConfig {
           "/",
           "/login/**",
           "/eshop_h2/**",
-          "/products",
+          "/products/**", // changed from /products to /products/** for test security in controller level
           "/products/find/**",
           "/cart/**",
           "/users/sign-up/**"
