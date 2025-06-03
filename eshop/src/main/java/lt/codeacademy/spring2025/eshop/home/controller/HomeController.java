@@ -2,13 +2,11 @@ package lt.codeacademy.spring2025.eshop.home.controller;
 
 import lt.codeacademy.spring2025.eshop.HttpEndpoint;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-@PropertySource("classpath:eshop-company.properties")
 public class HomeController {
 
   @Value("${company.name}")
