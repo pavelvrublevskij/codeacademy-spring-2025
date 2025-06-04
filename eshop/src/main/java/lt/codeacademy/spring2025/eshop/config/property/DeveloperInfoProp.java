@@ -10,6 +10,6 @@ import org.springframework.stereotype.Component;
 @Getter
 public class DeveloperInfoProp {
 
-  @Value("${developer.names:}")
+  @Value("#{'${developer.names:}'.replace('#', ' ')}")
   private List<String> developerNames;
 }

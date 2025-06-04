@@ -52,4 +52,4 @@ company:
   address: 123 E-Shop Lane, Commerce City, CA 90210
   color: "#FF0000"
 developer:
-  names: Jane Doe, Vardas Pavardenis, Elon Musk
+  names: Jane#Doe, Vardas#Pavardenis, Elon#Musk
