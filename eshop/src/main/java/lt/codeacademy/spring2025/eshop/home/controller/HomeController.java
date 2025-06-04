@@ -19,7 +19,7 @@ public class HomeController {
 	public String openHomePage(Model model) {
     model.addAttribute("companyName", companyProp.getCompanyName());
     model.addAttribute("companyAddress", companyProp.getCompanyAddress());
-    model.addAttribute("developerName", developerInfoProp.getDeveloperName());
+    model.addAttribute("developerNames", developerInfoProp.getDeveloperNames());
     model.addAttribute("companyColor", companyProp.getCompanyColor());
 		return "home";
 	}
