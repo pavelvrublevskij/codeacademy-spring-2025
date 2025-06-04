@@ -8,9 +8,9 @@ import org.springframework.stereotype.Component;
 @Getter
 public class CompanyProp {
 
-  @Value("${company.name}")
+  @Value("${company.name:}")  //after ":" is default value if property is not set
   private String companyName;
-  @Value("${company.address}")
+  @Value("${company.address:}")
   private String companyAddress;
   @Value("${company.color:#000000}")
   private String companyColor;

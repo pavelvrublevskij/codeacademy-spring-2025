@@ -8,6 +8,6 @@ import org.springframework.stereotype.Component;
 @Getter
 public class DeveloperInfoProp {
 
-  @Value("${developer.name}")
+  @Value("${developer.name:}")
   private String developerName;
 }
