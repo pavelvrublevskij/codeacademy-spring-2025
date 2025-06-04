@@ -1,7 +1,5 @@
 package lt.codeacademy.spring2025.eshop.user.model;
 
-
-import org.springframework.security.core.GrantedAuthority;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -12,7 +10,7 @@ import lombok.*;
 @AllArgsConstructor
 @Entity(name = "authority")
 @Table(name = "authority")
-public class AuthorityEntity implements GrantedAuthority {
+public class AuthorityEntity {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,9 +19,4 @@ public class AuthorityEntity implements GrantedAuthority {
   @Column(nullable = false, unique = true)
   private String name;
   private String description;
-
-  @Override
-  public String getAuthority() {
-    return "ROLE_" + name;
-  }
 }
