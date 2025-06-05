@@ -7,6 +7,10 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import static org.mockito.Mockito.anyString;
+import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -32,9 +36,6 @@ public class DummyUserClassTest {
 
   @Test
   public void testFindUserAgeByNameWhenUserNameIsNull() {
-    // given
-    when(dummyService.getUserAgeByName(null)).thenReturn(0);
-
     // when
     int age = dummyUserClass.findUserAgeByName(null);
 
@@ -44,14 +45,29 @@ public class DummyUserClassTest {
 
   @Test
   public void testFindUserAgeByNameWhenUserNameIsEmpty() {
-    // given
-    when(dummyService.getUserAgeByName("")).thenReturn(0);
-
     // when
     int age = dummyUserClass.findUserAgeByName("");
 
     // then
     Assertions.assertEquals(0, age, "Expected age to be 0 when user name is null");
+  }
+
+  @Test
+  public void testSaveUserSuccess() {
+    // when
+    dummyUserClass.saveUser("test user");
+
+    // then
+    verify(dummyService, times(1)).saveUser(anyString());
+  }
+
+  @Test
+  public void testSaveUserThrowsException() {
+    // given
+    doThrow(new RuntimeException("Save failed")).when(dummyService).saveUser(anyString());
+
+    // when & then
+    Assertions.assertThrows(RuntimeException.class, () -> dummyUserClass.saveUser("test user"));
   }
 
 }
