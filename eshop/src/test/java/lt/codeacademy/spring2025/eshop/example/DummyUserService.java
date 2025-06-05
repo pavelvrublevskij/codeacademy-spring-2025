@@ -7,6 +7,14 @@ public class DummyUserService {
   }
 
   public void saveUser(final String testUser) {
+    if (testUser == null || testUser.isEmpty()) {
+      throw new IllegalArgumentException("User name cannot be null or empty");
+    }
+
+    if (testUser.length() > 10) {
+      throw new IllegalArgumentException("User name cannot be longer than 10 characters");
+    }
+
     // Simulate saving user
     // ...
     // if wrong save operation, throw an exception
