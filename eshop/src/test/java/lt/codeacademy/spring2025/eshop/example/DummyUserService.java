@@ -7,17 +7,22 @@ public class DummyUserService {
   }
 
   public void saveUser(final String testUser) {
-    if (testUser == null || testUser.isEmpty()) {
+    if (testUser == null) {
       throw new IllegalArgumentException("User name cannot be null or empty");
     }
 
-    if (testUser.length() > 10) {
+    var userName = testUser.trim();
+    if (userName.isEmpty()) {
+      throw new IllegalArgumentException("User name cannot be null or empty");
+    }
+
+    if (userName.length() > 10) {
       throw new IllegalArgumentException("User name cannot be longer than 10 characters");
     }
 
     // Simulate saving user
     // ...
     // if wrong save operation, throw an exception
-    throw new RuntimeException("Error saving user: " + testUser);
+    throw new RuntimeException("Error saving user: " + userName);
   }
 }
