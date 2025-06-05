@@ -20,13 +20,15 @@ public class MessageService {
    * @return Translated message by selected locale. Return ?text? if no translated key provided
    */
   public String getTranslatedMessage(String key, Object... args) {
-    try {
-      return messageSource.getMessage(key, args, LocaleContextHolder.getLocale());
-    } catch (NoSuchMessageException e) {
-      if (key != null && !key.equals("")) {
-        log.atError().log("Translation key not found: {}", key);
+    if (key != null) {
+      try {
+        return messageSource.getMessage(key, args, LocaleContextHolder.getLocale());
+      } catch (NoSuchMessageException e) {
+        if (key != null && !key.equals("")) {
+          log.atError().log("Translation key not found: {}", key);
 
-        return String.format("?%s?", key);
+          return String.format("?%s?", key);
+        }
       }
     }
 
