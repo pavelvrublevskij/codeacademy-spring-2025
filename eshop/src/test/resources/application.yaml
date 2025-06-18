@@ -1,0 +1,32 @@
+server:
+  servlet:
+    session:
+      tracking-modes: cookie
+spring:
+  profiles:
+    include: amazon
+  main:
+    banner-mode: off
+  datasource:
+    url: jdbc:h2:mem:eshop_test_db
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: password
+  sql:
+    init:
+      schema-locations: classpath:db/ddl/db-schema.sql
+      data-locations: classpath:db/dml/db-data.sql
+  jpa:
+    hibernate:
+      ddl-auto: validate
+  data:
+    web:
+      pageable:
+        default-page-size: 3
+
+company:
+  name: E-Shop Company
+  address: 123 E-Shop Lane, Commerce City, CA 90210
+  color: "#FF0000"
+developer:
+  names: Jane#Doe, Vardas#Pavardenis, Elon#Musk
