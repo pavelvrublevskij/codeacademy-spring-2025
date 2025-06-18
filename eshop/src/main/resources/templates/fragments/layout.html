@@ -36,6 +36,15 @@
                 >
             </form>
 
+            <div class="me-3">
+                <a th:href="@{/cart}" class="text-white text-decoration-none position-relative">
+                    <i class="fa-solid fa-cart-shopping fa-lg"></i>
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                        0
+                    </span>
+                </a>
+            </div>
+
             <div sec:authorize="!isAuthenticated()">
                 <div class="text-end">
                     <a type="button" class="btn btn-outline-light me-2" th:text="#{login}" th:href="@{/login}">Login</a>
