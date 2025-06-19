@@ -39,7 +39,8 @@ public class BasicSecurityConfig {
           "/products/**", // changed from /products to /products/** for test security in controller level
           "/products/find/**",
           "/cart/**",
-          "/users/sign-up/**"
+          "/users/sign-up/**",
+          "/api/**" // allow access to API endpoints
           ).permitAll()
           .anyRequest()
           .authenticated())
