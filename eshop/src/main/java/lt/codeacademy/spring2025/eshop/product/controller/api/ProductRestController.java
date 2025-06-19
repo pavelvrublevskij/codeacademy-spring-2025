@@ -54,4 +54,10 @@ public class ProductRestController {
     productService.deleteProductByUUID(uuid);
     return ResponseEntity.noContent().build();
   }
+
+  @PutMapping
+  public ResponseEntity<ProductDto> updateProduct(@RequestBody @Valid ProductDto productDto) {
+    productService.update(productDtoMapper.toDomain(productDto));
+    return ResponseEntity.status(HttpStatus.CREATED).build();
+  }
 }
