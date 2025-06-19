@@ -7,7 +7,7 @@ server:
       tracking-modes: cookie
 spring:
   profiles:
-    include: amazon
+    include: amazon, no-security
   application:
     name: eshop
   main:

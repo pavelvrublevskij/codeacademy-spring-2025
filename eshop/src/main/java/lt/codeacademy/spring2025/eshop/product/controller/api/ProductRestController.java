@@ -3,14 +3,16 @@ package lt.codeacademy.spring2025.eshop.product.controller.api;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lt.codeacademy.spring2025.eshop.product.dto.ProductDto;
 import lt.codeacademy.spring2025.eshop.product.dto.ProductListDto;
+import lt.codeacademy.spring2025.eshop.product.mapper.ProductDtoMapper;
 import lt.codeacademy.spring2025.eshop.product.mapper.ProductListDtoMapper;
 import lt.codeacademy.spring2025.eshop.product.service.ProductService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -19,6 +21,7 @@ public class ProductRestController {
 
   private final ProductService productService;
   private final ProductListDtoMapper productListDtoMapper;
+  private final ProductDtoMapper productDtoMapper;
 
   @ResponseBody
   @GetMapping
@@ -26,5 +29,11 @@ public class ProductRestController {
     return productService.getAllProducts().stream()
       .map(productListDtoMapper::toDto)
       .collect(Collectors.toList());
+  }
+
+  @PostMapping
+  public ResponseEntity<Void> createProduct(@RequestBody @Valid ProductDto productDto) {
+    productService.save(productDtoMapper.toDomain(productDto));
+    return ResponseEntity.status(HttpStatus.CREATED).build();
   }
 }
