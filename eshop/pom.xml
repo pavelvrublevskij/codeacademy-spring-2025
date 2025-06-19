@@ -11,8 +11,14 @@
 	<groupId>lt.codeacademy.spring2025</groupId>
 	<artifactId>eshop</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
 	<name>eshop</name>
 	<description>eshop</description>
+
+    <modules>
+        <module>security</module>
+        <module>main</module>
+    </modules>
 
 	<properties>
 		<java.version>21</java.version>
