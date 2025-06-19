@@ -1,6 +1,5 @@
 package lt.codeacademy.spring2025.eshop.product.controller;
 
-import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -28,7 +27,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -103,13 +101,5 @@ public class ProductController {
     productService.deleteProductByUUID(productId);
 
     return getProducts(model, pageable);
-  }
-
-  @ResponseBody
-  @GetMapping("/api/products")
-  public List<ProductListDto> getAllProducts() {
-    return productService.getAllProducts().stream()
-      .map(productListDtoMapper::toDto)
-      .collect(Collectors.toList());
   }
 }
