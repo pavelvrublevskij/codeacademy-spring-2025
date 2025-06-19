@@ -11,6 +11,7 @@ import lt.codeacademy.spring2025.eshop.product.mapper.ProductDtoMapper;
 import lt.codeacademy.spring2025.eshop.product.mapper.ProductListDtoMapper;
 import lt.codeacademy.spring2025.eshop.product.service.ProductService;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,6 +27,16 @@ public class ProductRestController {
   @ResponseBody
   @GetMapping
   public List<ProductListDto> getAllProducts() {
+    return getProductListDtos();
+  }
+
+  @ResponseBody
+  @GetMapping(value = "/xml", produces = MediaType.APPLICATION_XML_VALUE)
+  public List<ProductListDto> getAllProductsAsXml() {
+    return getProductListDtos();
+  }
+
+  private List<ProductListDto> getProductListDtos() {
     return productService.getAllProducts().stream()
       .map(productListDtoMapper::toDto)
       .collect(Collectors.toList());
