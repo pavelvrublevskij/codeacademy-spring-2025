@@ -1,6 +1,7 @@
 package lt.codeacademy.spring2025.eshop.product.controller.api;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 import jakarta.validation.Valid;
@@ -46,5 +47,11 @@ public class ProductRestController {
   public ResponseEntity<Void> createProduct(@RequestBody @Valid ProductDto productDto) {
     productService.save(productDtoMapper.toDomain(productDto));
     return ResponseEntity.status(HttpStatus.CREATED).build();
+  }
+
+  @DeleteMapping("/{uuid}")
+  public ResponseEntity<Void> deleteProduct(@PathVariable UUID uuid) {
+    productService.deleteProductByUUID(uuid);
+    return ResponseEntity.noContent().build();
   }
 }
