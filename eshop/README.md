@@ -43,6 +43,10 @@ Uses technologies:
 ## Access the application
 http://localhost:8080
 
+## Access Swagger (using OpenAPI)
+The Swagger UI page will then be available at http://localhost:8080/swagger-ui.html
+and the OpenAPI description will be available at the following url for json format: http://localhost:8080/v3/api-docs
+
 # HOW TO run application from scratch step by step:
 1. ```cd <your maven project main location>```, where pom.xml available
 2. check if pom.xml available using command ```ls -la```
