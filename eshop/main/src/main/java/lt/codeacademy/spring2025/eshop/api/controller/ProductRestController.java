@@ -1,4 +1,4 @@
-package lt.codeacademy.spring2025.eshop.api;
+package lt.codeacademy.spring2025.eshop.api.controller;
 
 import java.util.List;
 import java.util.UUID;
@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lt.codeacademy.spring2025.eshop.api.exception.InternalServerErrorException;
 import lt.codeacademy.spring2025.eshop.product.dto.ProductDto;
 import lt.codeacademy.spring2025.eshop.product.dto.ProductListDto;
 import lt.codeacademy.spring2025.eshop.product.mapper.ProductDtoMapper;
@@ -19,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/products")
-public class ProductRestController {
+public class ProductRestController implements ProductRestControllerSpec {
 
   private final ProductService productService;
   private final ProductListDtoMapper productListDtoMapper;
@@ -28,7 +29,9 @@ public class ProductRestController {
   @ResponseBody
   @GetMapping
   public List<ProductListDto> getAllProducts() {
-    return getProductListDtos();
+    // Uncomment the line below to simulate an internal server error for testing purposes
+     throw new InternalServerErrorException("My custom error message for testing purposes");
+//    return getProductListDtos();
   }
 
   @ResponseBody
