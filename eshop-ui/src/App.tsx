@@ -1,5 +1,16 @@
+import HelloComponent from "./components/HelloComponent";
+
 function App() {
-  return <div>Hello, React!</div>;
+  return (
+      <>
+        <HelloComponent />
+        <HelloComponent />
+        <HelloComponent />
+        <HelloComponent />
+        <HelloComponent />
+        <HelloComponent />
+      </>
+  );
 }
 
 export default App;
