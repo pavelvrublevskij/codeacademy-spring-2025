@@ -1,4 +1,4 @@
-package lt.codeacademy.spring2025.eshop.product.controller.api;
+package lt.codeacademy.spring2025.eshop.api;
 
 import java.util.List;
 import java.util.UUID;
