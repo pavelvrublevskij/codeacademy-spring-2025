@@ -1,3 +1,1 @@
-export default function HelloComponent() {
-    return <div>Hello, React!</div>
-}
+export default () => <div>Hello, React!</div>
