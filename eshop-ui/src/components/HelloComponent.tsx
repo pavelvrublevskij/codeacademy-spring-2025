@@ -1,1 +1,3 @@
-export default () => <div>Hello, React!</div>
+const HelloComponent = () => <div>Hello, React!</div>
+
+export default HelloComponent
