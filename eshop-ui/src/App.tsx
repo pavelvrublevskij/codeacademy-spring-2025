@@ -1,4 +1,4 @@
-import HelloComponent from "./components/HelloComponent";
+import HelloComponent from "./training/components/HelloComponent";
 
 function App() {
   return (
