@@ -1,11 +1,8 @@
-import ButtonWithTextUsingHooks from "./training/components/ButtonWithTextUsingHooks";
-import ProductCreateComponent from "./training/components/ProductCreateComponent";
 
 function App() {
     return (
         <>
-            <ButtonWithTextUsingHooks/>
-            <ProductCreateComponent/>
+            <h1>Welcome to my react e-shop!</h1>
         </>
     );
 }
