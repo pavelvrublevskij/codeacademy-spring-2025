@@ -4,6 +4,6 @@ interface HelloComponentProps {
 }
 
 const HelloComponent =
-    (props: HelloComponentProps) => <div>Hello, {props.name}, my age {props.age}!</div>
+    ({name, age}: HelloComponentProps) => <div>Hello, {name}, my age {age}!</div>
 
 export default HelloComponent
