@@ -3,12 +3,12 @@ import HelloComponent from "./components/HelloComponent";
 function App() {
   return (
       <>
-        <HelloComponent />
-        <HelloComponent />
-        <HelloComponent />
-        <HelloComponent />
-        <HelloComponent />
-        <HelloComponent />
+        <HelloComponent name = 'Petras' />
+        <HelloComponent name = 'Antanas'/>
+        {/*<HelloComponent />*/}
+        {/*<HelloComponent />*/}
+        {/*<HelloComponent />*/}
+        {/*<HelloComponent />*/}
       </>
   );
 }
