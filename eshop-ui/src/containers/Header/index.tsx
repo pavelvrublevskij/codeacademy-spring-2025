@@ -1,3 +1,3 @@
-const Index = () => <span>Header</span>;
+const HeaderContainer = () => <span>Header</span>;
 
-export default Index;
+export default HeaderContainer;
