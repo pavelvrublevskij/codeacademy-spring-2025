@@ -3,8 +3,8 @@ import HelloComponent from "./components/HelloComponent";
 function App() {
   return (
       <>
-        <HelloComponent name = 'Petras' />
-        <HelloComponent name = 'Antanas'/>
+        <HelloComponent name = 'Petras' age={22} />
+        <HelloComponent name = 'Antanas' age={12}/>
         {/*<HelloComponent />*/}
         {/*<HelloComponent />*/}
         {/*<HelloComponent />*/}
