@@ -8,7 +8,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 const HeaderContainer = () =>
     <Navbar expand="lg" className="bg-body-tertiary" bg="dark" data-bs-theme="dark">
         <Container fluid>
-            <Navbar.Brand href="#">Navbar scroll</Navbar.Brand>
+            <Navbar.Brand href="#">E-Shop</Navbar.Brand>
             <Navbar.Toggle aria-controls="navbarScroll" />
             <Navbar.Collapse id="navbarScroll">
                 <Nav
@@ -17,20 +17,12 @@ const HeaderContainer = () =>
                     navbarScroll
                 >
                     <Nav.Link href="#action1">Home</Nav.Link>
-                    <Nav.Link href="#action2">Link</Nav.Link>
-                    <NavDropdown title="Link" id="navbarScrollingDropdown">
-                        <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-                        <NavDropdown.Item href="#action4">
-                            Another action
-                        </NavDropdown.Item>
-                        <NavDropdown.Divider />
-                        <NavDropdown.Item href="#action5">
-                            Something else here
-                        </NavDropdown.Item>
+                    <Nav.Link href="#action2">Products</Nav.Link>
+                    <NavDropdown title="Languages" id="navbarScrollingDropdown">
+                        <NavDropdown.Item href="#action3">LT</NavDropdown.Item>
+                        <NavDropdown.Item href="#action4">EN</NavDropdown.Item>
+                        <NavDropdown.Item href="#action4">DE</NavDropdown.Item>
                     </NavDropdown>
-                    <Nav.Link href="#" disabled>
-                        Link
-                    </Nav.Link>
                 </Nav>
                 <Form className="d-flex">
                     <Form.Control
@@ -41,6 +33,9 @@ const HeaderContainer = () =>
                     />
                     <Button variant="outline-success">Search</Button>
                 </Form>
+                <Nav.Link href="#" disabled>
+                    Login
+                </Nav.Link>
             </Navbar.Collapse>
         </Container>
     </Navbar>;
