@@ -1,13 +1,13 @@
-import HeaderContainer from "./Header/HeaderContainer";
-import FooterContainer from "./Footer/FooterContainer";
-import ContentContainer from "./Content/ContentContainer";
+import Header from "./Header";
+import Footer from "./Footer/FooterContainer";
+import Content from "./Content/ContentContainer";
 
 function App() {
     return (
         <>
-            <HeaderContainer />
-            <ContentContainer />
-            <FooterContainer />
+            <Header />
+            <Footer />
+            <Content />
         </>
     );
 }
