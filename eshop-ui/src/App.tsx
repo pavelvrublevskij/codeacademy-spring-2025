@@ -6,9 +6,9 @@ function App() {
         <HelloComponent name = 'Petras' age={22} />
         <HelloComponent name = 'Antanas' age={12}/>
         <HelloComponent name = 'Ona'/>
-        {/*<HelloComponent />*/}
-        {/*<HelloComponent />*/}
-        {/*<HelloComponent />*/}
+        <HelloComponent />
+        <HelloComponent />
+        <HelloComponent />
       </>
   );
 }
