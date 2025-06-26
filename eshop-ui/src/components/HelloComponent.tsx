@@ -1,6 +1,6 @@
 interface HelloComponentProps {
     name: string,
-    age: number
+    age?: number // age is optional
 }
 
 const HelloComponent =
