@@ -30,8 +30,8 @@ public class ProductRestController implements ProductRestControllerSpec {
   @GetMapping
   public List<ProductListDto> getAllProducts() {
     // Uncomment the line below to simulate an internal server error for testing purposes
-     throw new InternalServerErrorException("My custom error message for testing purposes");
-//    return getProductListDtos();
+//     throw new InternalServerErrorException("My custom error message for testing purposes");
+    return getProductListDtos();
   }
 
   @ResponseBody

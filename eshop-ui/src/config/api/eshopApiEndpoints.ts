@@ -1,5 +1,5 @@
 import HTTP from './axiosConfig';
 
-const getProducts = () => HTTP.get('/products');
+const getProductsApi = () => HTTP.get('/products');
 
-export { getProducts };
+export { getProductsApi };
