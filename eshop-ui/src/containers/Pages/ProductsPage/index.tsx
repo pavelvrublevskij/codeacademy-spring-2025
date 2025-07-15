@@ -21,13 +21,12 @@ const ProductsPage = () => {
         getProductsApi()
             // This is where you would handle the API response when successful
             .then((response) => {
-                // console.log('response', response);
+                console.log('response', response);
                 setProductsData(response.data);
-                // console.log('productsData', productsData);
             })
             // This is where you would handle the API error
             .catch((error) => console.error('Error fetching products:', error));
-    });
+    }, []);
 
     return (
         <Container fluid>
