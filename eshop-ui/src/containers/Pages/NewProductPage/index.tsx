@@ -1,5 +1,7 @@
+import ProductCreate from '../../../components/Product/ProductCreate';
+
 const NewProductPage = () => {
-    return <h1>This is a New Product Page</h1>
-}
+    return <ProductCreate />;
+};
 
 export default NewProductPage;

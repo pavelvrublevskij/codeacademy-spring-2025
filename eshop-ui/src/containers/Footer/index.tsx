@@ -1,10 +1,13 @@
-import Container from "react-bootstrap/Container";
+import Container from 'react-bootstrap/Container';
 
-const FooterContainer = () =>
-    <footer className='fixed-bottom'>
+const FooterContainer = () => (
+    <footer className="fixed-bottom">
         <Container className={'text-center'}>
-            <span className="text-muted">CodeAcademy. React Bootstrap. All Rights reserved </span>
+            <span className="text-muted">
+                CodeAcademy. React Bootstrap. All Rights reserved{' '}
+            </span>
         </Container>
     </footer>
+);
 
 export default FooterContainer;
