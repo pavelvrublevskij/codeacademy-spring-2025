@@ -18,7 +18,7 @@ const NewProductPage = () => {
         amount: 0,
         description: '',
     });
-    const [visible, setVisible] = useState(false);
+    const [visible, setVisible] = useState<boolean>(false);
 
     const onSubmit = (e: any) => {
         e.preventDefault();
@@ -36,6 +36,19 @@ const NewProductPage = () => {
             [e.target.name]: e.target.value,
         });
     };
+
+    const showCreatedProductInfo = visible && (
+        <>
+            <hr />
+            <div>
+                Sukurtas produktas:
+                <div>{product.name}</div>
+                <div>{product.price}</div>
+                <div>{product.amount}</div>
+                <div>{product.description}</div>
+            </div>
+        </>
+    );
 
     return (
         <Container>
@@ -87,15 +100,7 @@ const NewProductPage = () => {
                 </Button>
             </Form>
 
-            {visible && (
-                <div>
-                    Sukurtas produktas:
-                    <div>{product.name}</div>
-                    <div>{product.price}</div>
-                    <div>{product.amount}</div>
-                    <div>{product.description}</div>
-                </div>
-            )}
+            {showCreatedProductInfo}
         </Container>
     );
 };
