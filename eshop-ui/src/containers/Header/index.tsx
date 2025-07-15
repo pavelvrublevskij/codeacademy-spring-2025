@@ -18,6 +18,7 @@ const HeaderContainer = () =>
                 >
                     <Nav.Link href="/">Home</Nav.Link>
                     <Nav.Link href="/products">Products</Nav.Link>
+                    <Nav.Link href="/products/create">Create a Product</Nav.Link>
                     <NavDropdown title="Languages" id="navbarScrollingDropdown">
                         <NavDropdown.Item href="#action3">LT</NavDropdown.Item>
                         <NavDropdown.Item href="#action4">EN</NavDropdown.Item>
