@@ -18,12 +18,15 @@ const NewProductPage = () => {
         amount: 0,
         description: '',
     });
+    const [visible, setVisible] = useState(false);
 
     const onSubmit = (e: any) => {
         e.preventDefault();
 
         console.log('Product created');
         console.log(product);
+
+        setVisible(true);
     };
 
     const handleChange = (e: any) => {
@@ -83,6 +86,16 @@ const NewProductPage = () => {
                     Create new
                 </Button>
             </Form>
+
+            {visible && (
+                <div>
+                    Sukurtas produktas:
+                    <div>{product.name}</div>
+                    <div>{product.price}</div>
+                    <div>{product.amount}</div>
+                    <div>{product.description}</div>
+                </div>
+            )}
         </Container>
     );
 };
