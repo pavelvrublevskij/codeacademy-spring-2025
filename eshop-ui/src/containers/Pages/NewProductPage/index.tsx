@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
+import FormLabelControl from '../../../components/Form/FormLabelControl/FormLabelControl';
 
 interface Product {
     name: string;
@@ -36,42 +37,38 @@ const NewProductPage = () => {
     return (
         <Container>
             <Form onSubmit={onSubmit}>
-                <Form.Group className="mb-3" controlId="name">
-                    <Form.Label>Product name</Form.Label>
-                    <Form.Control
-                        placeholder="Enter name"
-                        name="name"
-                        onChange={handleChange}
-                    />
-                </Form.Group>
+                <FormLabelControl
+                    className="mb-3"
+                    labelText="Product name"
+                    placeholderText="Enter name"
+                    name="name"
+                    onChange={handleChange}
+                />
 
-                <Form.Group className="mb-3" controlId="price">
-                    <Form.Label>Product price</Form.Label>
-                    <Form.Control
-                        placeholder="Enter price"
-                        name="price"
-                        onChange={handleChange}
-                    />
-                </Form.Group>
+                <FormLabelControl
+                    className="mb-3"
+                    labelText="Product price"
+                    placeholderText="Enter price"
+                    name="price"
+                    onChange={handleChange}
+                />
 
-                <Form.Group className="mb-3" controlId="amount">
-                    <Form.Label>Product amount</Form.Label>
-                    <Form.Control
-                        placeholder="Enter amount"
-                        name="amount"
-                        onChange={handleChange}
-                    />
-                </Form.Group>
+                <FormLabelControl
+                    className="mb-3"
+                    labelText="Product amount"
+                    placeholderText="Enter amount"
+                    name="amount"
+                    onChange={handleChange}
+                />
 
-                <Form.Group className="mb-3" controlId="description">
-                    <Form.Label>Product description</Form.Label>
-                    <Form.Control
-                        placeholder="Enter description"
-                        name="description"
-                        as="textarea"
-                        onChange={handleChange}
-                    />
-                </Form.Group>
+                <FormLabelControl
+                    className="mb-3"
+                    labelText="Product description"
+                    placeholderText="Enter description"
+                    name="description"
+                    isTextArea={true}
+                    onChange={handleChange}
+                />
 
                 <Form.Group className="mb-3" controlId="categoryId">
                     <Form.Label>Product category</Form.Label>
