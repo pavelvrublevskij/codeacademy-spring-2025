@@ -18,6 +18,10 @@ function App() {
                         path="/products/create"
                         element={<NewProductPage />}
                     />
+                    <Route
+                        path="/products/:productId"
+                        element={<ProductsPage />}
+                    />
                 </Routes>
                 <Footer />
             </div>
