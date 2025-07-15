@@ -1,10 +1,10 @@
 import Header from "./Header";
 import Footer from "./Footer";
-import Content from "./Content";
 import './App.css';
 import HomePage from "./Pages/HomePage/HomePage";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import NewProductPage from "./Pages/NewProductPage";
+import ProductsPage from "./Pages/ProductsPage";
 
 function App() {
     return (
@@ -13,7 +13,7 @@ function App() {
                 <Header />
                 <Routes>
                     <Route path="/" element={<HomePage />} />
-                    <Route path="/products" element={<Content />} />
+                    <Route path="/products" element={<ProductsPage />} />
                     <Route path="/products/create" element={<NewProductPage />} />
                 </Routes>
                 <Footer />
