@@ -37,18 +37,23 @@ const NewProductPage = () => {
         });
     };
 
-    const showCreatedProductInfo = visible && (
-        <>
-            <hr />
-            <div>
-                Sukurtas produktas:
-                <div>{product.name}</div>
-                <div>{product.price}</div>
-                <div>{product.amount}</div>
-                <div>{product.description}</div>
-            </div>
-        </>
-    );
+    const showCreatedProductInfo = () => {
+        const { name, price, amount, description } = product;
+        return (
+            visible && (
+                <>
+                    <hr />
+                    <div>
+                        Sukurtas produktas:
+                        <div>{name}</div>
+                        <div>{price}</div>
+                        <div>{amount}</div>
+                        <div>{description}</div>
+                    </div>
+                </>
+            )
+        );
+    };
 
     return (
         <Container>
@@ -100,7 +105,7 @@ const NewProductPage = () => {
                 </Button>
             </Form>
 
-            {showCreatedProductInfo}
+            {showCreatedProductInfo()}
         </Container>
     );
 };
