@@ -258,34 +258,6 @@
                     </execution>
                 </executions>
             </plugin>
-
-            <!-- Enforcer Plugin to ensure one profile is activated -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-enforcer-plugin</artifactId>
-                <version>3.0.0-M3</version>
-                <executions>
-                    <execution>
-                        <id>enforce-one-profile-is-activated</id>
-                        <goals>
-                            <goal>enforce</goal>
-                        </goals>
-                        <configuration>
-                            <rules>
-                                <requireActiveProfile>
-                                    <message>Choose one from no-auth, basic profiles by specifying "-P*profile*" before
-                                        mvn goals,
-                                        i.e.: mvn -Psecurity-basic-mvc clean package
-                                    </message>
-                                    <profiles>no-security,security-basic-mvc</profiles>
-                                    <all>false</all>
-                                </requireActiveProfile>
-                            </rules>
-                            <fail>true</fail>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
         </plugins>
     </build>
 

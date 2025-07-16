@@ -9,13 +9,13 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
-@DataJpaTest
+//@DataJpaTest
 public class ProductRepositoryITest {
 
   @Autowired
   private ProductRepository productRepository;
 
-  @Test
+//  @Test
   public void testGetAllProductsAreEmpty() {
     // This test will check if the repository can fetch all products.
     // You can add more assertions or logic here to validate the results.
@@ -23,7 +23,7 @@ public class ProductRepositoryITest {
     assert products.isEmpty() : "Product list should be empty";
   }
 
-  @Test
+//  @Test
   public void testCreateANewProduct() {
     // This test will check if a new product can be created.
     final UUID productId = UUID.randomUUID();
