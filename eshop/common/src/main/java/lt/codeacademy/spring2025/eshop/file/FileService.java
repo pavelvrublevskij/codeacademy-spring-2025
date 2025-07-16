@@ -6,6 +6,7 @@ import java.net.URLConnection;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.UUID;
 
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.MediaType;
@@ -18,6 +19,9 @@ public class FileService {
   private static final String UPLOAD_DIR = "./uploads";
 
   public void uploadFile(final MultipartFile file) {
+    final String originalFilename = file.getOriginalFilename();
+    final String uniqueFilename = UUID.randomUUID() + "_" + originalFilename;
+
     try {
       // Create the upload directory if it doesn't exist
       final Path fileLocation = Paths.get(UPLOAD_DIR).toAbsolutePath().normalize();
@@ -25,9 +29,9 @@ public class FileService {
         Files.createDirectories(fileLocation);
       }
 
-      file.transferTo(new File(fileLocation + "/" + file.getOriginalFilename()));
+      file.transferTo(new File(fileLocation + "/" + uniqueFilename));
     } catch (IOException e) {
-      throw new RuntimeException("Failed to upload file: " + file.getOriginalFilename(), e);
+      throw new RuntimeException("Failed to upload file: " + uniqueFilename, e);
     }
   }
 
