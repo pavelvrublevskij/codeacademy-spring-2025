@@ -2,11 +2,13 @@ package lt.codeacademy.spring2025.eshop.file;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URLConnection;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import org.springframework.core.io.ByteArrayResource;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -36,5 +38,9 @@ public class FileService {
     } catch (IOException e) {
       throw new RuntimeException("Failed to read file: " + fileName, e);
     }
+  }
+
+  public MediaType getFileMediaTypeByFileName(final String fileName) {
+    return MediaType.valueOf(URLConnection.guessContentTypeFromName(fileName));
   }
 }

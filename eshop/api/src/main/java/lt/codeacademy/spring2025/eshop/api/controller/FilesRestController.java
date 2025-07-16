@@ -26,7 +26,7 @@ public class FilesRestController {
   @GetMapping("/download")
   public ResponseEntity<ByteArrayResource> downloadFile(@RequestParam String fileName) {
     return ResponseEntity.ok()
-      .contentType(MediaType.IMAGE_JPEG)
+      .contentType(fileService.getFileMediaTypeByFileName(fileName))
       .body(fileService.download(fileName));
   }
 }
