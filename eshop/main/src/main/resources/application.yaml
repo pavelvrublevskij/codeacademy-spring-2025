@@ -6,6 +6,10 @@ server:
     session:
       tracking-modes: cookie
 spring:
+  servlet:
+    multipart:
+        max-file-size: 5MB
+        max-request-size: 10MB
   profiles:
     include: amazon
   application:
