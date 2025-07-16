@@ -8,6 +8,7 @@ Uses technologies:
 * Bootstrap 5.2.3
 * Font Awesome 6.7.2
 * Spring Security 6.4.4
+* SpringDoc OpenAPI 3 (Swagger) 2.8.9
 
 ## Requirements
 * JDK 17+
@@ -25,7 +26,8 @@ This application uses a multi-module Maven structure with different security pro
 ```
 base-parent (root)
 ├── core (utilities, validation, MessageService)
-├── common (main eshop functionality)  
+├── common (main eshop functionality, services, repositories)  
+├── api (REST controllers, OpenAPI documentation)
 ├── security-core (security domain objects and repositories)
 ├── basic-mvc (MVC security configuration)
 ├── disabled-security (no authentication configuration)
@@ -44,41 +46,73 @@ mvn -Pno-security clean package
 mvn -Psecurity-basic-mvc clean package
 ```
 
-## Key Modular Application Fixes
+## Key Modular Application Features
 
 ### 1. **Dependency Management Structure**
-- **Fixed**: Added centralized `dependencyManagement` in root pom.xml for all internal modules
+- **Implemented**: Centralized `dependencyManagement` in root pom.xml for all internal modules
 - **Why**: Ensures consistent versioning across all modules and prevents version conflicts
-- **Impact**: All child modules now inherit versions from parent, eliminating version mismatches
+- **Impact**: All child modules inherit versions from parent, eliminating version mismatches
 
 ### 2. **Module Dependency Chain**
-- **Fixed**: Established clear dependency hierarchy:
-  - `main` → `core`, `common`, `basic-mvc`/`disabled-security`
-  - `common` → `core` (for MessageService)
+- **Implemented**: Clear dependency hierarchy:
+  - `main` → `common`, `api`, `security modules`
+  - `api` → `common` (for business logic and DTOs)
+  - `common` → `core` (for MessageService and validation)
   - `security-core` → `core` (for validation annotations)
   - `basic-mvc`/`disabled-security` → `security-core`
 - **Why**: Prevents circular dependencies and ensures proper module loading order
 - **Impact**: Clean separation of concerns and predictable build order
 
-### 3. **GroupId Consistency**
-- **Fixed**: Maintained separate groupIds for security modules (`lt.codeacademy.security`) while keeping core modules under `lt.codeacademy.spring2025`
+### 3. **API Module Separation**
+- **Implemented**: Dedicated API module for REST controllers and OpenAPI documentation
+- **Why**: Separates REST API concerns from business logic and web UI
+- **Impact**: Clean API architecture with comprehensive documentation
+
+### 4. **GroupId Consistency**
+- **Implemented**: Separate groupIds for security modules (`lt.codeacademy.security`) while keeping core modules under `lt.codeacademy.spring2025`
 - **Why**: Allows security modules to be treated as separate concerns while maintaining proper Maven structure
 - **Impact**: Clear module boundaries and easier security module swapping
 
-### 4. **Spring Context Dependencies**
-- **Fixed**: Added `spring-context` dependency to all modules using Spring components
+### 5. **Spring Context Dependencies**
+- **Implemented**: `spring-context` dependency in all modules using Spring components
 - **Why**: Required for `@Component`, `@Service`, and other Spring annotations to work properly
 - **Impact**: Proper Spring bean registration and dependency injection
 
-### 5. **JPA Configuration**
-- **Fixed**: Added proper `@EnableJpaRepositories` and `@EntityScan` annotations with correct base packages
+### 6. **JPA Configuration**
+- **Implemented**: `@EnableJpaRepositories` and `@EntityScan` annotations with correct base packages
 - **Why**: Ensures JPA repositories and entities are discovered across modules
 - **Impact**: Database operations work correctly across modular boundaries
 
-### 6. **Maven Profile Integration**
-- **Fixed**: Root pom.xml profiles properly include/exclude security modules based on selection
+### 7. **Profile-Based Security Selection**
+- **Implemented**: Maven profiles control both module building and dependency inclusion
 - **Why**: Allows switching between security implementations without code changes
 - **Impact**: Runtime security behavior controlled by build-time profile selection
+
+# API Documentation
+
+## REST API Endpoints
+
+### Products API
+- **GET** `/api/products` - Get all products (JSON)
+- **GET** `/api/products/xml` - Get all products (XML)
+- **POST** `/api/products` - Create new product
+- **PUT** `/api/products` - Update existing product
+- **DELETE** `/api/products/{uuid}` - Delete product by UUID
+
+## OpenAPI Documentation Access
+
+### Swagger UI
+Interactive API documentation with testing capabilities:
+```
+http://localhost:8080/swagger-ui/index.html
+```
+
+### OpenAPI Specification
+Raw OpenAPI 3.0 specification:
+```
+JSON: http://localhost:8080/v3/api-docs
+YAML: http://localhost:8080/v3/api-docs.yaml
+```
 
 # Docker
 ## Run DB with Docker
@@ -106,12 +140,23 @@ mvn -Psecurity-basic-mvc clean package
 ### on PostgreSQL DB with Basic MVC Security
 > ./mvnw -Psecurity-basic-mvc spring-boot:run -Dspring-boot.run.profiles=pg
 
-## Access the application
-http://localhost:8080
+## Access Points
 
-## Access Swagger (using OpenAPI)
-The Swagger UI page will then be available at http://localhost:8080/swagger-ui.html
-and the OpenAPI description will be available at the following url for json format: http://localhost:8080/v3/api-docs
+### Web Application
+- **Main App**: http://localhost:8080
+- **Products**: http://localhost:8080/products
+- **Cart**: http://localhost:8080/cart
+
+### API Endpoints
+- **REST API**: http://localhost:8080/api/products
+- **XML API**: http://localhost:8080/api/products/xml
+
+### Documentation
+- **Swagger UI**: http://localhost:8080/swagger-ui/index.html
+- **OpenAPI JSON**: http://localhost:8080/v3/api-docs
+
+### Development Tools
+- **H2 Console** (when using H2): http://localhost:8080/eshop_h2
 
 # HOW TO run application from scratch step by step:
 1. ```cd <your maven project main location>```, where pom.xml available
@@ -124,3 +169,5 @@ and the OpenAPI description will be available at the following url for json form
 - Always specify a Maven profile (`-Pno-security` or `-Psecurity-basic-mvc`) when building/running
 - The enforcer plugin will fail the build if no profile is specified
 - Database profile (`-Dspring-boot.run.profiles=`) is separate from security profile (`-P`)
+- API documentation is automatically generated and available via Swagger UI
+- All REST endpoints support both JSON and XML formats (where applicable)
