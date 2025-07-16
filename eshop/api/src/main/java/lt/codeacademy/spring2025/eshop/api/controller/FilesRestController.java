@@ -1,5 +1,8 @@
 package lt.codeacademy.spring2025.eshop.api.controller;
 
+import java.io.IOException;
+
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,8 +20,12 @@ public class FilesRestController {
   private final FileService fileService;
 
   @PostMapping("/upload")
-  public ResponseEntity<Void> uploadFile(@RequestParam MultipartFile file) {
-    // Method to handle file upload
-    return ResponseEntity.ok().build();
+  public ResponseEntity<String> uploadFile(@RequestParam MultipartFile file) {
+    try {
+      fileService.uploadFile(file);
+      return ResponseEntity.ok().build();
+    } catch (IOException e) {
+      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("File uploading error: " + e.getMessage());
+    }
   }
 }
