@@ -24,6 +24,30 @@
         </dependency>
     </dependencies>
 
+    <profiles>
+        <profile>
+            <id>no-security</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <dependencies>
+                <dependency>
+                    <groupId>lt.codeacademy.security</groupId>
+                    <artifactId>disabled-security</artifactId>
+                </dependency>
+            </dependencies>
+        </profile>
+        <profile>
+            <id>security-basic-mvc</id>
+            <dependencies>
+                <dependency>
+                    <groupId>lt.codeacademy.security</groupId>
+                    <artifactId>basic-mvc</artifactId>
+                </dependency>
+            </dependencies>
+        </profile>
+    </profiles>
+
     <build>
         <plugins>
             <plugin>
