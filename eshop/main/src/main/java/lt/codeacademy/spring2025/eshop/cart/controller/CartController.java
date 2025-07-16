@@ -13,7 +13,7 @@ import lt.codeacademy.spring2025.eshop.cart.dto.OrderDto;
 import lt.codeacademy.spring2025.eshop.cart.mapper.CartMapper;
 import lt.codeacademy.spring2025.eshop.cart.service.CartService;
 import lt.codeacademy.spring2025.eshop.core.domain.cart.Cart;
-import lt.codeacademy.spring2025.eshop.helper.MessageService;
+import lt.codeacademy.spring2025.core.helper.MessageService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -61,7 +61,7 @@ public class CartController {
     try {
       final Cart cart = cartMapper.toDomain(cartSession);
       OrderDto orderDto = cartService.processOrder(cart);
-      
+
       // close and clear session
       sessionStatus.setComplete();
 

@@ -1,13 +1,13 @@
-package lt.codeacademy.spring2025.security.service;
+package lt.codeacademy.security.service;
 
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import lombok.RequiredArgsConstructor;
-import lt.codeacademy.spring2025.security.core.jpa.repository.UserRepository;
-import lt.codeacademy.spring2025.security.core.mapper.UserEntityDomainMapper;
-import lt.codeacademy.spring2025.security.mapper.UserRoleDtoMapper;
+import lt.codeacademy.security.core.jpa.repository.UserRepository;
+import lt.codeacademy.security.core.mapper.UserEntityDomainMapper;
+import lt.codeacademy.security.mapper.UserRoleDtoMapper;
 
 @Service
 @RequiredArgsConstructor

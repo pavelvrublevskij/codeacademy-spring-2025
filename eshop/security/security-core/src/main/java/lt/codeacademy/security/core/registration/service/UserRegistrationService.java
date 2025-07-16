@@ -1,14 +1,14 @@
-package lt.codeacademy.spring2025.security.core.registration.service;
+package lt.codeacademy.security.core.registration.service;
 
 import java.util.Optional;
 import java.util.Set;
 
 import lombok.RequiredArgsConstructor;
-import lt.codeacademy.spring2025.security.core.registration.dto.UserSignUpDto;
-import lt.codeacademy.spring2025.security.core.jpa.model.AuthorityEntity;
-import lt.codeacademy.spring2025.security.core.jpa.model.UserEntity;
-import lt.codeacademy.spring2025.security.core.jpa.repository.AuthorityRepository;
-import lt.codeacademy.spring2025.security.core.jpa.repository.UserRepository;
+import lt.codeacademy.security.core.registration.dto.UserSignUpDto;
+import lt.codeacademy.security.core.jpa.model.AuthorityEntity;
+import lt.codeacademy.security.core.jpa.model.UserEntity;
+import lt.codeacademy.security.core.jpa.repository.AuthorityRepository;
+import lt.codeacademy.security.core.jpa.repository.UserRepository;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

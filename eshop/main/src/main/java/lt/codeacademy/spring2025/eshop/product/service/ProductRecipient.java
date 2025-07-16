@@ -5,7 +5,7 @@ import java.util.UUID;
 
 import lombok.RequiredArgsConstructor;
 import lt.codeacademy.spring2025.eshop.core.domain.Product;
-import lt.codeacademy.spring2025.eshop.helper.MessageService;
+import lt.codeacademy.spring2025.core.helper.MessageService;
 import lt.codeacademy.spring2025.eshop.product.exception.ProductNotFoundException;
 import lt.codeacademy.spring2025.eshop.product.mapper.ProductEntityMapper;
 import lt.codeacademy.spring2025.eshop.product.repository.ProductRepository;

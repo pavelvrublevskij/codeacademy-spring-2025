@@ -1,4 +1,4 @@
-package lt.codeacademy.spring2025.eshop.helper;
+package lt.codeacademy.spring2025.core.helper;
 
 import org.springframework.context.MessageSource;
 import org.springframework.context.NoSuchMessageException;

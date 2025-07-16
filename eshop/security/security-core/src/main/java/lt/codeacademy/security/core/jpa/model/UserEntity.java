@@ -1,4 +1,4 @@
-package lt.codeacademy.spring2025.security.core.jpa.model;
+package lt.codeacademy.security.core.jpa.model;
 
 import java.util.HashSet;
 import java.util.Set;

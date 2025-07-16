@@ -1,8 +1,8 @@
-package lt.codeacademy.spring2025.security.core.mapper;
+package lt.codeacademy.security.core.mapper;
 
 import lombok.RequiredArgsConstructor;
-import lt.codeacademy.spring2025.security.core.domain.UserDomain;
-import lt.codeacademy.spring2025.security.core.jpa.model.UserEntity;
+import lt.codeacademy.security.core.domain.UserDomain;
+import lt.codeacademy.security.core.jpa.model.UserEntity;
 
 import org.springframework.stereotype.Component;
 

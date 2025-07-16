@@ -15,6 +15,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.context.MessageSource;
 import org.springframework.context.NoSuchMessageException;
+import lt.codeacademy.spring2025.core.helper.MessageService;
 
 @ExtendWith(MockitoExtension.class)
 class MessageServiceTest {

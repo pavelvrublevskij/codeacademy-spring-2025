@@ -1,10 +1,11 @@
-package lt.codeacademy.spring2025.security.controller;
+package lt.codeacademy.security.controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lt.codeacademy.security.core.registration.dto.UserSignUpDto;
 import lt.codeacademy.security.core.registration.service.UserRegistrationService;
 import lt.codeacademy.security.core.registration.validator.UserSignupValidator;
+import lt.codeacademy.spring2025.core.helper.MessageService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;

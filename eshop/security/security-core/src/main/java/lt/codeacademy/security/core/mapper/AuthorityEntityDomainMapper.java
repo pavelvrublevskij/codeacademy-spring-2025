@@ -1,4 +1,4 @@
-package lt.codeacademy.spring2025.security.core.mapper;
+package lt.codeacademy.security.core.mapper;
 
 
 import org.springframework.stereotype.Component;
@@ -6,8 +6,8 @@ import org.springframework.stereotype.Component;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import lt.codeacademy.spring2025.security.core.domain.AuthorityDomain;
-import lt.codeacademy.spring2025.security.core.jpa.model.AuthorityEntity;
+import lt.codeacademy.security.core.domain.AuthorityDomain;
+import lt.codeacademy.security.core.jpa.model.AuthorityEntity;
 
 @Component
 public class AuthorityEntityDomainMapper {

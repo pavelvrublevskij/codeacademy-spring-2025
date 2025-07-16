@@ -1,4 +1,4 @@
-package lt.codeacademy.spring2025.security.core.registration.validator;
+package lt.codeacademy.security.core.registration.validator;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
-import lt.codeacademy.spring2025.security.core.registration.dto.UserSignUpDto;
+import lt.codeacademy.security.core.registration.dto.UserSignUpDto;
 
 @Component
 public class UserSignupValidator implements Validator {

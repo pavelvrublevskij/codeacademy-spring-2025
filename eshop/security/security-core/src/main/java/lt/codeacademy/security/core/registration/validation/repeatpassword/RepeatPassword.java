@@ -1,4 +1,4 @@
-package lt.codeacademy.spring2025.security.core.registration.validation.repeatpassword;
+package lt.codeacademy.security.core.registration.validation.repeatpassword;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -17,7 +17,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 import jakarta.validation.constraints.NotBlank;
-import lt.codeacademy.spring2025.security.core.registration.validation.repeatpassword.impl.RepeatPasswordValidator;
+import lt.codeacademy.security.core.registration.validation.repeatpassword.impl.RepeatPasswordValidator;
 
 /**
  * Custom annotation for validating that two password fields match.

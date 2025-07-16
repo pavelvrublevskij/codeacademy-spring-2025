@@ -1,4 +1,4 @@
-package lt.codeacademy.spring2025.security.dto;
+package lt.codeacademy.security.dto;
 
 import java.util.Collection;
 import java.util.HashSet;

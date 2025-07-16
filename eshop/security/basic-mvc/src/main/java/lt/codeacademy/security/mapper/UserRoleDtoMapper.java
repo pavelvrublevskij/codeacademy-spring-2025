@@ -1,4 +1,4 @@
-package lt.codeacademy.spring2025.security.mapper;
+package lt.codeacademy.security.mapper;
 
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -6,10 +6,10 @@ import java.util.stream.Collectors;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
-import lt.codeacademy.spring2025.security.core.domain.AuthorityDomain;
-import lt.codeacademy.spring2025.security.core.domain.UserDomain;
-import lt.codeacademy.spring2025.security.dto.UserDto;
-import lt.codeacademy.spring2025.security.dto.UserRoleDto;
+import lt.codeacademy.security.core.domain.AuthorityDomain;
+import lt.codeacademy.security.core.domain.UserDomain;
+import lt.codeacademy.security.dto.UserDto;
+import lt.codeacademy.security.dto.UserRoleDto;
 
 @Component
 public class UserRoleDtoMapper {

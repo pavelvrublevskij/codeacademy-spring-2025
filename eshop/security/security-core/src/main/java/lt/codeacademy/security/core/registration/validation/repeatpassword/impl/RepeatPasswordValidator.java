@@ -1,11 +1,11 @@
-package lt.codeacademy.spring2025.security.core.registration.validation.repeatpassword.impl;
+package lt.codeacademy.security.core.registration.validation.repeatpassword.impl;
 
 import java.util.Objects;
 
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
-import lt.codeacademy.spring2025.security.core.registration.dto.UserSignUpDto;
-import lt.codeacademy.spring2025.security.core.registration.validation.repeatpassword.RepeatPassword;
+import lt.codeacademy.security.core.registration.dto.UserSignUpDto;
+import lt.codeacademy.security.core.registration.validation.repeatpassword.RepeatPassword;
 
 
 public class RepeatPasswordValidator implements ConstraintValidator<RepeatPassword, UserSignUpDto> {

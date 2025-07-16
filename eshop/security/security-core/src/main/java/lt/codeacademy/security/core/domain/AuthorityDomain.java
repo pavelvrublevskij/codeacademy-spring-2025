@@ -1,4 +1,4 @@
-package lt.codeacademy.spring2025.security.core.domain;
+package lt.codeacademy.security.core.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

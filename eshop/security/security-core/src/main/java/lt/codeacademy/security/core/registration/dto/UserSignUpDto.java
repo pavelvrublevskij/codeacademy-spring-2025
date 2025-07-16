@@ -1,4 +1,4 @@
-package lt.codeacademy.spring2025.security.core.registration.dto;
+package lt.codeacademy.security.core.registration.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.Builder;

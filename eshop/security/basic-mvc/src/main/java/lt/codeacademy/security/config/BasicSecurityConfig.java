@@ -1,4 +1,4 @@
-package lt.codeacademy.spring2025.security.config;
+package lt.codeacademy.security.config;
 
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
@@ -17,7 +17,7 @@ import javax.sql.DataSource;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import lt.codeacademy.spring2025.security.service.UserService;
+import lt.codeacademy.security.service.UserService;
 
 @Log4j2
 @Configuration

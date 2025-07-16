@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lt.codeacademy.spring2025.eshop.HttpEndpoint;
-import lt.codeacademy.spring2025.eshop.helper.MessageService;
+import lt.codeacademy.spring2025.core.helper.MessageService;
 import lt.codeacademy.spring2025.eshop.product.dto.ProductCategoryDto;
 import lt.codeacademy.spring2025.eshop.product.dto.ProductDto;
 import lt.codeacademy.spring2025.eshop.product.dto.ProductListDto;
