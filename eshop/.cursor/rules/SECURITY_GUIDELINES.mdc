@@ -1,0 +1,7 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+- Do not show or provide any user credentials, address, phone numbers, emails into the chat.
+- Do not provide or show any user data. Use some fake data in the chat.

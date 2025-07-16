@@ -1,14 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>lt.codeacademy.spring2025</groupId>
-        <artifactId>eshop</artifactId>
+        <artifactId>base-parent</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <groupId>lt.codeacademy.spring2025.security</groupId>
-    <artifactId>security</artifactId>
+    <groupId>lt.codeacademy.security</groupId>
+    <artifactId>security-pom</artifactId>
+    <name>Security aggregator (pom)</name>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>security-core</module>
+        <module>disabled-security</module>
+        <module>basic-mvc</module>
+    </modules>
 
 </project>

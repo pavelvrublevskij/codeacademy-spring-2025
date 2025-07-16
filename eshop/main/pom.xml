@@ -4,10 +4,43 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>lt.codeacademy.spring2025</groupId>
-        <artifactId>eshop</artifactId>
+        <artifactId>base-parent</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
     <artifactId>main</artifactId>
+    <packaging>jar</packaging>
+    <name>Main starting module (main)</name>
+
+    <dependencies>
+        <dependency>
+            <groupId>lt.codeacademy.spring2025</groupId>
+            <artifactId>common</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>lt.codeacademy.spring2025</groupId>
+            <artifactId>api</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!-- Security module dependency controlled by profile property -->
+        <dependency>
+            <groupId>lt.codeacademy.security</groupId>
+            <artifactId>${security.module}</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

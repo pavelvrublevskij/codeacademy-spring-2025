@@ -2,7 +2,7 @@
   <configuration default="false" name="Run eShop (PostgreSQL)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
     <option name="ACTIVE_PROFILES" value="pg" />
     <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
-    <module name="eshop" />
+    <module name="main" />
     <option name="SPRING_BOOT_MAIN_CLASS" value="lt.codeacademy.spring2025.eshop.EshopApplication" />
     <option name="UPDATE_ACTION_UPDATE_POLICY" value="UpdateClassesAndResources" />
     <extension name="net.ashald.envfile">

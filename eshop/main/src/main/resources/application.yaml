@@ -7,24 +7,11 @@ server:
       tracking-modes: cookie
 spring:
   profiles:
-    include: amazon, no-security
+    include: amazon
   application:
     name: eshop
   main:
     banner-mode: console
-  h2:
-    console:
-      path: /eshop_h2
-      enabled: true
-  datasource:
-    url: jdbc:h2:mem:eshop_db
-    driver-class-name: org.h2.Driver
-    username: sa
-    password: password
-  sql:
-    init:
-      schema-locations: classpath:db/ddl/db-schema.sql
-      data-locations: classpath:db/dml/db-data.sql
   jpa:
     hibernate:
       ddl-auto: validate
