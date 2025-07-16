@@ -15,15 +15,7 @@
     <dependencies>
         <dependency>
             <groupId>lt.codeacademy.spring2025</groupId>
-            <artifactId>core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>lt.codeacademy.spring2025</groupId>
             <artifactId>common</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>lt.codeacademy.security</groupId>
-            <artifactId>basic-mvc</artifactId>
         </dependency>
 
         <dependency>
