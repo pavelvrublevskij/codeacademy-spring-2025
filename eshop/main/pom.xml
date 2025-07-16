@@ -22,31 +22,13 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-    </dependencies>
 
-    <profiles>
-        <profile>
-            <id>no-security</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <dependencies>
-                <dependency>
-                    <groupId>lt.codeacademy.security</groupId>
-                    <artifactId>disabled-security</artifactId>
-                </dependency>
-            </dependencies>
-        </profile>
-        <profile>
-            <id>security-basic-mvc</id>
-            <dependencies>
-                <dependency>
-                    <groupId>lt.codeacademy.security</groupId>
-                    <artifactId>basic-mvc</artifactId>
-                </dependency>
-            </dependencies>
-        </profile>
-    </profiles>
+        <!-- Security module dependency controlled by profile property -->
+        <dependency>
+            <groupId>lt.codeacademy.security</groupId>
+            <artifactId>${security.module}</artifactId>
+        </dependency>
+    </dependencies>
 
     <build>
         <plugins>

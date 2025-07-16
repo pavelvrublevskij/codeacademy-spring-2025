@@ -27,6 +27,9 @@
                 <module>security/disabled-security</module>
                 <module>main</module>
             </modules>
+            <properties>
+                <security.module>disabled-security</security.module>
+            </properties>
         </profile>
         <profile>
             <id>security-basic-mvc</id>
@@ -37,6 +40,9 @@
                 <module>security/basic-mvc</module>
                 <module>main</module>
             </modules>
+            <properties>
+                <security.module>basic-mvc</security.module>
+            </properties>
         </profile>
     </profiles>
 
