@@ -1,17 +1,13 @@
-package lt.codeacademy.spring2025.eshop;
+package lt.codeacademy.spring2025;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication(scanBasePackages = {
-    "lt.codeacademy.spring2025.eshop",
-    "lt.codeacademy.spring2025.core",
-    "lt.codeacademy.security"
-})
+@SpringBootApplication
 public class EshopApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(EshopApplication.class, args);
 	}
 
-}
+} 

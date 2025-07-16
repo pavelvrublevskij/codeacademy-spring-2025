@@ -2,8 +2,8 @@
   <configuration default="false" name="Run eShop (MySQL)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
     <option name="ACTIVE_PROFILES" value="mysql" />
     <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
-    <module name="eshop" />
-    <option name="SPRING_BOOT_MAIN_CLASS" value="lt.codeacademy.spring2025.eshop.EshopApplication" />
+    <module name="main" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="lt.codeacademy.spring2025.EshopApplication" />
     <option name="UPDATE_ACTION_UPDATE_POLICY" value="UpdateClassesAndResources" />
     <extension name="net.ashald.envfile">
       <option name="IS_ENABLED" value="false" />

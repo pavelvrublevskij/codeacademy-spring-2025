@@ -22,6 +22,7 @@
             </activation>
             <modules>
                 <module>core</module>
+                <module>common</module>
                 <module>security/security-core</module>
                 <module>security/disabled-security</module>
                 <module>main</module>
@@ -31,6 +32,7 @@
             <id>security-basic-mvc</id>
             <modules>
                 <module>core</module>
+                <module>common</module>
                 <module>security/security-core</module>
                 <module>security/basic-mvc</module>
                 <module>main</module>
@@ -48,6 +50,34 @@
 
     <dependencyManagement>
         <dependencies>
+            <!-- Internal module dependencies -->
+            <dependency>
+                <groupId>lt.codeacademy.spring2025</groupId>
+                <artifactId>core</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>lt.codeacademy.spring2025</groupId>
+                <artifactId>common</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>lt.codeacademy.security</groupId>
+                <artifactId>security-core</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>lt.codeacademy.security</groupId>
+                <artifactId>basic-mvc</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>lt.codeacademy.security</groupId>
+                <artifactId>disabled-security</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+
+            <!-- External dependencies -->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-thymeleaf</artifactId>

@@ -1,8 +1,4 @@
 spring:
-  h2:
-    console:
-      path: /eshop_h2
-      enabled: false
   datasource:
     url: jdbc:postgresql://localhost:5432/postgres
     driver-class-name: org.postgresql.Driver
