@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      lang="lt" class="h-100">
+<head th:replace="~{fragments/layout :: head(#{products.title})}">
+</head>
+<body class="d-flex flex-column h-100">
+<header th:replace="~{fragments/layout :: header(rootPath='products')}"></header>
+<main class="container">
+    <h2 th:text="#{products.header}">Products</h2>
+    <div th:if="${productPage.isEmpty()}" th:text="#{products.message.isEmpty}">Product list is empty</div>
+    <div th:unless="${productPage.isEmpty()}">
+        <span th:text="#{products.total.records(${productPage.totalElements})}"></span>
+        <span th:text="#{products.total.pages(${productPage.totalPages})}"></span>
+        <table class="table table-dark table-hover">
+            <thead>
+            <tr>
+                <th class="col-md-3">
+                    <a th:replace="~{fragments/layout :: tableColumnSort(columnName='name', translationKey=#{products.field.name})}"></a>
+                </th>
+                <th class="col-md-1">
+                    <a th:replace="~{fragments/layout :: tableColumnSort(columnName='amountInStock', translationKey=#{products.field.quantity})}"></a>
+                </th>
+                <th class="col-md-1">
+                    <a th:replace="~{fragments/layout :: tableColumnSort(columnName='price', translationKey=#{products.field.price})}"></a>
+                </th>
+                <th class="col-md-1">
+                    <span th:text="#{products.field.categoryName}">Category Name, Category Name</span>
+                </th>
+                <th>
+                    <span th:text="#{products.field.description}">Description</span>
+                </th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="product: ${productPage}">
+                <td><a th:href="@{/products/{productId}/update(productId=${product.uuid})}" th:text="${product.name}"/></td>
+                <td th:text="${product.amount}"></td>
+                <td th:text="${product.price + ' ' + euroCurrency}"></td>
+                <td th:text="${product.categoryName}"></td>
+                <td th:text="${product.description}"></td>
+                <td class="d-flex gap-2">
+                    <form th:method="POST" th:action="@{/cart/{productId}(productId=${product.uuid})}">
+                        <button class="btn btn-primary" type="submit">
+                            <i class="fa-solid fa-cart-plus"></i>
+                        </button>
+                    </form>
+                    <div sec:authorize="hasRole('ADMIN')">
+                        <a th:href="@{/products/{productId}/delete(productId=${product.uuid})}" class="btn btn-danger">
+                            <span th:text="#{products.button.delete}">Delete</span>
+                        </a>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <nav class="d-flex justify-content-center">
+            <ul class="pagination"
+                th:with="
+                    orderVariable=${productPage.sort.iterator().hasNext() ? productPage.sort.iterator().next() : null},
+                    sortVariable=${orderVariable?.property + ',' +  orderVariable?.direction + ',ignorecase'}
+                "
+            >
+                <li class="page-item">
+                    <a class="page-link" th:href="@{/products(page=${productPage.number - 1},sort=${sortVariable})}"
+                       th:classappend="${!productPage.hasPrevious} ? 'disabled': ''"
+                       th:text="#{page.previous}"
+                    >
+                        Previous
+                    </a>
+                </li>
+                <li th:each="pageNumber: ${#numbers.sequence(0, productPage.totalPages - 1)}"
+                    class="page-item"
+                    th:classappend="${pageNumber == productPage.number ? 'active': ''}"
+                >
+                    <a class="page-link" th:href="@{/products(page=${pageNumber},sort=${sortVariable})}" th:text="${pageNumber + 1}">1</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" th:href="@{/products(page=${productPage.number + 1},sort=${sortVariable})}"
+                       th:classappend="${!productPage.hasNext()} ? 'disabled': ''"
+                       th:text="#{page.next}">
+                        Next
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</main>
+<footer th:replace="~{fragments/layout :: footer}"></footer>
+<div th:replace="~{fragments/layout :: bodyBottomScripts}"></div>
+</body>
+</html>
