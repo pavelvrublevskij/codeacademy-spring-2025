@@ -7,6 +7,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.core.io.ByteArrayResource;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import lombok.RequiredArgsConstructor;
+import lt.codeacademy.spring2025.eshop.file.mapper.FileEntityMapper;
 import lt.codeacademy.spring2025.eshop.file.model.FileEntity;
 import lt.codeacademy.spring2025.eshop.file.repository.FileRepository;
 
@@ -25,6 +27,7 @@ public class FileService {
   private static final String UPLOAD_DIR = "./uploads";
 
   private final FileRepository fileRepository;
+  private final FileEntityMapper fileEntityMapper;
 
   @Transactional
   public void uploadFile(final MultipartFile file) {
@@ -44,6 +47,12 @@ public class FileService {
     } catch (IOException e) {
       throw new RuntimeException("Failed to upload file: " + uniqueFilename, e);
     }
+  }
+
+  public List<lt.codeacademy.spring2025.eshop.core.domain.file.File> getAllFiles() {
+    return fileRepository.findAll().stream()
+      .map(fileEntityMapper::toDomain)
+      .toList();
   }
 
   private void saveFileInfoToDatabase(final MultipartFile file, final String uniqueFilename) {

@@ -20,6 +20,26 @@
 <!--                    <span th:if="${msg != null}" th:text="${msg}"></span>-->
                 </div>
             </div>
+            <div class="row">
+                <table class="table table-dark table-hover">
+                    <thead>
+                        <tr>
+                            <th class="col-md-3">
+                                <span>File Name</span>
+                            </th>
+                            <th class="col-md-1">
+                                <span>File size</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="file: ${files}">
+                            <td><a th:href="@{/api/files/download(fileName=${file.fileName})}" th:text="${file.fileName}"/></td>
+                            <td th:text="${file.getReadableSize}"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </section>
 </main>
