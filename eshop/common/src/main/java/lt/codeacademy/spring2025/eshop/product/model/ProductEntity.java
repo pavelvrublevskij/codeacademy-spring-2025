@@ -24,6 +24,7 @@ public class ProductEntity {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int id;
 
+  @Column
   private UUID productId;
 	private String name;
 	private BigDecimal price;

@@ -64,3 +64,13 @@ ALTER TABLE users_authorities
         FOREIGN KEY (authority_id) REFERENCES authority (id);
 
 CREATE UNIQUE INDEX users_authorities_unique ON users_authorities (user_id, authority_id);
+
+CREATE TABLE file
+(
+    id           INT AUTO_INCREMENT PRIMARY KEY,
+    name         VARCHAR(255),
+    extension    VARCHAR(255),
+    content_type VARCHAR(255),
+    size         BIGINT,
+    created_at   TIMESTAMP
+);

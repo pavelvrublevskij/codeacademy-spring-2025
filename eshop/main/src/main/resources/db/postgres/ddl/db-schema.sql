@@ -4,6 +4,7 @@ DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS product_product_categories;
 DROP TABLE IF EXISTS product_category;
 DROP TABLE IF EXISTS product;
+DROP TABLE IF EXISTS file;
 
 CREATE TABLE "product"
 (
@@ -68,3 +69,13 @@ ALTER TABLE "users_authorities"
         FOREIGN KEY ("authority_id") REFERENCES "authority" ("id");
 
 CREATE UNIQUE INDEX "users_authorities_unique" ON "users_authorities" ("user_id", "authority_id");
+
+CREATE TABLE "file"
+(
+    "id"           SERIAL PRIMARY KEY,
+    "name"         VARCHAR(255),
+    "extension"    VARCHAR(255),
+    "content_type" VARCHAR(255),
+    "size"         BIGINT,
+    "created_at"   TIMESTAMP
+);
