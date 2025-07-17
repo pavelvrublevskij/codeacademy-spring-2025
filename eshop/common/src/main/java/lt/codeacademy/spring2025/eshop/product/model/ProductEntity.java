@@ -11,6 +11,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lt.codeacademy.spring2025.eshop.file.model.FileEntity;
 
 @Getter
 @Setter
@@ -41,4 +42,7 @@ public class ProductEntity {
     inverseJoinColumns = { @JoinColumn(name = "product_category_id") }
   )
   private Set<ProductCategoryEntity> productCategories = new HashSet<>();
+
+  @OneToMany
+  private Set<FileEntity> files;
 }

@@ -79,3 +79,12 @@ CREATE TABLE "file"
     "size"         BIGINT,
     "created_at"   TIMESTAMP
 );
+
+create table product_files2
+(
+    product_id integer not null references product,
+    files_id   integer not null constraint product_files_file_id_fkey references file,
+    primary key (product_id, files_id),
+    constraint product_files_key unique (product_id, files_id)
+);
+

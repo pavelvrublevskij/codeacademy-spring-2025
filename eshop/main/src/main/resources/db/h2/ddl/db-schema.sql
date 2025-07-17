@@ -74,3 +74,13 @@ CREATE TABLE file
     size         BIGINT,
     created_at   TIMESTAMP
 );
+
+CREATE TABLE product_files
+(
+    product_id INT NOT NULL,
+    files_id   INT NOT NULL,
+    PRIMARY KEY (product_id, files_id),
+    UNIQUE (product_id, files_id),
+    FOREIGN KEY (product_id) REFERENCES product (id),
+    FOREIGN KEY (files_id) REFERENCES file (id)
+);
