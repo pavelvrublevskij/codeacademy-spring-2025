@@ -7,8 +7,8 @@ import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lt.codeacademy.spring2025.eshop.cart.dto.OrderDto;
 import lt.codeacademy.spring2025.eshop.common.mapper.DomainDtoMapper;
-import lt.codeacademy.spring2025.eshop.core.domain.cart.Cart;
-import lt.codeacademy.spring2025.eshop.core.domain.order.Order;
+import lt.codeacademy.spring2025.core.domain.cart.Cart;
+import lt.codeacademy.spring2025.core.domain.order.Order;
 import org.springframework.stereotype.Component;
 
 @Component

@@ -1,8 +1,8 @@
-package lt.codeacademy.spring2025.eshop.core.domain.cart;
+package lt.codeacademy.spring2025.core.domain.cart;
 
 import lombok.Builder;
 import lombok.Getter;
-import lt.codeacademy.spring2025.eshop.core.domain.Product;
+import lt.codeacademy.spring2025.core.domain.Product;
 
 @Builder
 @Getter

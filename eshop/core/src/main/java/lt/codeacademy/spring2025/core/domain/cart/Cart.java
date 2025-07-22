@@ -1,4 +1,4 @@
-package lt.codeacademy.spring2025.eshop.core.domain.cart;
+package lt.codeacademy.spring2025.core.domain.cart;
 
 import java.util.ArrayList;
 import java.util.List;

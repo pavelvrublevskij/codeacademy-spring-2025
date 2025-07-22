@@ -4,8 +4,8 @@ import java.util.Set;
 
 import org.springframework.stereotype.Component;
 import lt.codeacademy.spring2025.eshop.common.mapper.DomainDtoMapper;
-import lt.codeacademy.spring2025.eshop.core.domain.Product;
-import lt.codeacademy.spring2025.eshop.core.domain.ProductCategory;
+import lt.codeacademy.spring2025.core.domain.Product;
+import lt.codeacademy.spring2025.core.domain.ProductCategory;
 import lt.codeacademy.spring2025.eshop.product.dto.ProductDto;
 
 @Component

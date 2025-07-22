@@ -3,7 +3,7 @@ package lt.codeacademy.spring2025.eshop.product.service;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
-import lt.codeacademy.spring2025.eshop.core.domain.Product;
+import lt.codeacademy.spring2025.core.domain.Product;
 import lt.codeacademy.spring2025.eshop.product.repository.ProductRepository;
 
 @Service

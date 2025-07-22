@@ -1,4 +1,4 @@
-package lt.codeacademy.spring2025.eshop.core.domain.order;
+package lt.codeacademy.spring2025.core.domain.order;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

@@ -12,7 +12,7 @@ import lt.codeacademy.spring2025.eshop.cart.dto.CartDto;
 import lt.codeacademy.spring2025.eshop.cart.dto.OrderDto;
 import lt.codeacademy.spring2025.eshop.cart.mapper.CartMapper;
 import lt.codeacademy.spring2025.eshop.cart.service.CartService;
-import lt.codeacademy.spring2025.eshop.core.domain.cart.Cart;
+import lt.codeacademy.spring2025.core.domain.cart.Cart;
 import lt.codeacademy.spring2025.core.helper.MessageService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

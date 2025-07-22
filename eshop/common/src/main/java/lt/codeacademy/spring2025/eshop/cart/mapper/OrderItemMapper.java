@@ -5,8 +5,8 @@ import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import lt.codeacademy.spring2025.eshop.cart.dto.OrderItemDto;
 import lt.codeacademy.spring2025.eshop.common.mapper.DomainDtoMapper;
-import lt.codeacademy.spring2025.eshop.core.domain.cart.CartItem;
-import lt.codeacademy.spring2025.eshop.core.domain.order.OrderItem;
+import lt.codeacademy.spring2025.core.domain.cart.CartItem;
+import lt.codeacademy.spring2025.core.domain.order.OrderItem;
 import org.springframework.stereotype.Component;
 
 @Component

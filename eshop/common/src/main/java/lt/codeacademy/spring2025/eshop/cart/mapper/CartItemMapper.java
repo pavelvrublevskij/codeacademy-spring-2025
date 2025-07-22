@@ -3,9 +3,9 @@ package lt.codeacademy.spring2025.eshop.cart.mapper;
 import lombok.RequiredArgsConstructor;
 import lt.codeacademy.spring2025.eshop.cart.dto.CartProductDto;
 import lt.codeacademy.spring2025.eshop.common.mapper.DomainDtoMapper;
-import lt.codeacademy.spring2025.eshop.core.domain.Product;
-import lt.codeacademy.spring2025.eshop.core.domain.cart.CartItem;
-import lt.codeacademy.spring2025.eshop.core.domain.cart.calculator.CartItemCalculator;
+import lt.codeacademy.spring2025.core.domain.Product;
+import lt.codeacademy.spring2025.core.domain.cart.CartItem;
+import lt.codeacademy.spring2025.core.domain.cart.calculator.CartItemCalculator;
 import org.springframework.stereotype.Component;
 
 @Component

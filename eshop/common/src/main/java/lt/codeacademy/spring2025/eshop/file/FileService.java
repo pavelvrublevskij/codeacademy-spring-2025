@@ -49,7 +49,7 @@ public class FileService {
     }
   }
 
-  public List<lt.codeacademy.spring2025.eshop.core.domain.file.File> getAllFiles() {
+  public List<lt.codeacademy.spring2025.core.domain.file.File> getAllFiles() {
     return fileRepository.findAll().stream()
       .map(fileEntityMapper::toDomain)
       .toList();

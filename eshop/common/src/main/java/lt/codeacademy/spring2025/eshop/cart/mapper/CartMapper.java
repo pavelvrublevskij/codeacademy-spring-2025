@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lt.codeacademy.spring2025.eshop.cart.dto.CartDto;
 import lt.codeacademy.spring2025.eshop.common.mapper.DomainDtoMapper;
-import lt.codeacademy.spring2025.eshop.core.domain.cart.Cart;
+import lt.codeacademy.spring2025.core.domain.cart.Cart;
 import org.springframework.stereotype.Component;
 
 @Component

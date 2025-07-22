@@ -1,8 +1,8 @@
-package lt.codeacademy.spring2025.eshop.core.domain.cart.calculator;
+package lt.codeacademy.spring2025.core.domain.cart.calculator;
 
 import java.math.BigDecimal;
 
-import lt.codeacademy.spring2025.eshop.core.domain.cart.CartItem;
+import lt.codeacademy.spring2025.core.domain.cart.CartItem;
 import org.springframework.stereotype.Component;
 
 @Component

@@ -6,7 +6,7 @@ import java.util.UUID;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
-import lt.codeacademy.spring2025.eshop.core.domain.Product;
+import lt.codeacademy.spring2025.core.domain.Product;
 import lt.codeacademy.spring2025.eshop.product.dto.ProductListDto;
 import lt.codeacademy.spring2025.eshop.product.mapper.ProductListDtoMapper;
 import lt.codeacademy.spring2025.eshop.product.service.ProductService;

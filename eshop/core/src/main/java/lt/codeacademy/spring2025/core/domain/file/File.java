@@ -1,4 +1,4 @@
-package lt.codeacademy.spring2025.eshop.core.domain.file;
+package lt.codeacademy.spring2025.core.domain.file;
 
 import java.time.LocalDateTime;
 import java.util.UUID;

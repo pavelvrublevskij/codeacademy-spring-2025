@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-import lt.codeacademy.spring2025.eshop.core.domain.Product;
+import lt.codeacademy.spring2025.core.domain.Product;
 import lt.codeacademy.spring2025.eshop.product.dto.ProductDto;
 import org.junit.jupiter.api.Test;
 

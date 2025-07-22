@@ -1,4 +1,4 @@
-package lt.codeacademy.spring2025.eshop.core.util;
+package lt.codeacademy.spring2025.core.util;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

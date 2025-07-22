@@ -2,7 +2,7 @@ package lt.codeacademy.spring2025.eshop.product.mapper;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import lt.codeacademy.spring2025.eshop.core.domain.ProductCategory;
+import lt.codeacademy.spring2025.core.domain.ProductCategory;
 import lt.codeacademy.spring2025.eshop.product.model.ProductCategoryEntity;
 
 class ProductCategoryEntityMapperTest {

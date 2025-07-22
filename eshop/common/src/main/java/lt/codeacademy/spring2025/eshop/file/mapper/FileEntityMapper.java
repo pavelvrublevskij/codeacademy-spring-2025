@@ -2,7 +2,7 @@ package lt.codeacademy.spring2025.eshop.file.mapper;
 
 import org.springframework.stereotype.Component;
 import lt.codeacademy.spring2025.eshop.common.mapper.DomainEntityMapper;
-import lt.codeacademy.spring2025.eshop.core.domain.file.File;
+import lt.codeacademy.spring2025.core.domain.file.File;
 import lt.codeacademy.spring2025.eshop.file.model.FileEntity;
 
 @Component

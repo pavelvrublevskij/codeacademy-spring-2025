@@ -4,9 +4,9 @@ import java.util.UUID;
 
 import lombok.RequiredArgsConstructor;
 import lt.codeacademy.spring2025.eshop.cart.dto.OrderDto;
-import lt.codeacademy.spring2025.eshop.core.domain.Product;
-import lt.codeacademy.spring2025.eshop.core.domain.cart.Cart;
-import lt.codeacademy.spring2025.eshop.core.domain.cart.CartItem;
+import lt.codeacademy.spring2025.core.domain.Product;
+import lt.codeacademy.spring2025.core.domain.cart.Cart;
+import lt.codeacademy.spring2025.core.domain.cart.CartItem;
 import lt.codeacademy.spring2025.eshop.product.service.ProductService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -44,7 +44,7 @@ public class CartService {
       .build();
     cart.addItem(cartItem);
   }
-  
+
   @Transactional
   public OrderDto processOrder(Cart cart) {
     return orderService.createOrder(cart);

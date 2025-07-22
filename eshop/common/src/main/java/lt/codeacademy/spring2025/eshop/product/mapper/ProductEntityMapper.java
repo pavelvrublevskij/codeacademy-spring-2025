@@ -6,8 +6,8 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Component;
 import lt.codeacademy.spring2025.eshop.common.mapper.DomainEntityMapper;
-import lt.codeacademy.spring2025.eshop.core.domain.Product;
-import lt.codeacademy.spring2025.eshop.core.domain.ProductCategory;
+import lt.codeacademy.spring2025.core.domain.Product;
+import lt.codeacademy.spring2025.core.domain.ProductCategory;
 import lt.codeacademy.spring2025.eshop.product.model.ProductEntity;
 
 @Component

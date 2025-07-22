@@ -1,4 +1,4 @@
-package lt.codeacademy.spring2025.eshop.core.domain;
+package lt.codeacademy.spring2025.core.domain;
 
 import java.math.BigDecimal;
 import java.util.HashSet;

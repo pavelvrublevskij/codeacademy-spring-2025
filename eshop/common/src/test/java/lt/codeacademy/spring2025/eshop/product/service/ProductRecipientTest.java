@@ -5,8 +5,8 @@ import java.util.Set;
 
 import static org.mockito.Mockito.when;
 
-import lt.codeacademy.spring2025.eshop.core.domain.Product;
-import lt.codeacademy.spring2025.eshop.core.domain.ProductCategory;
+import lt.codeacademy.spring2025.core.domain.Product;
+import lt.codeacademy.spring2025.core.domain.ProductCategory;
 import lt.codeacademy.spring2025.eshop.product.mapper.ProductEntityMapper;
 import lt.codeacademy.spring2025.eshop.product.model.ProductCategoryEntity;
 import lt.codeacademy.spring2025.eshop.product.model.ProductEntity;

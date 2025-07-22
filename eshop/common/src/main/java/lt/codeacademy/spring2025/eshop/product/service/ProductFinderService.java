@@ -4,7 +4,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import lombok.RequiredArgsConstructor;
-import lt.codeacademy.spring2025.eshop.core.domain.Product;
+import lt.codeacademy.spring2025.core.domain.Product;
 import lt.codeacademy.spring2025.eshop.product.mapper.ProductEntityMapper;
 import lt.codeacademy.spring2025.eshop.product.repository.ProductRepository;
 

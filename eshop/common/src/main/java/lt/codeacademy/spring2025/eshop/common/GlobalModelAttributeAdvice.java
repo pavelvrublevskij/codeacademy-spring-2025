@@ -2,7 +2,7 @@ package lt.codeacademy.spring2025.eshop.common;
 
 import java.time.LocalDateTime;
 
-import lt.codeacademy.spring2025.eshop.core.util.EshopDateTimeFormatUtil;
+import lt.codeacademy.spring2025.core.util.EshopDateTimeFormatUtil;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
