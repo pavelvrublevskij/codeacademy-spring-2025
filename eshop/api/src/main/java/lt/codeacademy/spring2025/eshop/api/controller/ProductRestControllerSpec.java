@@ -2,12 +2,14 @@ package lt.codeacademy.spring2025.eshop.api.controller;
 
 import java.util.List;
 
+import org.springframework.http.HttpHeaders;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lt.codeacademy.spring2025.eshop.api.dto.ErrorResponseDto;
 import lt.codeacademy.spring2025.eshop.product.dto.ProductListDto;
 
@@ -34,5 +36,6 @@ public interface ProductRestControllerSpec {
       )
     )
   })
+  @SecurityRequirement(name = HttpHeaders.AUTHORIZATION)
   List<ProductListDto> getAllProducts();
 }

@@ -39,7 +39,13 @@ public class SecurityRestBasicConfig {
         sessionManagementConfigurer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 
       // set authorization access to whole request.
-      .authorizeHttpRequests(authorizeRequest -> authorizeRequest.anyRequest().authenticated())
+      .authorizeHttpRequests(authorizeRequest ->
+        authorizeRequest
+          .requestMatchers(
+            "/swagger-ui/**"
+            , "/v3/api-docs/**"
+          ).permitAll()
+          .anyRequest().authenticated())
       .build();
   }
 
