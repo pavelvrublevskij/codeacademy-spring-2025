@@ -18,6 +18,7 @@
         <module>security-core</module>
         <module>disabled-security</module>
         <module>basic-mvc</module>
+        <module>security-rest-basic</module>
     </modules>
 
 </project>

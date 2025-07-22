@@ -46,6 +46,20 @@
                 <security.module>basic-mvc</security.module>
             </properties>
         </profile>
+        <profile>
+            <id>security-rest-basic</id>
+            <modules>
+                <module>core</module>
+                <module>common</module>
+                <module>api</module>
+                <module>security/security-core</module>
+                <module>security/security-rest-basic</module>
+                <module>main</module>
+            </modules>
+            <properties>
+                <security.module>security-rest-basic</security.module>
+            </properties>
+        </profile>
     </profiles>
 
     <properties>
@@ -87,6 +101,11 @@
             <dependency>
                 <groupId>lt.codeacademy.security</groupId>
                 <artifactId>disabled-security</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>lt.codeacademy.security</groupId>
+                <artifactId>security-rest-basic</artifactId>
                 <version>0.0.1-SNAPSHOT</version>
             </dependency>
 
@@ -260,5 +279,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>
