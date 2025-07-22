@@ -19,6 +19,7 @@
         <module>disabled-security</module>
         <module>basic-mvc</module>
         <module>security-rest-basic</module>
+        <module>security-rest-jwt</module>
     </modules>
 
 </project>
