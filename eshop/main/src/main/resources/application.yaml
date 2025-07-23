@@ -32,7 +32,6 @@ spring:
   security:
     jwt:
       validity-time-in-minutes: 15
-      secret: KexY5IqANfX87RYlFXeKphkW+8Vmdj7nsPT667rJbjZlh80PI5bkGDk3zv8kwmvW.KexY5IqANfX87RYlFasda9971asakasdXeKphkW+8Vmdj7nsPT667rJbjZlh80PI5bkGDk3zv8kwmvW
 logging:
   level:
     lt:

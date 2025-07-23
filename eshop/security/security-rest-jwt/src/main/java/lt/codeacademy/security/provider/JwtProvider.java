@@ -1,5 +1,6 @@
 package lt.codeacademy.security.provider;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -10,6 +11,10 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Component;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
+import jakarta.annotation.PostConstruct;
+
+import javax.crypto.KeyGenerator;
+
 import lt.codeacademy.security.core.dto.UserRoleDto;
 
 @Component
@@ -20,7 +25,6 @@ public class JwtProvider {
   @Value("#{${spring.security.jwt.validity-time-in-minutes} * 60 * 1000}")
   private long tokenValidityInMinutes;
 
-  @Value("${spring.security.jwt.secret}")
   private byte[] secretKey;
 
   static {
@@ -46,4 +50,11 @@ public class JwtProvider {
 
     return jwt;
   }
+
+  @PostConstruct
+  protected void init() throws NoSuchAlgorithmException {
+    // Generate a random secret key for HMAC SHA-512
+    secretKey = KeyGenerator.getInstance("HmacSHA512").generateKey().getEncoded();
+  }
+
 }
