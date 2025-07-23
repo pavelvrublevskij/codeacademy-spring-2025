@@ -20,6 +20,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import lt.codeacademy.security.filter.JwtAuthenticationFilter;
+import lt.codeacademy.security.provider.JwtProvider;
 
 @Log4j2
 @Configuration
@@ -30,6 +31,7 @@ public class SecurityRestJwtConfig {
 
   private final UserDetailsService userDetailsService;
   private final ObjectMapper objectMapper;
+  private final JwtProvider jwtProvider;
 
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity http,
@@ -53,7 +55,7 @@ public class SecurityRestJwtConfig {
             , "/v3/api-docs/**"
           ).permitAll()
           .anyRequest().authenticated())
-      .addFilter(new JwtAuthenticationFilter(authenticationManager, objectMapper))
+      .addFilter(new JwtAuthenticationFilter(authenticationManager, objectMapper, jwtProvider))
       .build();
   }
 
