@@ -34,13 +34,28 @@ public class OpenApiConfig {
   }
 
   private Components getComponents() {
-    var securityScheme = new SecurityScheme()
+    var securityBasicScheme = getSecurityBasicScheme();
+    var securityJwtScheme = getSecurityJwtScheme();
+
+    return new Components()
+      .addSecuritySchemes(securityBasicScheme.getName(), securityBasicScheme)
+      .addSecuritySchemes(securityJwtScheme.getName(), securityJwtScheme);
+  }
+
+  private SecurityScheme getSecurityBasicScheme() {
+    return new SecurityScheme()
       .name(HttpHeaders.AUTHORIZATION)
       .type(SecurityScheme.Type.HTTP)
       .scheme("basic")
       .description("Basic authentication for API access");
+  }
 
-    return new Components()
-      .addSecuritySchemes(securityScheme.getName(), securityScheme);
+  private SecurityScheme getSecurityJwtScheme() {
+    return new SecurityScheme()
+      .name(HttpHeaders.AUTHORIZATION)
+      .description("JWT Bearer Token for API access. To get required token, use the /login endpoint.")
+      .type(SecurityScheme.Type.HTTP)
+      .scheme("bearer")
+      .bearerFormat("JWT");
   }
 }

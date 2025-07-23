@@ -32,11 +32,10 @@ public class JwtProvider {
     HEADER_MAP.put("typ", "JWT");
   }
 
-  public String createToken(final Authentication authentication) {
-    final UserRoleDto userRoleDto = (UserRoleDto) authentication.getPrincipal();
+  public String createToken(final UserRoleDto userRoleDto) {
     final Date now = new Date();
 
-    final String jwt = JWT.create()
+    return JWT.create()
       .withHeader(HEADER_MAP)
       .withIssuer("eshop-api")
       .withAudience("eshop-api")
@@ -47,8 +46,6 @@ public class JwtProvider {
       .withIssuedAt(now)
       .withExpiresAt(new Date(now.getTime() + tokenValidityInMinutes))
       .sign(Algorithm.HMAC512(secretKey));
-
-    return jwt;
   }
 
   @PostConstruct

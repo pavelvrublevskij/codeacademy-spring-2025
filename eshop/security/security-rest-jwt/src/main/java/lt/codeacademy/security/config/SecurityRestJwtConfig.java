@@ -13,14 +13,10 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import lt.codeacademy.security.filter.JwtAuthenticationFilter;
-import lt.codeacademy.security.provider.JwtProvider;
 
 @Log4j2
 @Configuration
@@ -30,12 +26,9 @@ import lt.codeacademy.security.provider.JwtProvider;
 public class SecurityRestJwtConfig {
 
   private final UserDetailsService userDetailsService;
-  private final ObjectMapper objectMapper;
-  private final JwtProvider jwtProvider;
 
   @Bean
-  public SecurityFilterChain securityFilterChain(HttpSecurity http,
-                                                 AuthenticationManager authenticationManager) throws Exception {
+  public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
     return http
       // Disable CSRF protection for REST APIs.
       .csrf(AbstractHttpConfigurer::disable)
@@ -51,11 +44,11 @@ public class SecurityRestJwtConfig {
       .authorizeHttpRequests(authorizeRequest ->
         authorizeRequest
           .requestMatchers(
-            "/swagger-ui/**"
+            "/api/login"
+            , "/swagger-ui/**"
             , "/v3/api-docs/**"
           ).permitAll()
           .anyRequest().authenticated())
-      .addFilter(new JwtAuthenticationFilter(authenticationManager, objectMapper, jwtProvider))
       .build();
   }
 
