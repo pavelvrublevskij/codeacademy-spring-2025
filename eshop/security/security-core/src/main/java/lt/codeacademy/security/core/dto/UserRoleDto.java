@@ -1,4 +1,4 @@
-package lt.codeacademy.security.dto;
+package lt.codeacademy.security.core.dto;
 
 import java.util.Collection;
 import java.util.HashSet;

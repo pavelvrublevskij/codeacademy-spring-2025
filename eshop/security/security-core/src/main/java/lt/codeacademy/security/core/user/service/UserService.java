@@ -1,4 +1,4 @@
-package lt.codeacademy.security.service;
+package lt.codeacademy.security.core.user.service;
 
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import lombok.RequiredArgsConstructor;
 import lt.codeacademy.security.core.jpa.repository.UserRepository;
 import lt.codeacademy.security.core.mapper.UserEntityDomainMapper;
-import lt.codeacademy.security.mapper.UserRoleDtoMapper;
+import lt.codeacademy.security.core.mapper.UserRoleDtoMapper;
 
 @Service
 @RequiredArgsConstructor

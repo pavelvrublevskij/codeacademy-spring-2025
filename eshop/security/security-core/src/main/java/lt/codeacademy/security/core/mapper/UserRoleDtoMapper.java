@@ -1,4 +1,4 @@
-package lt.codeacademy.security.mapper;
+package lt.codeacademy.security.core.mapper;
 
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -8,8 +8,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import lt.codeacademy.security.core.domain.AuthorityDomain;
 import lt.codeacademy.security.core.domain.UserDomain;
-import lt.codeacademy.security.dto.UserDto;
-import lt.codeacademy.security.dto.UserRoleDto;
+import lt.codeacademy.security.core.dto.UserDto;
+import lt.codeacademy.security.core.dto.UserRoleDto;
 
 @Component
 public class UserRoleDtoMapper {
