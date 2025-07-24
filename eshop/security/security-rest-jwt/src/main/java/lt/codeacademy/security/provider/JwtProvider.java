@@ -15,6 +15,7 @@ import jakarta.annotation.PostConstruct;
 
 import javax.crypto.KeyGenerator;
 
+import lombok.Getter;
 import lt.codeacademy.security.core.dto.UserRoleDto;
 
 @Component
@@ -22,8 +23,9 @@ public class JwtProvider {
 
   private static final Map<String, Object> HEADER_MAP;
 
+  @Getter
   @Value("#{${spring.security.jwt.validity-time-in-minutes} * 60 * 1000}")
-  private long tokenValidityInMinutes;
+  private long tokenValidityInMillis;
 
   private byte[] secretKey;
 
@@ -44,7 +46,7 @@ public class JwtProvider {
         .map(GrantedAuthority::getAuthority)
         .toList())
       .withIssuedAt(now)
-      .withExpiresAt(new Date(now.getTime() + tokenValidityInMinutes))
+      .withExpiresAt(new Date(now.getTime() + tokenValidityInMillis))
       .sign(Algorithm.HMAC512(secretKey));
   }
 
@@ -54,4 +56,7 @@ public class JwtProvider {
     secretKey = KeyGenerator.getInstance("HmacSHA512").generateKey().getEncoded();
   }
 
+  public Long getTokenExpiresInSeconds() {
+    return tokenValidityInMillis / 1000L;
+  }
 }

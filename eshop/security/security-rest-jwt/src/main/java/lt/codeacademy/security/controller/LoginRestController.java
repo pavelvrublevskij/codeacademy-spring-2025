@@ -28,7 +28,11 @@ public class LoginRestController {
     return Optional.of(authenticate(loginRequest))
       .map(auth -> (UserRoleDto) auth.getPrincipal())
       .map(principalDto ->
-        ResponseEntity.ok(new LoginResponse(principalDto.getUsername(), jwtProvider.createToken(principalDto))))
+        ResponseEntity.ok(new LoginResponse(
+          principalDto.getUsername(),
+          jwtProvider.createToken(principalDto),
+          jwtProvider.getTokenValidityInMillis()
+          )))
       .orElseThrow(() -> new BadCredentialsException("Authentication failed!"));
   }
 
