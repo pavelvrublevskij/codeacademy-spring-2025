@@ -15,6 +15,7 @@ import lt.codeacademy.spring2025.eshop.product.service.ProductService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -28,6 +29,7 @@ public class ProductRestController implements ProductRestControllerSpec {
 
   @ResponseBody
   @GetMapping
+  @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
   public List<ProductListDto> getAllProducts() {
     // Uncomment the line below to simulate an internal server error for testing purposes
 //     throw new InternalServerErrorException("My custom error message for testing purposes");
@@ -36,6 +38,7 @@ public class ProductRestController implements ProductRestControllerSpec {
 
   @ResponseBody
   @GetMapping(value = "/xml", produces = MediaType.APPLICATION_XML_VALUE)
+  @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
   public List<ProductListDto> getAllProductsAsXml() {
     return getProductListDtos();
   }
@@ -47,18 +50,21 @@ public class ProductRestController implements ProductRestControllerSpec {
   }
 
   @PostMapping
+  @PreAuthorize("hasRole('ADMIN')")
   public ResponseEntity<Void> createProduct(@RequestBody @Valid ProductDto productDto) {
     productService.save(productDtoMapper.toDomain(productDto));
     return ResponseEntity.status(HttpStatus.CREATED).build();
   }
 
   @DeleteMapping("/{uuid}")
+  @PreAuthorize("hasRole('ADMIN')")
   public ResponseEntity<Void> deleteProduct(@PathVariable UUID uuid) {
     productService.deleteProductByUUID(uuid);
     return ResponseEntity.noContent().build();
   }
 
   @PutMapping
+  @PreAuthorize("hasRole('ADMIN')")
   public ResponseEntity<ProductDto> updateProduct(@RequestBody @Valid ProductDto productDto) {
     productService.update(productDtoMapper.toDomain(productDto));
     return ResponseEntity.status(HttpStatus.CREATED).build();

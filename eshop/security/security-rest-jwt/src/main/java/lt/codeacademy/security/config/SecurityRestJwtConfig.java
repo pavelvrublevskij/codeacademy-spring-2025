@@ -15,8 +15,11 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import lt.codeacademy.security.filter.JwtAuthorizationFilter;
+import lt.codeacademy.security.provider.JwtProvider;
 
 @Log4j2
 @Configuration
@@ -26,6 +29,7 @@ import lombok.extern.log4j.Log4j2;
 public class SecurityRestJwtConfig {
 
   private final UserDetailsService userDetailsService;
+  private final JwtProvider jwtProvider;
 
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -49,6 +53,7 @@ public class SecurityRestJwtConfig {
             , "/v3/api-docs/**"
           ).permitAll()
           .anyRequest().authenticated())
+      .addFilterBefore(new JwtAuthorizationFilter(jwtProvider), UsernamePasswordAuthenticationFilter.class)
       .build();
   }
 

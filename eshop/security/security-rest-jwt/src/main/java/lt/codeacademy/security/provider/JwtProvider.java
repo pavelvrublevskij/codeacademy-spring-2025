@@ -3,14 +3,20 @@ package lt.codeacademy.security.provider;
 import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Component;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.interfaces.Claim;
+import com.auth0.jwt.interfaces.DecodedJWT;
+import com.auth0.jwt.interfaces.JWTVerifier;
 import jakarta.annotation.PostConstruct;
 
 import javax.crypto.KeyGenerator;
@@ -22,6 +28,8 @@ import lt.codeacademy.security.core.dto.UserRoleDto;
 public class JwtProvider {
 
   private static final Map<String, Object> HEADER_MAP;
+  public static final String ESHOP_API = "eshop-api";
+  public static final String ROLES_CLAIM = "roles";
 
   @Getter
   @Value("#{${spring.security.jwt.validity-time-in-minutes} * 60 * 1000}")
@@ -39,15 +47,15 @@ public class JwtProvider {
 
     return JWT.create()
       .withHeader(HEADER_MAP)
-      .withIssuer("eshop-api")
-      .withAudience("eshop-api")
+      .withIssuer(ESHOP_API)
+      .withAudience(ESHOP_API)
       .withSubject(userRoleDto.getUsername())
-      .withClaim("roles", userRoleDto.getAuthorities().stream()
+      .withClaim(ROLES_CLAIM, userRoleDto.getAuthorities().stream()
         .map(GrantedAuthority::getAuthority)
         .toList())
       .withIssuedAt(now)
       .withExpiresAt(new Date(now.getTime() + tokenValidityInMillis))
-      .sign(Algorithm.HMAC512(secretKey));
+      .sign(createAlgorithmBySecretKey());
   }
 
   @PostConstruct
@@ -58,5 +66,27 @@ public class JwtProvider {
 
   public Long getTokenExpiresInSeconds() {
     return tokenValidityInMillis / 1000L;
+  }
+
+  public Authentication validateToken(final String token) {
+    final JWTVerifier verifier = JWT.require(createAlgorithmBySecretKey())
+      .withIssuer(ESHOP_API)
+      .withAudience(ESHOP_API)
+      .build();
+
+    final DecodedJWT decodedJWT = verifier.verify(token);
+
+    if (decodedJWT != null) {
+      final Claim claim = decodedJWT.getClaim(ROLES_CLAIM);
+      final List<SimpleGrantedAuthority> authorities = claim.asList(SimpleGrantedAuthority.class);
+
+      return new UsernamePasswordAuthenticationToken(decodedJWT.getSubject(), null, authorities);
+    }
+
+    return null;
+  }
+
+  private Algorithm createAlgorithmBySecretKey() {
+    return Algorithm.HMAC512(secretKey);
   }
 }
