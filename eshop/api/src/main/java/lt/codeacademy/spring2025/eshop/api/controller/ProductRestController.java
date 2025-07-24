@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/products")
-public class ProductRestController implements ProductRestControllerSpec {
+public class ProductRestController implements ProductRestControllerSpec, ProductRestControllerHasSecurity {
 
   private final ProductService productService;
   private final ProductListDtoMapper productListDtoMapper;
@@ -29,7 +29,6 @@ public class ProductRestController implements ProductRestControllerSpec {
 
   @ResponseBody
   @GetMapping
-  @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
   public List<ProductListDto> getAllProducts() {
     // Uncomment the line below to simulate an internal server error for testing purposes
 //     throw new InternalServerErrorException("My custom error message for testing purposes");
