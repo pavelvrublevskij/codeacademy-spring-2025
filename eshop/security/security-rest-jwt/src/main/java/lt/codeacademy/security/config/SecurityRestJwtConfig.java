@@ -52,6 +52,7 @@ public class SecurityRestJwtConfig {
             , "/swagger-ui/**"
             , "/v3/api-docs/**"
             , "/api/products/**"
+            , "/api/integrations/**"
           ).permitAll()
           .anyRequest().authenticated())
       .addFilterBefore(new JwtAuthorizationFilter(jwtProvider), UsernamePasswordAuthenticationFilter.class)

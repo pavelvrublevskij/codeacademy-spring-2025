@@ -21,6 +21,10 @@
             <groupId>lt.codeacademy.spring2025</groupId>
             <artifactId>api</artifactId>
         </dependency>
+        <dependency>
+            <groupId>lt.codeacademy.spring2025</groupId>
+            <artifactId>apilayer</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
