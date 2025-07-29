@@ -18,15 +18,19 @@ public class WebClientUtil {
                                   final String uriPath,
                                   final HttpHeaders requestHttpHeaders,
                                   final Class<Res> responseType) {
-    return WebClient.builder()
-      .baseUrl(url)
-      .defaultHeaders(httpHeaders -> httpHeaders.addAll(requestHttpHeaders))
-      .build()
+    return buildWebClientOf(url, requestHttpHeaders)
       .get()
       .uri(uriPath)
       .retrieve()
       .bodyToMono(responseType)
       .log()
       .block(); // Blocking call to wait for the response
+  }
+
+  public static WebClient buildWebClientOf(final String baseUrl, final HttpHeaders requestHttpHeaders) {
+    return WebClient.builder()
+      .baseUrl(baseUrl)
+      .defaultHeaders(httpHeaders -> httpHeaders.addAll(requestHttpHeaders))
+      .build();
   }
 }

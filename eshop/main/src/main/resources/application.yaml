@@ -16,7 +16,8 @@ spring:
       - global-users
       - integration
 #      - rest-template
-      - reactive-exchange-webclient
+#      - reactive-exchange-webclient
+      - reactive-exchange-interface
   application:
     name: eshop
   main:
