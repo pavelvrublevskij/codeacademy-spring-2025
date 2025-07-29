@@ -3,7 +3,6 @@ package lt.codeacademy.spring2025.eshop.integration.apilayer.exchangeratesapi.se
 import java.net.URI;
 
 import org.springframework.context.annotation.Profile;
-import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import lt.codeacademy.spring2025.eshop.integration.apilayer.exchangeratesapi.dto.ExchangeRatesResponse;
@@ -21,13 +20,10 @@ import static lt.codeacademy.spring2025.eshop.integration.apilayer.exchangerates
 public class ExchangeRatesRestTemplateService implements ExchangeRatesService {
 
   public ExchangeRatesResponse getLatestBaseExchangeRates(final String baseCurrency) {
-    final HttpHeaders requestHttpHeaders = new HttpHeaders();
-    requestHttpHeaders.add(API_KEY_HEADER_NAME, API_KEY);
-
     return RestTemplateUtil.callGet(
       new RestTemplate(),
       URI.create(API_BASE_URL.concat(LATEST_ENDPOINT).concat("?base=".concat(baseCurrency))).toString(),
-      requestHttpHeaders,
+      getDefaultHeaders(),
       ExchangeRatesResponse.class
     );
   }

@@ -1,7 +1,6 @@
 package lt.codeacademy.spring2025.eshop.integration.apilayer.exchangeratesapi.service.httpinterface;
 
 import org.springframework.context.annotation.Profile;
-import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 import lombok.RequiredArgsConstructor;
 import lt.codeacademy.spring2025.eshop.integration.apilayer.exchangeratesapi.dto.ExchangeRatesResponse;
@@ -19,10 +18,7 @@ public class ExchangeRatesClientService implements ExchangeRatesService {
 
   @Override
   public ExchangeRatesResponse getLatestBaseExchangeRates(String baseCurrency) {
-    final HttpHeaders requestHttpHeaders = new HttpHeaders();
-    requestHttpHeaders.add(API_KEY_HEADER_NAME, API_KEY);
-
-    exchangeRatesClient.create(WebClientUtil.buildWebClientOf(API_BASE_URL, requestHttpHeaders));
+    exchangeRatesClient.create(WebClientUtil.buildWebClientOf(API_BASE_URL, getDefaultHeaders()));
 
     return exchangeRatesClient.getService().getLatestBaseExchangeRates(baseCurrency, null);
   }
