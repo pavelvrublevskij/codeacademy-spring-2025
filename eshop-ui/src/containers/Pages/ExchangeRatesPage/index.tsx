@@ -1,16 +1,8 @@
-import { useEffect, useState } from 'react';
-import { getExchangeRatesApi } from '../../../config/api/eshopApiEndpoints';
+import {useEffect, useState} from 'react';
+import {getExchangeRatesApi} from '../../../config/api/eshopApiEndpoints';
+import {ExchangeRatesResponse} from "../../../config/api/dto/ExchangeRatesResponse";
 
-interface ExchangeRatesProps {
-    rates: {
-        currency: string,
-        rate: number,
-    },
-    base: string,
-    date: string
-}
-
-const initialRatesState: ExchangeRatesProps = {
+const initialRatesState: ExchangeRatesResponse = {
     rates: {
         currency: '',
         rate: 0,
@@ -20,40 +12,49 @@ const initialRatesState: ExchangeRatesProps = {
 };
 
 const ExchangeRatesPage = () => {
-    const [ratesData, setRatesData] = useState<ExchangeRatesProps>(initialRatesState);
+    const [ratesData, setRatesData] = useState<ExchangeRatesResponse>(initialRatesState);
+    const [loading, setLoading] = useState<boolean>(true);
 
     useEffect(() => {
+        console.log(1);
         getExchangeRatesApi()
             .then((response) => {
-                console.log(response);
+                console.log(2);
+                // console.log(response);
                 setRatesData(response.data);
             })
             .catch((error) => {
                 console.log(error);
-            });
+            })
+            .finally(() => setLoading(false));
     }, []);
 
     return (
-        <div>
-            <h2>Exchange Rates for {ratesData.date}</h2>
-            <p>Base Currency: {ratesData.base}</p>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Currency</th>
-                        <th>Exchange Rate</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {Object.entries(ratesData.rates).map(([currency, rate]) => (
-                        <tr key={currency}>
-                            <td>{currency}</td>
-                            <td>{rate}</td>
+        <>
+            {loading
+                ? <span>Loading...</span>
+                : <div>
+                    <h2>Exchange Rates for {ratesData.date}</h2>
+                    <p>Base Currency: {ratesData.base}</p>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Currency</th>
+                            <th>Exchange Rate</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
-        </div>
+                        </thead>
+                        <tbody>
+                        {Object.entries(ratesData.rates).map(([currency, rate]) => (
+                            <tr key={currency}>
+                                <td>{currency}</td>
+                                <td>{rate}</td>
+                            </tr>
+                        ))}
+                        </tbody>
+                    </table>
+                </div>
+            }
+        </>
     );
 };
 
