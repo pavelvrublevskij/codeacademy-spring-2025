@@ -1,4 +1,4 @@
-import { Field, Form, Formik, FormikProps } from 'formik';
+import {Field, Form, Formik, FormikProps} from 'formik';
 import {
     Button,
     Container, Spinner,
@@ -6,43 +6,37 @@ import {
 import FormikFieldInputGroup from '../../../components/Formik/FormikFieldInputGroup/FormikFieldInputGroup';
 import * as Yup from 'yup';
 import {ObjectSchema} from "yup";
-
-interface LoginError {
-    email?: string;
-    password?: string;
-}
+import {loginApi} from "../../../config/api/eshopApiEndpoints";
 
 interface LoginValues {
     email: string;
     password: string;
 }
 
-const validationSchema: ObjectSchema<{email: string, password: string}>  = Yup.object().shape({
+const validationSchema: ObjectSchema<{ email: string, password: string }> = Yup.object().shape({
     email: Yup.string()
         .min(5, 'Ilgis turi buti ne mazesnis nei 5')
         .required()
         //.email()
         .matches(/^(.+)@(.+)$/, 'email neatitinka standarto'),
     password: Yup.string()
-        .min(6, 'Slaptazodzio ilgis turi buti >= 6')
+        .min(5, 'Slaptazodzio ilgis turi buti >= 5')
         .required(),
 });
 
 const LoginPage = () => {
 
-    const validate = (login: LoginValues) => {
-
-        const errors: LoginError = {}
-
-        if (!login.email.includes("@")) {
-            errors.email = "CIA NE EMAIL'AS!!!";
-        }
-
-        if (login.password.length < 6 ) {
-            errors.password = "Slaptazodzio ilgis turi buti >= 6"
-        }
-
-        return errors
+    const postLogin = (login: any, helper: any) => {
+        loginApi({
+            username: login.email,
+            password: login.password
+        }).then((response) =>
+            console.log('login response', response)
+        ).catch((error) =>
+            console.log(error)
+        ).finally(() =>
+            helper.setSubmitting(false)
+        );
     }
 
     return (
@@ -51,10 +45,7 @@ const LoginPage = () => {
                 email: '',
                 password: '',
             }}
-            onSubmit={(login: LoginValues, helper) => {
-
-                console.log('login', login);
-            }}
+            onSubmit={postLogin}
             validationSchema={validationSchema}
         >
             {
@@ -64,8 +55,8 @@ const LoginPage = () => {
                     return (
                         <Container>
                             <Form>
-                                <Field name="email" component={FormikFieldInputGroup} labelText="Email:" type="text" />
-                                <Field name="password" component={FormikFieldInputGroup} labelText="Password:" type="password" />
+                                <Field name="email" component={FormikFieldInputGroup} labelText="Email:" type="text"/>
+                                <Field name="password" component={FormikFieldInputGroup} labelText="Password:" type="password"/>
                                 <div className="text-center">
                                     {props.isSubmitting
                                         ? <Button variant='primary' disabled>
@@ -78,8 +69,8 @@ const LoginPage = () => {
                                             />
                                             Processing...
                                         </Button>
-                                        :  <Button type='submit'
-                                                   variant='primary'>
+                                        : <Button type='submit'
+                                                  variant='primary'>
                                             Submit
                                         </Button>
                                     }
