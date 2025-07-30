@@ -33,9 +33,6 @@ const HeaderContainer = () => {
                         <Nav.Link to="/" as={NavLink}>
                             Home
                         </Nav.Link>
-                        <div>
-                            <strong>{authUserContextValue.authUser.username}</strong>
-                        </div>
                         <Nav.Link to="/products" as={NavLink}>
                             Products
                         </Nav.Link>
@@ -60,9 +57,19 @@ const HeaderContainer = () => {
                         />
                         <Button variant="outline-success">Search</Button>
                     </Form>
-                    <Nav.Link href="#" disabled>
-                        Login
-                    </Nav.Link>
+                    {!authUserContextValue.authUser.username
+                        ? <Nav.Link to="/login" as={NavLink}>
+                            Login
+                        </Nav.Link>
+                        : <>
+                            <div>
+                                <strong>{authUserContextValue.authUser.username}</strong>
+                            </div>
+                            <Nav.Link href="/login">
+                                Logout
+                            </Nav.Link>
+                        </>
+                    }
                 </Navbar.Collapse>
             </Container>
         </Navbar>

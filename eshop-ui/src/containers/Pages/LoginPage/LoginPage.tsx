@@ -9,6 +9,7 @@ import {ObjectSchema} from "yup";
 import {loginApi} from "../../../config/api/eshopApiEndpoints";
 import {useContext} from "react";
 import {AuthUserContext} from "../../../contexts/AuthUserContext";
+import {useNavigate} from "react-router-dom";
 
 interface LoginValues {
     email: string;
@@ -29,14 +30,17 @@ const validationSchema: ObjectSchema<{ email: string, password: string }> = Yup.
 const LoginPage = () => {
 
     const authUserContextValue = useContext(AuthUserContext);
+    const navigate = useNavigate();
 
     const postLogin = (login: any, helper: any) => {
         loginApi({
             username: login.email,
             password: login.password
-        }).then((response) =>
-            // console.log('login response', response.data)
-            authUserContextValue.putAuthUser(response.data)
+        }).then((response) => {
+                // console.log('login response', response.data)
+                authUserContextValue.putAuthUser(response.data);
+                navigate("/"); // redirect to home page after successful login
+            }
         ).catch((error) =>
             console.log(error)
         ).finally(() =>
