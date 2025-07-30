@@ -6,6 +6,7 @@ import Pages from './Pages/Page';
 import {AuthUserContext, initialAuthUserState} from "../contexts/AuthUserContext";
 import {useState} from "react";
 import {LoginResponse} from "../config/api/dto/LoginRequest";
+import {saveToSessionStorage, StorageKey} from "../utils/sessionStorage";
 
 function App() {
 
@@ -13,7 +14,10 @@ function App() {
 
     const authUserContextValue = {
         authUser,
-        putAuthUser: (data: LoginResponse) => setAuthUser(data)
+        putAuthUser: (data: LoginResponse) => {
+            setAuthUser(data);
+            saveToSessionStorage(StorageKey.jwt, data.token);
+        }
     };
 
     return (
