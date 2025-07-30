@@ -4,6 +4,8 @@ import {
     Container, Spinner,
 } from 'react-bootstrap';
 import FormikFieldInputGroup from '../../../components/Formik/FormikFieldInputGroup/FormikFieldInputGroup';
+import * as Yup from 'yup';
+import {ObjectSchema} from "yup";
 
 interface LoginError {
     email?: string;
@@ -14,6 +16,17 @@ interface LoginValues {
     email: string;
     password: string;
 }
+
+const validationSchema: ObjectSchema<{email: string, password: string}>  = Yup.object().shape({
+    email: Yup.string()
+        .min(5, 'Ilgis turi buti ne mazesnis nei 5')
+        .required()
+        //.email()
+        .matches(/^(.+)@(.+)$/, 'email neatitinka standarto'),
+    password: Yup.string()
+        .min(6, 'Slaptazodzio ilgis turi buti >= 6')
+        .required(),
+});
 
 const LoginPage = () => {
 
@@ -42,7 +55,7 @@ const LoginPage = () => {
 
                 console.log('login', login);
             }}
-            validate={validate}
+            validationSchema={validationSchema}
         >
             {
                 (props: FormikProps<LoginValues>) => {
