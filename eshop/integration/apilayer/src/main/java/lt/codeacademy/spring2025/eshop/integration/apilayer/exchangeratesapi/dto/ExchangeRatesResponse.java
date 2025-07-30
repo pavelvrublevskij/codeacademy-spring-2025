@@ -2,6 +2,8 @@ package lt.codeacademy.spring2025.eshop.integration.apilayer.exchangeratesapi.dt
 
 import java.util.Map;
 
+import lombok.Builder;
+
 /**
  * Example response from the API:
  * {
@@ -16,6 +18,7 @@ import java.util.Map;
  *   "timestamp": 1753382344
  * }
  */
+@Builder
 public record ExchangeRatesResponse(
   String base,
   String date,

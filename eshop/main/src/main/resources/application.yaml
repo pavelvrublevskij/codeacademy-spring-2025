@@ -17,7 +17,8 @@ spring:
       - integration
 #      - rest-template
 #      - reactive-exchange-webclient
-      - reactive-exchange-interface
+#      - reactive-exchange-interface
+      - mock
   application:
     name: eshop
   main:

@@ -11,7 +11,7 @@ const Pages = () => (
         <Route path="/products" element={<ProductsPage />} />
         <Route path="/products/create" element={<NewProductPage />} />
         <Route path="/products/:productId" element={<ProductsPage />} />
-        <Route path="/exchange-ratest" element={<ExchangeRatesPage />} />
+        <Route path="/exchange-rates" element={<ExchangeRatesPage />} />
         <Route path="/login" element={<LoginPage />} />
     </Routes>
 );
