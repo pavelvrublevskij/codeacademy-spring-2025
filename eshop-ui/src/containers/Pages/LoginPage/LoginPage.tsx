@@ -7,6 +7,8 @@ import FormikFieldInputGroup from '../../../components/Formik/FormikFieldInputGr
 import * as Yup from 'yup';
 import {ObjectSchema} from "yup";
 import {loginApi} from "../../../config/api/eshopApiEndpoints";
+import {useContext} from "react";
+import {AuthUserContext} from "../../../contexts/AuthUserContext";
 
 interface LoginValues {
     email: string;
@@ -20,18 +22,21 @@ const validationSchema: ObjectSchema<{ email: string, password: string }> = Yup.
         //.email()
         .matches(/^(.+)@(.+)$/, 'email neatitinka standarto'),
     password: Yup.string()
-        .min(5, 'Slaptazodzio ilgis turi buti >= 5')
+        .min(3, 'Slaptazodzio ilgis turi buti >= 3')
         .required(),
 });
 
 const LoginPage = () => {
+
+    const authUserContextValue = useContext(AuthUserContext);
 
     const postLogin = (login: any, helper: any) => {
         loginApi({
             username: login.email,
             password: login.password
         }).then((response) =>
-            console.log('login response', response)
+            // console.log('login response', response.data)
+            authUserContextValue.putAuthUser(response.data)
         ).catch((error) =>
             console.log(error)
         ).finally(() =>
