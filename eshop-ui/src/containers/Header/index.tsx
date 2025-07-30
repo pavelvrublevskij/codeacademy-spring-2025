@@ -33,6 +33,9 @@ const HeaderContainer = () => (
                     <Nav.Link to="/products/create" as={NavLink}>
                         Create a Product
                     </Nav.Link>
+                    <Nav.Link to="/exchange-rates" as={NavLink}>
+                        Exchange Rates
+                    </Nav.Link>
                     <NavDropdown title="Languages" id="navbarScrollingDropdown">
                         <NavDropdown.Item href="#action3">LT</NavDropdown.Item>
                         <NavDropdown.Item href="#action4">EN</NavDropdown.Item>
