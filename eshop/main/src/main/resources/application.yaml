@@ -19,7 +19,8 @@ spring:
 #      - reactive-exchange-webclient
 #      - reactive-exchange-interface
       - mock
-      - cache-caffeine
+#      - cache-caffeine
+      - cache-redis
   application:
     name: eshop
   main:

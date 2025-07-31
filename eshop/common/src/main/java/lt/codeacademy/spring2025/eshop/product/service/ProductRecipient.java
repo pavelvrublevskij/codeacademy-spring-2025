@@ -30,7 +30,11 @@ public class ProductRecipient {
   private final ProductEntityMapper productEntityMapper;
   private final MessageService messageService;
 
-  @Cacheable(value = PRODUCTS_PAGINATED_CACHE_NAME, key = "#pageable.pageNumber + '_' + #pageable.pageSize + '_' + #pageable.sort.toString()")
+  @Cacheable(
+    value = PRODUCTS_PAGINATED_CACHE_NAME,
+    key = "#pageable.pageNumber + '_' + #pageable.pageSize + '_' + #pageable.sort.toString()",
+    condition = "!@environment.acceptsProfiles('cache-redis')"
+  )
   public Page<Product> getAllProductsPaginated(Pageable pageable) {
     log.info("===> Fetching products paginated from database - Page: {}, Size: {}", pageable.getPageNumber(), pageable.getPageSize());
     return productRepository.findAll(pageable).map(productEntityMapper::toDomain);

@@ -41,13 +41,39 @@ services:
       - pgadmin-data:/var/lib/pgadmin
     networks:
       - postgres_network
+  redis:
+    image: redis:7-alpine
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes
+    networks:
+      - redis_network
+  redis-commander:
+    image: rediscommander/redis-commander:latest
+    restart: always
+    environment:
+      REDIS_HOSTS: "local:redis:6379"
+      HTTP_USER: admin
+      HTTP_PASSWORD: admin
+    ports:
+      - "8890:8081"
+    networks:
+      - redis_network
+    depends_on:
+      - redis
 volumes:
   db-data:
   pgadmin-data:
   mysql_data:
+  redis_data:
 
 networks:
   postgres_network:
     driver: bridge
   mysql_network:
+    driver: bridge
+  redis_network:
     driver: bridge
