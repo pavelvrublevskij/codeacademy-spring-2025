@@ -42,6 +42,13 @@ cache:
   products:
     max-size: 1000
     ttl: 1
+    paginated:
+      max-size: 100
+      ttl: 5
+  product:
+    byUUID:
+      max-size: 1
+      ttl: 10
 logging:
   level:
     lt:
