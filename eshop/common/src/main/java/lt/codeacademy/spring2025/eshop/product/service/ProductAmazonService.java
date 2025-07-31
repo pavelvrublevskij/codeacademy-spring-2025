@@ -21,6 +21,7 @@ public class ProductAmazonService implements ProductService {
   private final ProductSaver productSaver;
   private final ProductUpdater productUpdater;
   private final ProductRecipient productRecipient;
+  private final ProductRecipientCachable productRecipientCachable;
   private final ProductRemover productRemover;
 
   @Transactional
@@ -34,19 +35,24 @@ public class ProductAmazonService implements ProductService {
   }
 
   public Page<Product> getAllProductsPaginated(Pageable pageable) {
-    return productRecipient.getAllProductsPaginated(pageable);
+    return productRecipientCachable.getAllProductsPaginated(pageable);
   }
 
   public List<Product> getAllProducts() {
-    return productRecipient.getAllProducts();
+    return productRecipientCachable.getAllProducts();
   }
 
   public Product getProductById(final UUID productId) {
-    return productRecipient.getProductById(productId);
+    return productRecipientCachable.getProductById(productId);
   }
 
   @Transactional
   public void deleteProductByUUID(final UUID productId) {
     productRemover.deleteProductByUUID(productId);
+  }
+
+  @Override
+  public Product getProductByIdForUpdate(UUID productId) {
+    return productRecipient.getProductById(productId);
   }
 }

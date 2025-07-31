@@ -22,6 +22,7 @@ public class ProductEbayService implements ProductService {
   private final ProductSaver productSaver;
   private final ProductUpdater productUpdater;
   private final ProductRecipient productRecipient;
+  private final ProductRecipientCachable productRecipientCachable;
 
   @Transactional
   public void save(final Product product) {
@@ -42,11 +43,16 @@ public class ProductEbayService implements ProductService {
   }
 
   public Product getProductById(final UUID productId) {
-    return productRecipient.getProductById(productId);
+    return productRecipientCachable.getProductById(productId);
   }
 
   @Transactional
   public void deleteProductByUUID(final UUID productId) {
     throw new RuntimeException("For ebay delete product not possible!");
+  }
+
+  @Override
+  public Product getProductByIdForUpdate(UUID productId) {
+    return productRecipient.getProductById(productId);
   }
 }

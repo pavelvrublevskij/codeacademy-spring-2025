@@ -20,4 +20,6 @@ public interface ProductService {
   Product getProductById(final UUID productId);
 
   void deleteProductByUUID(final UUID productId);
+
+  Product getProductByIdForUpdate(UUID productId);
 }

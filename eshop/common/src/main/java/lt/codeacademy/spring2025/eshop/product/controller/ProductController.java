@@ -79,7 +79,7 @@ public class ProductController {
   @GetMapping(HttpEndpoint.PRODUCT_UPDATE)
   public String updateProduct(Model model,
                               @PathVariable UUID productId) {
-    model.addAttribute("product", productService.getProductById(productId));
+    model.addAttribute("product", productService.getProductByIdForUpdate(productId));
     return PRODUCT_UPDATE_VIEW;
   }
 
