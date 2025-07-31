@@ -16,7 +16,7 @@ import javax.sql.DataSource;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import lt.codeacademy.security.service.UserService;
+import lt.codeacademy.security.core.user.service.UserService;
 
 @Log4j2
 @Configuration

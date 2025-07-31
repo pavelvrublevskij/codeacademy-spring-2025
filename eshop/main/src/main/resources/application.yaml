@@ -19,6 +19,7 @@ spring:
 #      - reactive-exchange-webclient
 #      - reactive-exchange-interface
       - mock
+      - cache-caffeine
   application:
     name: eshop
   main:
@@ -26,7 +27,7 @@ spring:
   jpa:
     hibernate:
       ddl-auto: validate
-    show-sql: true
+    show-sql: false
     properties:
       hibernate:
         format_sql: true
@@ -37,6 +38,10 @@ spring:
   security:
     jwt:
       validity-time-in-minutes: 15
+cache:
+  products:
+    max-size: 1000
+    ttl: 1
 logging:
   level:
     lt:
